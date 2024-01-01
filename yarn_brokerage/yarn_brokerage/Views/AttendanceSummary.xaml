@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="yarn_brokerage.Views.AttendanceSummary"
+             Title="Attendance Summary">
+    <ContentPage.Content>
+        <StackLayout>
+            <Frame BackgroundColor="#e7e7e9" BorderColor="Transparent" HeightRequest="60" Padding="0">
+                <Grid Padding="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.3*" />
+                        <ColumnDefinition Width="0.4*" />
+                        <ColumnDefinition Width="0.3*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Image x:Name="butPrevious" Grid.Column="0" HeightRequest="24" WidthRequest="24" Margin="0,0,10,0" HorizontalOptions="End" Source="ic_b_launcher.png">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="butAttendenceSummaryPreviousDate_Clicked" NumberOfTapsRequired="1" />
+                        </Image.GestureRecognizers>
+                    </Image>
+                    <DatePicker Grid.Column="1" IsVisible="True" x:Name="startAttendenceSummaryDatePicker" Date="{Binding date}" Format="MMMM, yyyy" FontSize="17"  HorizontalOptions="CenterAndExpand" DateSelected="startAttendenceSummaryDatePicker_DateSelected"/>
+                    <Image x:Name="butNext" Grid.Column="2" HeightRequest="24" WidthRequest="24" Margin="10,0,0,0" HorizontalOptions="Start" Source="ic_launcher.png">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="butAttendenceNextSummaryDate_Clicked" NumberOfTapsRequired="1" />
+                        </Image.GestureRecognizers>
+                    </Image>
+                </Grid>
+
+
+            </Frame>
+            <StackLayout Padding="10" Spacing="0">
+                <Frame BackgroundColor="#e7e7e9" BorderColor="Transparent" HeightRequest="60" Padding="0">
+                    <Grid Padding="10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="2.5*"/>
+                            <ColumnDefinition Width="1.5*"/>
+                            <ColumnDefinition Width="1.5*"/>
+                            <ColumnDefinition Width="1.5*"/>
+                            <ColumnDefinition Width="1.5*"/>
+                            <ColumnDefinition Width="1.5*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Label  Text="E" VerticalOptions="Center"  Grid.Column="0" HorizontalOptions="Center" TextColor="Black" FontAttributes="Bold"  LineBreakMode="NoWrap"/>
+                        <Label  Text="F" VerticalOptions="Center"  Grid.Column="1" HorizontalOptions="Center" TextColor="Black" FontAttributes="Bold"  LineBreakMode="NoWrap"/>
+                        <Label  Text="H" VerticalOptions="Center"  Grid.Column="2"  HorizontalOptions="Center" TextColor="Black" FontAttributes="Bold"  LineBreakMode="NoWrap"/>
+                        <Label  Text="A" VerticalOptions="Center"  Grid.Column="3" HorizontalOptions="Center" TextColor="Black" FontAttributes="Bold"  LineBreakMode="NoWrap"/>
+                        <Label  Text="L" VerticalOptions="Center"  Grid.Column="4" HorizontalOptions="Center" TextColor="Black" FontAttributes="Bold"  LineBreakMode="NoWrap"/>
+                        <Label  Text="P" VerticalOptions="Center"  Grid.Column="5" HorizontalOptions="Center" TextColor="Black" FontAttributes="Bold"  LineBreakMode="NoWrap"/>
+
+                    </Grid>
+                </Frame>
+                <ListView x:Name="AttandanceSummaryListView"
+        ItemsSource="{Binding AttendenceSummary}"
+        VerticalOptions="FillAndExpand"
+        HasUnevenRows="true"
+        RefreshCommand="{Binding LoadSummaryCommand}"   
+        IsPullToRefreshEnabled="False"                    
+        CachingStrategy="RecycleElement"
+        ItemSelected="OnItemSelected"
+        TabIndex="0"
+        SeparatorColor="LightGray">
+
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Frame  Padding="0" BorderColor="#FAFAFA">
+                                    <Grid Padding="10" RowSpacing="10">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="2.5*"/>
+                                            <ColumnDefinition Width="1.5*"/>
+                                            <ColumnDefinition Width="1.5*"/>
+                                            <ColumnDefinition Width="1.5*"/>
+                                            <ColumnDefinition Width="1.5*"/>
+                                            <ColumnDefinition Width="1.5*"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <Label  Text="{Binding EmployeeName}" VerticalOptions="Center" HorizontalOptions="Start" Grid.Column="0"  LineBreakMode="NoWrap" />
+                                        <Label  Text="{Binding FullDay}" VerticalOptions="Center" HorizontalOptions="Center"  Grid.Column="1"  LineBreakMode="NoWrap"/>
+                                        <Label  Text="{Binding HalfDay}" VerticalOptions="Center"  HorizontalOptions="Center" Grid.Column="2"  LineBreakMode="NoWrap"/>
+                                        <Label  Text="{Binding Absent}" VerticalOptions="Center" HorizontalOptions="Center"  Grid.Column="3"  LineBreakMode="NoWrap"/>
+                                        <Label  Text="{Binding LateTotal}" VerticalOptions="Center" HorizontalOptions="Center"  Grid.Column="4"  LineBreakMode="NoWrap"/>
+                                        <Label  Text="{Binding PermissionTotal}" VerticalOptions="Center" HorizontalOptions="Center"  Grid.Column="5"  LineBreakMode="NoWrap"/>
+
+
+                                    </Grid>
+
+                                </Frame>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                    <ListView.Footer>
+                        <Grid Padding="6" IsVisible="{Binding IsBusy}">
+                            <!-- set the footer to have a zero height when invisible -->
+                            <Grid.Triggers>
+                                <Trigger TargetType="Grid" Property="IsVisible" Value="False">
+                                    <Setter Property="HeightRequest" Value="0" />
+                                </Trigger>
+                            </Grid.Triggers>
+                            <!-- the loading content -->
+                            <Label Text="Loading..." TextColor="Gray" FontSize="20" VerticalOptions="Center" HorizontalOptions="Center" />
+                        </Grid>
+                    </ListView.Footer>
+                </ListView>
+
+            </StackLayout>
+           
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

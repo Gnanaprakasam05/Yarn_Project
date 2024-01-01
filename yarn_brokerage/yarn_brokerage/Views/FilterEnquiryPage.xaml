@@ -1,0 +1,175 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="yarn_brokerage.Views.FilterEnquiryPage"
+             xmlns:input="clr-namespace:Plugin.InputKit.Shared.Controls;assembly=Plugin.InputKit"
+             Title="New Item">
+    
+    <!--<ContentPage.ToolbarItems>
+        <ToolbarItem Text="Cancel" Clicked="Cancel_Clicked" />
+        <ToolbarItem Text="Save" Clicked="Save_Clicked" />
+    </ContentPage.ToolbarItems>-->
+    
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Spacing="20" Padding="15">
+                <Grid RowSpacing="15" >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.4*"/>
+                        <ColumnDefinition Width="0.6*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="300"/>
+                    </Grid.RowDefinitions>
+
+                    <Grid Grid.Row="0" VerticalOptions="CenterAndExpand" Margin="0,0,0,15" Grid.Column="0" Grid.ColumnSpan="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.4*"/>
+                            <ColumnDefinition Width="0.6*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Label x:Name="lblDateTime" Grid.Row="0" Grid.Column="0" VerticalOptions="CenterAndExpand" Text="Date" FontSize="17" />                        
+                        <DatePicker x:Name="txtDateTime" Grid.Row="0" Grid.Column="1" Date="{Binding SearchFilter.transaction_date_time}" DateSelected="txtDateTime_DateSelected" Format="dd-MM-yyyy" FontSize="16"/>
+                    </Grid>
+                    
+                    <Label x:Name="lblEnquiryType" Grid.Row="1" Grid.Column="0" Text="Type" FontSize="17" />
+                    <Grid x:Name="grdEnquiryType" Grid.Row="1" VerticalOptions="CenterAndExpand" Margin="0,0,0,15" Grid.Column="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.5*"/>
+                            <ColumnDefinition Width="0.5*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <!--<input:RadioButtonGroupView Grid.Column="0" Grid.Row="0" FlowDirection="LeftToRight" >-->
+                        <input:CheckBox x:Name="RdoSell" VerticalOptions="CenterAndExpand" Grid.Row="0" Grid.Column="0" TextFontSize="15" Text="Offer"  TextColor="Black" CheckChanged="type_Clicked" ></input:CheckBox>
+                        <input:CheckBox x:Name="RdoBuy" VerticalOptions="CenterAndExpand" Grid.Row="0" Grid.Column="1" TextFontSize="15" Text="Enquiry" TextColor="Black" CheckChanged="type_Clicked" ></input:CheckBox>
+                        <!--</input:RadioButtonGroupView>-->
+                    </Grid>
+                    
+                    <Label x:Name="lblSegment" Grid.Row="2" Grid.Column="0"  Text="Segment" FontSize="17" />
+                    <Grid Grid.Row="2" VerticalOptions="CenterAndExpand" Grid.Column="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.5*"/>
+                            <ColumnDefinition Width="0.5*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <!--<input:RadioButtonGroupView Grid.Column="0" Grid.Row="0" FlowDirection="LeftToRight" >-->
+                        <input:CheckBox x:Name="RdoDomestic" Grid.Row="0" Grid.Column="0" TextFontSize="15" Text="Domestic"  TextColor="Black" CheckChanged="segment_Clicked" ></input:CheckBox>
+                        <input:CheckBox x:Name="RdoExport" Grid.Row="0" Grid.Column="1" TextFontSize="15" Text="Export" TextColor="Black" CheckChanged="segment_Clicked" ></input:CheckBox>
+                        <!--</input:RadioButtonGroupView>-->
+                    </Grid>
+                    
+                    <Label x:Name="lblCustomer" Text="Customer" Grid.Row="3" Grid.Column="0" VerticalOptions="CenterAndExpand" FontSize="17" />
+                    <StackLayout Grid.Row="3" Grid.Column="1">
+                        <Entry x:Name="txtCustomerName" Text="{Binding Enquiry.customer_name}" Margin="0" InputTransparent="True" FontSize="16"  />
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="TxtCustomer_Focused"
+                                NumberOfTapsRequired="1">
+                            </TapGestureRecognizer>
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
+                    <StackLayout x:Name="butCustomerClear" BackgroundColor="Transparent" WidthRequest="45" Grid.Column="1" Grid.Row="3" HorizontalOptions="End">
+                        <Image HeightRequest="10" WidthRequest="10" VerticalOptions="End" Margin="25,15,0,0" Source="close.png" >
+                        </Image>
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="ButCustomerClear_Clicked" NumberOfTapsRequired="1" />
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
+                    
+                    <Label x:Name="lblSupplier" Grid.Row="4" Grid.Column="0" VerticalOptions="CenterAndExpand" Text="Supplier" FontSize="17" />
+                    <StackLayout Grid.Row="4" Grid.Column="1">
+                        <Entry x:Name="txtSupplierName" Text="{Binding Enquiry.supplier_name}"  Margin="0" InputTransparent="True" FontSize="16"  />
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="TxtSupplier_Focused"
+                                NumberOfTapsRequired="1">
+                            </TapGestureRecognizer>
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
+                    <StackLayout x:Name="butSupplierClear" BackgroundColor="Transparent" WidthRequest="45" Grid.Column="1" Grid.Row="4" HorizontalOptions="End">
+                        <Image HeightRequest="10" WidthRequest="10" VerticalOptions="End" Margin="25,15,0,0" Source="close.png" >
+                        </Image>
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="ButSupplierClear_Clicked" NumberOfTapsRequired="1" />
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
+                    
+                    <Label Text="Count" Grid.Row="5" Grid.Column="0" VerticalOptions="CenterAndExpand" FontSize="17" />
+                    <StackLayout Grid.Row="5" Grid.Column="1">
+                        <Entry x:Name="txtCountName" Text="{Binding Enquiry.count_name}" Margin="0" InputTransparent="True" FontSize="16"  />
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="TxtCount_Focused"
+                                NumberOfTapsRequired="1">
+                            </TapGestureRecognizer>
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>                    
+                    <StackLayout x:Name="butCountClear" BackgroundColor="Transparent" WidthRequest="45" Grid.Column="1" Grid.Row="5" HorizontalOptions="End">
+                        <Image HeightRequest="10" WidthRequest="10" VerticalOptions="End" Margin="25,15,0,0" Source="close.png" >
+                        </Image>
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="ButCountClear_Clicked" NumberOfTapsRequired="1" />
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
+                    
+                    <Label Text="User" Grid.Row="6" Grid.Column="0" VerticalOptions="CenterAndExpand" FontSize="17" />
+                    <StackLayout Grid.Row="6" Grid.Column="1">
+                        <Entry x:Name="txtUsername" Grid.Row="0" Grid.ColumnSpan="2" TabIndex="0" ReturnType="Next"  PlaceholderColor="#bababa" Text="{Binding user_name}"  InputTransparent="True" FontSize="16"/>
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer
+                        Tapped="TxtUsername_Focused"
+                        NumberOfTapsRequired="1">
+                            </TapGestureRecognizer>
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
+                    <StackLayout x:Name="butUserClear" BackgroundColor="Transparent" WidthRequest="45" Grid.Column="1" Grid.Row="6" HorizontalOptions="End">
+                        <Image HeightRequest="10" WidthRequest="10" VerticalOptions="End" Margin="25,15,0,0" Source="close.png" >
+                        </Image>
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="ButUserClear_Clicked" NumberOfTapsRequired="1" />
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
+                    <!--<Label Text="Bag Weight" Grid.Row="5" Grid.Column="0" VerticalOptions="CenterAndExpand" FontSize="17" />
+                    <Entry Text="{Binding Enquiry.bag_weight, Mode=TwoWay, StringFormat='\{0:0}'}" Grid.Row="5" Grid.Column="1" Keyboard="Numeric"  Placeholder="Please enter the bag weight" Unfocused="txtBagweight_Focused" ReturnType="Next" x:Name="txtBagweight" FontSize="16" />
+                    <Label Text="Quantity" Grid.Row="6" Grid.Column="0" VerticalOptions="CenterAndExpand" FontSize="17" />
+                    <Entry Text="{Binding Enquiry.qty, Mode=TwoWay, StringFormat='\{0:0}'}" Grid.Row="6" Grid.Column="1" Keyboard="Numeric" Placeholder="Please enter the quantity" Unfocused="TxtQty_Focused"  ReturnType="Next" x:Name="txtQty" FontSize="16" />
+                    <Label Text="Price" Grid.Row="7" Grid.Column="0" VerticalOptions="CenterAndExpand" FontSize="17" />
+                    <Entry Text="{Binding Enquiry.price, Mode=TwoWay, StringFormat='\{0:0.00}'}" Grid.Row="7" Grid.Column="1" Keyboard="Numeric" Placeholder="Please enter the price" Unfocused="TxtPrice_Focused"  ReturnType="Done" Completed="Save_Clicked" x:Name="txtPrice" FontSize="16" />-->
+                    <Grid Grid.Row="7" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Grid.Column="1" >
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.5*"/>
+                            <ColumnDefinition Width="0.5*"/>
+                        </Grid.ColumnDefinitions>
+                        <Button Grid.Column="1" x:Name="butFilter" Grid.Row="1" Text="Search" Clicked="butFilter_Clicked" ></Button>
+                        <!--<Button Grid.Column="1" x:Name="butCancel" Grid.Row="1"  Text="Cancel" Clicked="Cancel_Clicked" ></Button>-->
+                    </Grid>
+                </Grid>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+    
+</ContentPage>

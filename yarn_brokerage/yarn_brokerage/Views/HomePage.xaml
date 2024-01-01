@@ -1,0 +1,1015 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:forms="clr-namespace:Microcharts.Forms;assembly=Microcharts.Forms"
+             x:Class="yarn_brokerage.Views.HomePage"
+             Title="Yarn Brokerage">
+    
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Order="Primary" Icon="shutdown.png" Clicked="Logout_Clicked" Priority="0" />
+    </ContentPage.ToolbarItems>
+
+    <ScrollView>
+        <StackLayout VerticalOptions="FillAndExpand" BackgroundColor="WhiteSmoke">
+
+            <ListView x:Name="ListViewMenu"
+                       HasUnevenRows="True"
+                     IsVisible="False">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid Padding="10">
+                                <Label Text="{Binding Title}" FontSize="20"/>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+            <Frame Margin="5,5,5,0" Padding="0" BorderColor="Transparent" CornerRadius="0" x:Name="frmOffersAndEnquiry">
+                <StackLayout Margin="0,0,0,20">
+                    <Frame BackgroundColor="WhiteSmoke" Margin="0,0,0,0" Padding="0" CornerRadius="0"  >
+                        <Grid BackgroundColor="WhiteSmoke" Margin="0" >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="0.3*" />
+                                <ColumnDefinition Width="0.4*" />
+                                <ColumnDefinition Width="0.3*" />
+                            </Grid.ColumnDefinitions>
+                            <Image x:Name="butPrevious" Grid.Column="0" HeightRequest="24" WidthRequest="24" Margin="0,0,10,0" HorizontalOptions="End" Source="ic_b_launcher.png">
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="PreviousDate_Clicked" NumberOfTapsRequired="1" />
+                                </Image.GestureRecognizers>
+                            </Image>
+                            <DatePicker Grid.Column="1" IsVisible="True" x:Name="startDatePicker" Date="{Binding date}" Format="dd MMM yyyy" FontSize="17"  HorizontalOptions="CenterAndExpand" DateSelected="startDatePicker_DateSelected"/>
+                            <Label Grid.Column="1" IsVisible="false" x:Name="grdDate" Text="TILL DATE" FontSize="17" Margin="0,10,0,11" TextColor="Black"  HorizontalOptions="CenterAndExpand"/>
+                            <Image x:Name="butNext" Grid.Column="2" HeightRequest="24" WidthRequest="24" Margin="10,0,0,0" HorizontalOptions="Start" Source="ic_launcher.png">
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="NextDate_Clicked" NumberOfTapsRequired="1" />
+                                </Image.GestureRecognizers>
+                            </Image>
+                        </Grid>
+                    </Frame>
+                    <Grid RowSpacing="12" >
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="0.01*" />
+                            <RowDefinition Height="0.3*" />
+                            <RowDefinition Height="0.3*" />
+                            <RowDefinition Height="0.3*" />
+                            <RowDefinition Height="0.01*" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.1*" />
+                            <ColumnDefinition Width="0.5*" />
+                            <ColumnDefinition Width="0.4*" />
+                        </Grid.ColumnDefinitions>
+                        <BoxView Grid.Column="0" CornerRadius="50" Grid.Row="1" HeightRequest="25" Margin="10,5,10,5" HorizontalOptions="Start" Color="#e44e55"></BoxView>
+                        <BoxView Grid.Column="0" CornerRadius="50" Grid.Row="2" HeightRequest="25" Margin="10,5,10,5" HorizontalOptions="Start" Color="#059142"></BoxView>
+                        <BoxView Grid.Column="0" CornerRadius="50" Grid.Row="3" HeightRequest="25" Margin="10,5,10,5" HorizontalOptions="Start" Color="#15b9ee"></BoxView>
+
+                        <Grid Grid.Row="1" RowSpacing="0" Grid.Column="1" >
+                            <StackLayout Spacing="0">
+                                <Label Grid.Column="0" Grid.Row="0" x:Name="lblOffers" Text="Offers" HorizontalOptions="Start" FontSize="15"   Style="{DynamicResource ListItemDetailTextStyle}" />
+                                <Label Grid.Column="0" Grid.Row="1" x:Name="lblOfferBags" Text="Offers" TextColor="#e44e55" HorizontalOptions="Start" FontSize="15"  Style="{DynamicResource ListItemDetailTextStyle}" />
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer
+                                   Tapped="Enquiry_Tapped"
+                                   NumberOfTapsRequired="1">
+                                    </TapGestureRecognizer>
+                                </StackLayout.GestureRecognizers>
+                            </StackLayout>
+                        </Grid>
+
+                        <Grid Grid.Row="2" RowSpacing="0" Grid.Column="1" >
+                            <StackLayout Spacing="0">
+                                <Label Grid.Column="0" Grid.Row="0" x:Name="lblEnquiry" Text="Enquiry" HorizontalOptions="Start" FontSize="15"   Style="{DynamicResource ListItemDetailTextStyle}" />
+                                <Label Grid.Column="0" Grid.Row="1" x:Name="lblEnquiryBags" Text="Offers" TextColor="#059142" HorizontalOptions="Start" FontSize="15"  Style="{DynamicResource ListItemDetailTextStyle}" />
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer
+                                   Tapped="Enquiry_Tapped"
+                                   NumberOfTapsRequired="1">
+                                    </TapGestureRecognizer>
+                                </StackLayout.GestureRecognizers>
+                            </StackLayout>
+                        </Grid>
+
+                        <Grid Grid.Row="3" RowSpacing="0" Grid.Column="1" >
+                            <StackLayout Spacing="0">
+                                <Label Grid.Column="0" Grid.Row="0" x:Name="lblConfirm" Text="Confirm" HorizontalOptions="Start" FontSize="15"   Style="{DynamicResource ListItemDetailTextStyle}" />
+                                <Label Grid.Column="0" Grid.Row="1" x:Name="lblConfirmBags" Text="Offers" TextColor="#15b9ee" HorizontalOptions="Start" FontSize="15"  Style="{DynamicResource ListItemDetailTextStyle}" />
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer
+                                   Tapped="DraftConfirmation_Tapped"
+                                   NumberOfTapsRequired="1">
+                                    </TapGestureRecognizer>
+                                </StackLayout.GestureRecognizers>
+                            </StackLayout>
+                        </Grid>
+                        <forms:ChartView Grid.Column="2" Grid.Row="0" Grid.RowSpan="5" x:Name="PieChart" HeightRequest="200"/>
+                    </Grid>
+
+
+                    <Grid ColumnSpacing="0" Margin="40,0,40,0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <!--<ColumnDefinition Width="0.05*" />-->
+                            <ColumnDefinition Width="0.3*" />
+                            <ColumnDefinition Width="0.3*" />
+                            <ColumnDefinition Width="0.3*" />
+                            <!--<ColumnDefinition Width="0.05*" />-->
+                        </Grid.ColumnDefinitions>
+                        <!--<BoxView HorizontalOptions="FillAndExpand" BackgroundColor="#958a52" VerticalOptions="FillAndExpand" HeightRequest="30" />
+                       <Label Text="Treatment" Grid.Row="0" VerticalOptions="Center" HorizontalOptions="Center" FontSize="Medium"/>-->
+                        <Label x:Name="lblDaily" Grid.Row="0" Grid.Column="0" Text="DAILY" HorizontalOptions="StartAndExpand" TextColor="Black" FontSize="16" FontAttributes="Bold" >
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="Daily_Tapped" />
+                            </Label.GestureRecognizers>
+                        </Label>
+                        <Label x:Name="lblMonthly" Grid.Row="0" Grid.Column="1"  Text="MONTHLY" HorizontalOptions="CenterAndExpand" TextColor="Black" Margin="0,0,15,0" FontSize="16" >
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="Monthly_Tapped" />
+                            </Label.GestureRecognizers>
+                        </Label>
+                        <Label x:Name="lblYearly" Grid.Row="0" Grid.Column="2" Text="YEARLY" HorizontalOptions="EndAndExpand" TextColor="Black" FontSize="16" >
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="Yearly_Tapped" />
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </Grid>
+
+                </StackLayout>
+            </Frame>
+
+            <Frame Margin="5,0,5,0" Padding="0" BorderColor="Transparent" CornerRadius="5" x:Name="frmAttendance">
+                <StackLayout Margin="0,0,0,20">
+                    <StackLayout>
+                        <Frame Margin="0" Padding="0"  BorderColor="Transparent" CornerRadius="0" >
+                            <Grid BackgroundColor="WhiteSmoke">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="0.3*" />
+                                    <ColumnDefinition Width="0.4*" />
+                                    <ColumnDefinition Width="0.3*" />
+                                </Grid.ColumnDefinitions>
+                                <Image x:Name="butAttendencePrevious" Grid.Column="0" HeightRequest="24" WidthRequest="24" Margin="0,0,10,0" HorizontalOptions="End" Source="ic_b_launcher.png">
+                                    <Image.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="butAttendencePreviousDate_Clicked" NumberOfTapsRequired="1" />
+                                    </Image.GestureRecognizers>
+                                </Image>
+                                <DatePicker Grid.Column="1" IsVisible="True" x:Name="startAttendenceDatePicker" Date="{Binding date}" Format="MMMM, yyyy" FontSize="17"  HorizontalOptions="CenterAndExpand" DateSelected="startAttendenceDatePicker_DateSelected"/>
+                                <Image x:Name="butAttendenceNext" Grid.Column="2" HeightRequest="24" WidthRequest="24" Margin="10,0,0,0" HorizontalOptions="Start" Source="ic_launcher.png">
+                                    <Image.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="butAttendenceNextDate_Clicked" NumberOfTapsRequired="1" />
+                                    </Image.GestureRecognizers>
+                                </Image>
+                            </Grid>
+                        </Frame>
+                    </StackLayout>
+
+                    <Grid x:Name="userList" Margin="30,0,30,0" >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <StackLayout Grid.Column="0">
+                            <Entry x:Name="txtTeamName" HorizontalTextAlignment="Center" Margin="0" Placeholder="Select the User Name"  InputTransparent="True" FontSize="20" TextColor="Gray"  />
+                            <StackLayout.GestureRecognizers >
+                                <TapGestureRecognizer
+                                                    Tapped="TxtTeamName_Focused" NumberOfTapsRequired="1">
+                                </TapGestureRecognizer>
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+                        <StackLayout x:Name="butTeamNameClear"  BackgroundColor="Transparent" WidthRequest="50" Grid.Column="0" HorizontalOptions="End" IsVisible="False" >
+                            <Image HeightRequest="15" WidthRequest="15" VerticalOptions="End" Margin="0,10,5,0" Source="close.png" >
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="ButTeamNameClear_Clicked" NumberOfTapsRequired="1" />
+                                </Image.GestureRecognizers>
+                            </Image>
+                        </StackLayout>
+                    </Grid>
+
+                    <StackLayout>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="0.3*"/>
+                                <ColumnDefinition Width="0.3*"/>
+                                <ColumnDefinition Width="0.3*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <StackLayout Grid.Row="0" Grid.Column="0">
+                                <Image HeightRequest="40" WidthRequest="40" HorizontalOptions="Center" Source="totaldays.png" />
+                                <Label x:Name="toldays" LineBreakMode="WordWrap" HorizontalOptions="Center"  Text="0" VerticalOptions="Center" TextColor="Gray" Style="{DynamicResource ListItemDetailTextStyle}"  FontSize="18" />
+                                <StackLayout>
+                                    <Label LineBreakMode="WordWrap" HorizontalOptions="Center" HorizontalTextAlignment="Center" Text="TOTAL DAYS" VerticalOptions="Center"  TextColor="Gray" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="14" />
+                                </StackLayout>
+                            </StackLayout>
+                            <StackLayout Grid.Column="1" Grid.Row="0" >
+                                <Image HeightRequest="40" WidthRequest="40" HorizontalOptions="Center" Source="fullday.png"/>
+                                <Label x:Name="fuldays" LineBreakMode="WordWrap" HorizontalOptions="Center"  Text="0" VerticalOptions="Center" TextColor="Gray" Style="{DynamicResource ListItemDetailTextStyle}"  FontSize="18" />
+                                <StackLayout>
+                                    <Label LineBreakMode="WordWrap" HorizontalOptions="Center" HorizontalTextAlignment="Center" Text="FULL DAYS" VerticalOptions="Center" TextColor="Gray" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="14" />
+                                </StackLayout>
+                            </StackLayout>
+                            <StackLayout Grid.Column="2" Grid.Row="0" >
+                                <Image HeightRequest="40" WidthRequest="40" HorizontalOptions="Center" Source="halfday.png"/>
+                                <Label  x:Name="halfdays" LineBreakMode="WordWrap" HorizontalOptions="Center"  Text="0" VerticalOptions="Center" TextColor="Gray" Style="{DynamicResource ListItemDetailTextStyle}"  FontSize="18" />
+                                <StackLayout>
+                                    <Label LineBreakMode="WordWrap" HorizontalOptions="Center" HorizontalTextAlignment="Center" Text="HALF DAYS" VerticalOptions="Center" TextColor="Gray" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="14" />
+                                </StackLayout>
+                            </StackLayout>
+
+                            <StackLayout Grid.Row="1" Grid.Column="0">
+                                <Image HeightRequest="40" WidthRequest="40" HorizontalOptions="Center" Source="absent.png"/>
+                                <Label  x:Name="absent" LineBreakMode="WordWrap" HorizontalOptions="Center"  Text="0" VerticalOptions="Center" TextColor="Gray" Style="{DynamicResource ListItemDetailTextStyle}"  FontSize="18" />
+                                <StackLayout>
+                                    <Label LineBreakMode="WordWrap" HorizontalOptions="Center" HorizontalTextAlignment="Center" Text="ABSENT" VerticalOptions="Center" TextColor="Gray" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="14" />
+                                </StackLayout>
+                            </StackLayout>
+
+                            <StackLayout Grid.Column="1" Grid.Row="1" >
+                                <Image  HeightRequest="40" WidthRequest="40" HorizontalOptions="Center" Source="permission.png"/>
+                                <Label  x:Name="permission" LineBreakMode="WordWrap" HorizontalOptions="Center"  Text="0" VerticalOptions="Center" TextColor="Gray" Style="{DynamicResource ListItemDetailTextStyle}"  FontSize="18" />
+                                <StackLayout>
+                                    <Label LineBreakMode="WordWrap" HorizontalOptions="Center" HorizontalTextAlignment="Center" Text="PERMISSION" VerticalOptions="Center"  TextColor="Gray" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="14" />
+                                </StackLayout>
+                            </StackLayout>
+
+                            <StackLayout Grid.Column="2" Grid.Row="1" >
+                                <Image HeightRequest="40" WidthRequest="40" HorizontalOptions="Center" Source="late.png"/>
+                                <Label x:Name="late"  LineBreakMode="WordWrap" HorizontalOptions="Center"  Text="0" VerticalOptions="Center" TextColor="Gray" Style="{DynamicResource ListItemDetailTextStyle}"  FontSize="18" />
+                                <StackLayout>
+                                    <Label LineBreakMode="WordWrap" HorizontalOptions="Center" HorizontalTextAlignment="Center" Text="LATE" VerticalOptions="Center" TextColor="Gray" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="14" />
+                                </StackLayout>
+                            </StackLayout>
+                        </Grid>
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="Attendence_Tapped" NumberOfTapsRequired="1"/>
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
+                </StackLayout>
+            </Frame>
+
+            <Frame Margin="5,5,5,0" Padding="20" BorderColor="Transparent" CornerRadius="5" x:Name="frmCompanyPerformance">
+                <StackLayout Orientation="Vertical" HorizontalOptions="Center" VerticalOptions="Center">
+                    <Label Text="COMPANY PERFORMANCE" TextColor="Gray" FontSize="16" VerticalOptions="Center" HorizontalOptions="Center" Margin="5,0,0,0"/>
+
+                    <StackLayout Orientation="Horizontal" Spacing="50" Margin="25,0,0,0">
+                        <StackLayout  VerticalOptions="Center" HorizontalOptions="Center">
+                            <Image HeightRequest="50" WidthRequest="50" HorizontalOptions="Center" Source="bagspercentage.png"/>
+                            <Label x:Name="lblBagsPercentage" LineBreakMode="WordWrap" HorizontalOptions="Center"  Text="0" VerticalOptions="Center"  TextColor="Gray" Style="{DynamicResource ListItemDetailTextStyle}"  FontSize="18" />
+                            <Label  LineBreakMode="WordWrap" HorizontalOptions="Center" HorizontalTextAlignment="Center" Text="BAGS" VerticalOptions="Center" TextColor="Gray" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="14" />
+                        </StackLayout>
+                        <StackLayout >
+                            <Image HeightRequest="50" WidthRequest="50" HorizontalOptions="Center" Source="commissionpercentage.png"/>
+                            <Label x:Name="lblCommissionPercentage" LineBreakMode="WordWrap" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" Text="0" VerticalOptions="Center" TextColor="Gray" Style="{DynamicResource ListItemDetailTextStyle}"  FontSize="18" />
+                            <Label LineBreakMode="WordWrap" HorizontalOptions="Center" Text="COMMISSION" HorizontalTextAlignment="Center" VerticalOptions="Center" TextColor="Gray" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="14" />
+                        </StackLayout>
+                    </StackLayout>
+                </StackLayout>
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer 
+                                             Tapped="CompanyBagAndCommissionDetails_Tapped"  NumberOfTapsRequired="1">
+                    </TapGestureRecognizer>
+                </Frame.GestureRecognizers>
+
+            </Frame>
+
+            <Frame Margin="5,5,5,0" Padding="20" BorderColor="Transparent" CornerRadius="5" x:Name="frmTeamPerformance">
+                <StackLayout Orientation="Vertical" HorizontalOptions="Center" VerticalOptions="Center">
+                    <Label Text="TEAM PERFORMANCE" TextColor="Gray" FontSize="16" VerticalOptions="Center" HorizontalOptions="Center" Margin="5,0,0,0"/>
+                    <StackLayout Orientation="Horizontal" Spacing="50" Margin="25,0,0,0">
+                        <StackLayout  VerticalOptions="Center" HorizontalOptions="Center">
+                            <Image HeightRequest="50" WidthRequest="50" HorizontalOptions="Center" Source="bagspercentage.png"/>
+                            <Label x:Name="lblTeamBagsPercentage" LineBreakMode="WordWrap" HorizontalOptions="Center"  Text="0" VerticalOptions="Center"  TextColor="Gray" Style="{DynamicResource ListItemDetailTextStyle}"  FontSize="18" />
+                            <Label  LineBreakMode="WordWrap" HorizontalOptions="Center" HorizontalTextAlignment="Center" Text="BAGS" VerticalOptions="Center" TextColor="Gray" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="14" />
+                        </StackLayout>
+                        <StackLayout >
+                            <Image HeightRequest="50" WidthRequest="50" HorizontalOptions="Center" Source="commissionpercentage.png"/>
+                            <Label x:Name="lblTeamCommissionPercentage" LineBreakMode="WordWrap" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" Text="0" VerticalOptions="Center" TextColor="Gray" Style="{DynamicResource ListItemDetailTextStyle}"  FontSize="18" />
+                            <Label LineBreakMode="WordWrap" HorizontalOptions="Center" Text="COMMISSION" HorizontalTextAlignment="Center" VerticalOptions="Center" TextColor="Gray" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="14" />
+                        </StackLayout>
+                    </StackLayout>
+                </StackLayout>
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer 
+                                     Tapped="TeamBagAndCommissionDetails_Tapped"  NumberOfTapsRequired="1">
+                    </TapGestureRecognizer>
+                </Frame.GestureRecognizers>
+            </Frame>
+
+            <Frame Margin="5,5,5,0" Padding="20" BorderColor="Transparent" CornerRadius="5" x:Name="frmApproval">
+                <StackLayout Orientation="Vertical" HorizontalOptions="Center" VerticalOptions="Center">
+                    <StackLayout Orientation="Horizontal" Spacing="50">
+                        <StackLayout Grid.Row="0" Grid.Column="0" VerticalOptions="Center" HorizontalOptions="Center">
+                            <Image HeightRequest="50" WidthRequest="50" HorizontalOptions="Center" Source="approval.png"/>
+                            <Label x:Name="lblApprovalCount" LineBreakMode="WordWrap" HorizontalOptions="Center"  Text="0" VerticalOptions="Center" TextColor="Gray" Style="{DynamicResource ListItemDetailTextStyle}"  FontSize="18" />
+                            <StackLayout>
+                                <Label x:Name="txtClinicLocation6" LineBreakMode="WordWrap" HorizontalOptions="Center" HorizontalTextAlignment="Center" Text="PENDING&#10;APPROVAL" VerticalOptions="Center" TextColor="Gray" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="14" />
+                            </StackLayout>
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer
+                                                       Tapped="Approval_Tapped" NumberOfTapsRequired="1">
+                                </TapGestureRecognizer>
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+
+                        <StackLayout Grid.Column="1" Grid.Row="0" >
+                            <Image HeightRequest="50" WidthRequest="50" HorizontalOptions="Center" Source="Papproval.png"/>
+                            <Label x:Name="lblProgramApprovalCount" LineBreakMode="WordWrap" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" Text="0" VerticalOptions="Center" TextColor="Gray" Style="{DynamicResource ListItemDetailTextStyle}"  FontSize="18" />
+                            <Label LineBreakMode="WordWrap" HorizontalOptions="Center" Text="PROGRAM&#10;APPROVAL" HorizontalTextAlignment="Center" VerticalOptions="Center" TextColor="Gray" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="14" />
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer
+                                                       Tapped="ProgramApproval_Tapped" NumberOfTapsRequired="1">
+                                </TapGestureRecognizer>
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+                    </StackLayout>
+                </StackLayout>
+            </Frame>
+
+            <Frame Margin="5,5,5,0" Padding="10" BorderColor="Transparent" CornerRadius="5" x:Name="frmConfirmation">
+                <Grid RowSpacing="10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="4*"/>
+                        <ColumnDefinition Width="6*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <StackLayout Grid.Column="0" Grid.Row="0" VerticalOptions="Center" HorizontalOptions="Center" >
+                        <Image HeightRequest="50" WidthRequest="50" HorizontalOptions="Center" Source="confirm.png"/>
+                        <Label x:Name="lblConfirmationCount" LineBreakMode="WordWrap" HorizontalOptions="Center" Text="0" VerticalOptions="Center" TextColor="Gray" Style="{DynamicResource ListItemDetailTextStyle}"  FontSize="18" />
+                        <Label LineBreakMode="WordWrap" HorizontalOptions="Center" Text="PENDING&#10;CONFIRM" HorizontalTextAlignment="Center" VerticalOptions="Center" TextColor="Gray" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="14" />
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer
+                                                   Tapped="Confirmation_Tapped" NumberOfTapsRequired="1">
+                            </TapGestureRecognizer>
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
+
+                    <Grid RowSpacing="15" Grid.Column="1" Grid.Row="0" VerticalOptions="Center" HorizontalOptions="Start" >
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+
+                        <BoxView Grid.Column="0" CornerRadius="50" Grid.Row="0" HeightRequest="25" Margin="5" VerticalOptions="Start" HorizontalOptions="Start" Color="#e44e55"></BoxView>
+                        <BoxView Grid.Column="0" CornerRadius="50" Grid.Row="1" HeightRequest="25" Margin="5" VerticalOptions="Start" HorizontalOptions="Start" Color="#4285f4"></BoxView>
+                        <BoxView Grid.Column="0" CornerRadius="50" Grid.Row="2" HeightRequest="25" Margin="5" VerticalOptions="Start"  HorizontalOptions="Start" Color="#059142"></BoxView>
+
+                        <Grid Grid.Row="0" Grid.Column="1" VerticalOptions="Start">
+                            <StackLayout Spacing="0" Orientation="Vertical">
+                                <Label   Text="DELAYED PENDING" HorizontalOptions="Start" FontSize="14"   Style="{DynamicResource ListItemDetailTextStyle}" />
+                                <Label x:Name="lbltoday" Text="{Binding No_Of_Pending_Delay_With_Bag_Weight}" TextColor="#e44e55" HorizontalOptions="Start" FontSize="14"  Style="{DynamicResource ListItemDetailTextStyle}" />
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer
+                                                        Tapped="PendingConfirmarion_Delay_Tapped" NumberOfTapsRequired="1">
+                                    </TapGestureRecognizer>
+                                </StackLayout.GestureRecognizers>
+                            </StackLayout>
+                        </Grid>
+                        <Grid Grid.Row="1" Grid.Column="1" VerticalOptions="Start">
+                            <StackLayout Spacing="0">
+                                <Label Grid.Column="0" Grid.Row="0" Text="TODAY PENDING" HorizontalOptions="Start" FontSize="14"   Style="{DynamicResource ListItemDetailTextStyle}" />
+                                <Label Grid.Column="0" Grid.Row="1"  Text="{Binding No_Of_Pending_Today_With_Bag_Weight}" TextColor="#4285f4" HorizontalOptions="Start" FontSize="14"  Style="{DynamicResource ListItemDetailTextStyle}" />
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer
+                                                        Tapped="PendingConfirmarion_Today_Tapped" NumberOfTapsRequired="1">
+                                    </TapGestureRecognizer>
+                                </StackLayout.GestureRecognizers>
+                            </StackLayout>
+                        </Grid>
+                        <Grid Grid.Row="2" Grid.Column="1" VerticalOptions="Start">
+                            <StackLayout Spacing="0">
+                                <Label Grid.Column="0" Grid.Row="0" Text="FUTURE PENDING" HorizontalOptions="Start" FontSize="14"   Style="{DynamicResource ListItemDetailTextStyle}" />
+                                <Label Grid.Column="0" Grid.Row="1"  Text="{Binding No_Of_Pending_Future_With_Bag_Weight}" TextColor="#059142" HorizontalOptions="Start" FontSize="14"  Style="{DynamicResource ListItemDetailTextStyle}" />
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer
+                                  Tapped="PendingConfirmarion_Future_Tapped" NumberOfTapsRequired="1">
+                                    </TapGestureRecognizer>
+                                </StackLayout.GestureRecognizers>
+                            </StackLayout>
+                        </Grid>
+                    </Grid>
+                </Grid>
+            </Frame>
+
+            <Frame Margin="5,5,5,0" Padding="0" BorderColor="Transparent" CornerRadius="5" x:Name="frmCurrentPlan">
+                <StackLayout Margin="0,0,0,20">
+                    <Grid BackgroundColor="Transparent" Margin="10,15,0,0" ColumnSpacing="0" Padding="0,0,0,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="0.9*"/>
+                        </Grid.ColumnDefinitions>
+                        <StackLayout Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal">
+                            <!--<Image WidthRequest="40" HeightRequest="40" Grid.Row="0" Grid.Column="0" Margin="5,0,0,0"  HorizontalOptions="Start" Source="currentplan.png" />-->
+                            <StackLayout Orientation="Vertical">
+                                <Label x:Name="lblCurrentPlan" HorizontalOptions="Start" Grid.Row="0" FontSize="15" Grid.Column="1" VerticalOptions="Start"  ></Label>
+                                <Label x:Name="lblCurrentPlanBags" HorizontalOptions="Start" FontSize="15" Grid.Row="1" TextColor="#0093D8" Grid.Column="0" VerticalOptions="Start"  ></Label>
+                            </StackLayout>
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer
+                                                    Tapped="DispatchConfirm_Tapped" NumberOfTapsRequired="1">
+                                </TapGestureRecognizer>
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+
+                        <!--<StackLayout Spacing="10">
+                           <StackLayout.GestureRecognizers>
+                               <TapGestureRecognizer
+                                       Tapped="DispatchConfirm_Tapped"
+                                       NumberOfTapsRequired="1">
+                               </TapGestureRecognizer>
+                           </StackLayout.GestureRecognizers>
+                       </StackLayout>-->
+                        <!--<input:CheckBox x:Name="RdoIncludeOverdue" Grid.Column="1"  HorizontalOptions="End" TextFontSize="17" BoxSizeRequest="20" Type="Check" IsChecked="True" Text="Include Overdue" Margin="0,-6,0,0"  CheckChanged="Overdue_Clicked" ></input:CheckBox>-->
+                    </Grid>
+                    <!--<Label Text="Today" HorizontalOptions="Center" FontSize="18" VerticalOptions="Center" ></Label>-->
+                    <Grid RowSpacing="10" >
+                        <Grid.RowDefinitions>
+                            <!--<RowDefinition Height="275" />-->
+                            <!--<RowDefinition Height="0.5*" />-->
+                            <!--<RowDefinition Height="Auto" />
+                           <RowDefinition Height="Auto" />
+                           <RowDefinition Height="*" />
+                           <RowDefinition Height="*" />-->
+                            <!--<RowDefinition Height="0.3*" />
+                           <RowDefinition Height="0.3*" />
+                           <RowDefinition Height="0.3*" />
+                           <RowDefinition Height="0.01*" />-->
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <!--<ColumnDefinition Width="*" />-->
+
+                            <!--<ColumnDefinition Width="0.5*" />-->
+                            <!--<ColumnDefinition Width="0.4*" />-->
+                        </Grid.ColumnDefinitions>
+
+                        <!--<StackLayout Spacing="0">
+                           <forms:ChartView Grid.Column="0" Grid.Row="0" Margin="30,0,30,0"  x:Name="BarChart" HeightRequest="100" />
+                           <StackLayout.GestureRecognizers>
+                               <TapGestureRecognizer
+                                       Tapped="DispatchConfirm_Tapped"
+                                       NumberOfTapsRequired="1">
+                               </TapGestureRecognizer>
+                           </StackLayout.GestureRecognizers>
+                       </StackLayout>-->
+                    </Grid>
+                    <Grid RowSpacing="15" Margin="0,-8,0,-20" ColumnSpacing="1" >
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="0.01*" />
+                            <RowDefinition Height="0.2*" />
+                            <RowDefinition Height="0.2*" />
+                            <RowDefinition Height="0.2*" />
+                            <RowDefinition Height="0.02*" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.1*" />
+                            <ColumnDefinition Width="0.4*" />
+                            <ColumnDefinition Width="0.1*" />
+                            <ColumnDefinition Width="0.4*" />
+                            <!--<ColumnDefinition Width="0.4*" />-->
+                        </Grid.ColumnDefinitions>
+                        <!--<BoxView Grid.Column="0" CornerRadius="50" Grid.Row="1" HeightRequest="25" Margin="10,5,10,5" HorizontalOptions="Start" Color="Gray"></BoxView>-->
+                        <BoxView Grid.Column="0" CornerRadius="50" Grid.Row="1" HeightRequest="25" Margin="10,5,10,5" HorizontalOptions="Start" Color="#e44e55"></BoxView>
+                        <BoxView Grid.Column="0" CornerRadius="50" Grid.Row="2" HeightRequest="25" Margin="10,5,10,5" HorizontalOptions="Start" Color="#4285f4"></BoxView>
+                        <BoxView Grid.Column="0" CornerRadius="50" Grid.Row="3" HeightRequest="25" Margin="10,5,10,5" HorizontalOptions="Start" Color="#059142"></BoxView>
+                        <BoxView Grid.Column="2" CornerRadius="50" Grid.Row="1" HeightRequest="25" Margin="10,5,10,5" HorizontalOptions="Start" Color="#FFA500"></BoxView>
+                        <BoxView Grid.Column="2" CornerRadius="50" Grid.Row="2" HeightRequest="25" Margin="10,5,10,5" HorizontalOptions="Start" Color="#15c9e1"></BoxView>
+
+                        <Grid Grid.Row="1" RowSpacing="2" Grid.Column="1" >
+                            <StackLayout Spacing="0">
+                                <Label Grid.Column="0" Grid.Row="0" x:Name="lblBagsNotReadyCount" Text="Offers" HorizontalOptions="Start" FontSize="14"   Style="{DynamicResource ListItemDetailTextStyle}" />
+                                <Label Grid.Column="0" Grid.Row="1" x:Name="lblBagsNotReadyBags" Text="Offers" TextColor="#e44e55" HorizontalOptions="Start" FontSize="14"  Style="{DynamicResource ListItemDetailTextStyle}" />
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer
+                                       Tapped="BagNotReady_Tapped"
+                                       NumberOfTapsRequired="1">
+                                    </TapGestureRecognizer>
+                                </StackLayout.GestureRecognizers>
+                            </StackLayout>
+                        </Grid>
+                        <Grid Grid.Row="2" RowSpacing="2" Grid.Column="1" >
+                            <StackLayout Spacing="0">
+                                <Label Grid.Column="0" Grid.Row="0" x:Name="lblPaymentNotReadyCount" Text="Offers" HorizontalOptions="Start" FontSize="14"   Style="{DynamicResource ListItemDetailTextStyle}" />
+                                <Label Grid.Column="0" Grid.Row="1" x:Name="lblPaymentNotReadyBags" Text="Offers" TextColor="#4285f4" HorizontalOptions="Start" FontSize="14"  Style="{DynamicResource ListItemDetailTextStyle}" />
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer
+                                       Tapped="PaymentNotReady_Tapped"
+                                       NumberOfTapsRequired="1">
+                                    </TapGestureRecognizer>
+                                </StackLayout.GestureRecognizers>
+                            </StackLayout>
+                        </Grid>
+                        <Grid Grid.Row="3" RowSpacing="2" Grid.Column="1" >
+                            <StackLayout Spacing="0">
+                                <Label Grid.Column="0" Grid.Row="0" x:Name="lblPaymentNotReceivedCount" Text="Offers" HorizontalOptions="Start" FontSize="14"   Style="{DynamicResource ListItemDetailTextStyle}" />
+                                <Label Grid.Column="0" Grid.Row="1" x:Name="lblPaymentNotReceivedBags" Text="Offers" TextColor="#059142" HorizontalOptions="Start" FontSize="14"  Style="{DynamicResource ListItemDetailTextStyle}" />
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer
+                                           Tapped="PaymentNotReceived_Tapped"
+                                           NumberOfTapsRequired="1">
+                                    </TapGestureRecognizer>
+                                </StackLayout.GestureRecognizers>
+                            </StackLayout>
+                        </Grid>
+                        <Grid Grid.Row="1" RowSpacing="2" Grid.Column="3" >
+                            <StackLayout Spacing="0">
+                                <Label Grid.Column="0" Grid.Row="0" x:Name="lblTransporterNotReadyCount" Text="Offers" HorizontalOptions="Start" FontSize="14"   Style="{DynamicResource ListItemDetailTextStyle}" />
+                                <Label Grid.Column="0" Grid.Row="1" x:Name="lblTransporterNotReadyBags" Text="Offers" TextColor="#FFA500" HorizontalOptions="Start" FontSize="14"  Style="{DynamicResource ListItemDetailTextStyle}" />
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer
+                                           Tapped="TransporterNotReady_Tapped"
+                                           NumberOfTapsRequired="1">
+                                    </TapGestureRecognizer>
+                                </StackLayout.GestureRecognizers>
+                            </StackLayout>
+                        </Grid>
+                        <Grid Grid.Row="2" RowSpacing="2" Grid.Column="3" >
+                            <StackLayout Spacing="0">
+                                <Label Grid.Column="0" Grid.Row="0" x:Name="lblPendingDispatchCount" Text="Offers" HorizontalOptions="Start" FontSize="14"   Style="{DynamicResource ListItemDetailTextStyle}" />
+                                <Label Grid.Column="0" Grid.Row="1" x:Name="lblPendingDispatchBags" Text="Offers" TextColor="#15c9e1" HorizontalOptions="Start" FontSize="14"  Style="{DynamicResource ListItemDetailTextStyle}" />
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer
+                                           Tapped="PendingDispatch_Tapped"
+                                           NumberOfTapsRequired="1">
+                                    </TapGestureRecognizer>
+                                </StackLayout.GestureRecognizers>
+                            </StackLayout>
+                        </Grid>
+                    </Grid>
+                </StackLayout>
+            </Frame>
+
+            <Frame Margin="5,5,5,0" Padding="0" BorderColor="Transparent" CornerRadius="5" x:Name="frmDispatch">
+                <StackLayout Margin="0,0,0,0">
+                    <Grid BackgroundColor="Transparent" Margin="10,15,0,0" ColumnSpacing="0" Padding="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="0.9*"/>
+                        </Grid.ColumnDefinitions>
+                        <StackLayout Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal">
+                            <!--<Image WidthRequest="40" HeightRequest="40" Grid.Row="0" Grid.Column="0" Margin="8,0,0,0"  HorizontalOptions="Start" Source="dispatched.png" />-->
+                            <StackLayout Orientation="Vertical">
+                                <Label x:Name="lblAfterDispatch" HorizontalOptions="Start" Grid.Row="0" FontSize="15" Grid.Column="1" VerticalOptions="Start"  ></Label>
+                                <Label x:Name="lblAfterDispatchBags" HorizontalOptions="Start" FontSize="15" Grid.Row="1" TextColor="#0093D8" Grid.Column="0" VerticalOptions="Start"  ></Label>
+                            </StackLayout>
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer
+                                 Tapped="AfterDispatch_Tapped"
+                                 NumberOfTapsRequired="1">
+                                </TapGestureRecognizer>
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+                    </Grid>
+
+                    <Grid RowSpacing="3" >
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="40" />
+                            <RowDefinition Height="80" />
+
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.3*" />
+                            <ColumnDefinition Width="0.3*" />
+                            <ColumnDefinition Width="0.3*" />
+                            <ColumnDefinition Width="0.3*" />
+                        </Grid.ColumnDefinitions>
+
+
+                        <BoxView Grid.Column="0" CornerRadius="50" Grid.Row="0" HeightRequest="25" Margin="10,5,10,5" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Color="#059142"></BoxView>
+                        <BoxView Grid.Column="1" CornerRadius="50" Grid.Row="0" HeightRequest="25" Margin="10,5,10,5" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Color="#15c9e1"></BoxView>
+                        <BoxView Grid.Column="2" CornerRadius="50" Grid.Row="0" HeightRequest="25" Margin="10,5,10,5" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Color="#e44e55"></BoxView>
+                        <BoxView Grid.Column="3" CornerRadius="50" Grid.Row="0" HeightRequest="25" Margin="10,5,10,5" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Color="#FFA500"></BoxView>
+
+                        <!--<StackLayout Grid.Column="0" Grid.Row="0">
+                           <forms:ChartView Grid.Column="0" Grid.Row="0" x:Name="PendingInvoicePieChart" HeightRequest="80"/>
+                           <StackLayout.GestureRecognizers>
+                               <TapGestureRecognizer
+                                           Tapped="PendingInvoice_Tapped"
+                                           NumberOfTapsRequired="1">
+                               </TapGestureRecognizer>
+                           </StackLayout.GestureRecognizers>
+                       </StackLayout>-->
+                        <StackLayout Grid.Column="0" Grid.Row="1" Spacing="4">
+                            <Label x:Name="lblPendingInvoiceCount" LineBreakMode="WordWrap" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" VerticalOptions="Center" 
+                                  TextColor="Gray" Style="{DynamicResource ListItemDetailTextStyle}"   FontSize="18">
+                            </Label>
+
+                            <Label LineBreakMode="WordWrap" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" Text="PEND INV" VerticalOptions="Center" 
+                                  TextColor="Gray" Style="{DynamicResource ListItemDetailTextStyle}"  FontSize="14" />
+
+
+                            <Label x:Name="lblPendingInvoiceBags" LineBreakMode="WordWrap" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center"  VerticalOptions="Center" 
+                                  TextColor="#059142" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="14" />
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer
+                                           Tapped="PendingInvoice_Tapped"
+                                           NumberOfTapsRequired="1">
+                                </TapGestureRecognizer>
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+
+                        <!--<StackLayout Grid.Column="1" Grid.Row="0">
+                           <forms:ChartView Grid.Column="0" Grid.Row="0" x:Name="PendingPaymentPieChart" HeightRequest="80"/>
+                           <StackLayout.GestureRecognizers>
+                               <TapGestureRecognizer
+                                           Tapped="PendingPayment_Tapped"
+                                           NumberOfTapsRequired="1">
+                               </TapGestureRecognizer>
+                           </StackLayout.GestureRecognizers>
+                       </StackLayout>-->
+
+                        <StackLayout Grid.Column="1" Grid.Row="1" Spacing="4">
+                            <Label x:Name="lblPendingPaymentCount" LineBreakMode="WordWrap" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" VerticalOptions="Center" 
+                                  TextColor="Gray" Style="{DynamicResource ListItemDetailTextStyle}"  Grid.Column="0" Grid.Row="1" FontSize="18" />
+
+                            <Label LineBreakMode="WordWrap" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" Text="PEND PYMT" VerticalOptions="Center" 
+                                  TextColor="Gray" Style="{DynamicResource ListItemDetailTextStyle}"  Grid.Column="0" Grid.Row="2" FontSize="14" />
+
+                            <Label x:Name="lblPendingPaymentBags" LineBreakMode="WordWrap" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center"  VerticalOptions="Center" 
+                                  TextColor="#15c9e1" Style="{DynamicResource ListItemDetailTextStyle}"  Grid.Column="0" Grid.Row="3" FontSize="14" />
+
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer
+                                           Tapped="PendingPayment_Tapped"
+                                           NumberOfTapsRequired="1">
+                                </TapGestureRecognizer>
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+
+                        <!--<StackLayout Grid.Column="2" Grid.Row="0">
+                           <forms:ChartView Grid.Column="0" Grid.Row="0" x:Name="TransitPieChart" HeightRequest="80"/>
+                           <StackLayout.GestureRecognizers>
+                               <TapGestureRecognizer
+                                           Tapped="Transit_Tapped"
+                                           NumberOfTapsRequired="1">
+                               </TapGestureRecognizer>
+                           </StackLayout.GestureRecognizers>
+                       </StackLayout>-->
+                        <StackLayout Grid.Column="2" Grid.Row="1" Spacing="4">
+                            <Label x:Name="lblTransitCount" LineBreakMode="WordWrap" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" VerticalOptions="Center" 
+                              TextColor="Gray" Style="{DynamicResource ListItemDetailTextStyle}"  Grid.Column="0" Grid.Row="1" FontSize="18" />
+
+                            <Label LineBreakMode="WordWrap" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" Text="TRANSIT" VerticalOptions="Center" 
+                                  TextColor="Gray" Style="{DynamicResource ListItemDetailTextStyle}"  Grid.Column="0" Grid.Row="2" FontSize="14" />
+
+                            <Label x:Name="lblTransitBags" LineBreakMode="WordWrap" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center"  VerticalOptions="Center" 
+                                  TextColor="#e44e55" Style="{DynamicResource ListItemDetailTextStyle}"  Grid.Column="0" Grid.Row="3" FontSize="14" />
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer
+                                           Tapped="Transit_Tapped"
+                                           NumberOfTapsRequired="1">
+                                </TapGestureRecognizer>
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+
+                        <!--<StackLayout Grid.Column="3" Grid.Row="0">
+                           <forms:ChartView Grid.Column="0" Grid.Row="0" x:Name="CustomerConfirmationPieChart" HeightRequest="80"/>
+                           <StackLayout.GestureRecognizers>
+                               <TapGestureRecognizer
+                                           Tapped="CustomerAcknowledgement_Tapped"
+                                           NumberOfTapsRequired="1">
+                               </TapGestureRecognizer>
+                           </StackLayout.GestureRecognizers>
+                       </StackLayout>-->
+                        <StackLayout Grid.Column="3" Grid.Row="1" Spacing="4">
+                            <Label x:Name="lblCustomerAcknowledgementCount" LineBreakMode="WordWrap" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" VerticalOptions="Center" 
+                                  TextColor="Gray" Style="{DynamicResource ListItemDetailTextStyle}"  Grid.Column="0" Grid.Row="1" FontSize="18" />
+                            <Label LineBreakMode="WordWrap" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" Text="CUST CONF" VerticalOptions="Center" 
+                                  TextColor="Gray" Style="{DynamicResource ListItemDetailTextStyle}"  Grid.Column="0" Grid.Row="2" FontSize="14" />
+                            <Label x:Name="lblCustomerAcknowledgementBags" LineBreakMode="WordWrap" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center"  VerticalOptions="Center" 
+                              TextColor="#FFA500" Style="{DynamicResource ListItemDetailTextStyle}"  Grid.Column="0" Grid.Row="3" FontSize="14" />
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer
+                                           Tapped="CustomerAcknowledgement_Tapped"
+                                           NumberOfTapsRequired="1">
+                                </TapGestureRecognizer>
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+                    </Grid>
+
+
+
+                </StackLayout>
+            </Frame>
+
+        
+
+            <Frame Margin="5,5,5,0" Padding="5"  BorderColor="Transparent" CornerRadius="5" IsVisible="False">
+                <StackLayout>
+
+                    <Grid RowSpacing="25" Margin="0,10,0,20">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.3*"/>
+                            <ColumnDefinition Width="0.3*"/>
+                            <ColumnDefinition Width="0.3*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <StackLayout Grid.Row="0" Grid.Column="0">
+
+                            <Image HeightRequest="50" WidthRequest="50" Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" HorizontalOptions="Center" Source="payment1.png"/>
+
+                            <Label x:Name="lblPendingCommissionCount"  Grid.Row="0" Grid.Column="1" LineBreakMode="WordWrap" HorizontalOptions="Center" Text="0" VerticalOptions="Center" 
+                               TextColor="Gray" Style="{DynamicResource ListItemDetailTextStyle}"  FontSize="18" />
+                            <StackLayout  Grid.Row="0" Grid.Column="1">
+                                <Label LineBreakMode="WordWrap" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" Text="PENDING&#10;COMM INVOICE" VerticalOptions="StartAndExpand" 
+                               TextColor="Gray" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="14" />
+                            </StackLayout>
+                            <Label x:Name="lblPendingCommissionBags" IsVisible="False" Grid.Row="1" Grid.Column="1" LineBreakMode="WordWrap" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" Text="1150 BAGS / 150 FCL" VerticalOptions="Center" 
+                               TextColor="Gray" Style="{DynamicResource ListItemDetailTextStyle}" FontAttributes="Bold"  FontSize="14" />
+
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer
+                           Tapped="PendingCommission_Tapped"
+                           NumberOfTapsRequired="1">
+                                </TapGestureRecognizer>
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+
+                        <StackLayout Grid.Row="0"  Grid.Column="1" >
+
+                            <Image HeightRequest="50" WidthRequest="50" HorizontalOptions="Center" Source="forms.png"/>
+
+                            <Label x:Name="lblFormsCount" LineBreakMode="WordWrap" HorizontalOptions="Center" Text="0" VerticalOptions="Center" 
+                               TextColor="Gray" Style="{DynamicResource ListItemDetailTextStyle}"   FontSize="18" />
+                            <StackLayout>
+                                <Label LineBreakMode="WordWrap" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" Text="PENDING&#10;FORMS" VerticalOptions="CenterAndExpand" 
+                               TextColor="Gray" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="14" />
+                            </StackLayout>
+                            <Label x:Name="lblFormsBags" LineBreakMode="WordWrap" IsVisible="False" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" Text="1150 BAGS / 150 FCL" VerticalOptions="Center" 
+                               TextColor="Gray" Style="{DynamicResource ListItemDetailTextStyle}" FontAttributes="Bold"  FontSize="14" />
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer
+                           Tapped="Forms_Tapped"
+                           NumberOfTapsRequired="1">
+                                </TapGestureRecognizer>
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+
+                        <StackLayout Grid.Row="0"  Grid.Column="2" >
+
+                            <Image HeightRequest="50" WidthRequest="50" HorizontalOptions="Center" Source="CallTrack.png"/>
+
+                            <Label x:Name="lblCallCount" LineBreakMode="WordWrap" HorizontalOptions="Center" Text="0" VerticalOptions="Center" 
+                               TextColor="Gray" Style="{DynamicResource ListItemDetailTextStyle}"   FontSize="18" />
+                            <StackLayout>
+                                <Label LineBreakMode="WordWrap" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" Text="PENDING&#10;CALL ASSIGN" VerticalOptions="CenterAndExpand" 
+                               TextColor="Gray" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="14" />
+                            </StackLayout>
+                            <Label x:Name="lblCallBags" LineBreakMode="WordWrap" IsVisible="False" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" Text="1150 BAGS / 150 FCL" VerticalOptions="Center" 
+                               TextColor="Gray" Style="{DynamicResource ListItemDetailTextStyle}" FontAttributes="Bold"  FontSize="14" />
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer
+                           Tapped="CallHistory_Tapped"
+                           NumberOfTapsRequired="1">
+                                </TapGestureRecognizer>
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+
+                    </Grid>
+                </StackLayout>
+            </Frame>
+
+            <Frame Margin="5,5,5,0" Padding="5" BorderColor="Transparent" IsVisible="False" CornerRadius="5">
+                <StackLayout>
+                    <Grid BackgroundColor="Transparent" Margin="0,0,0,15" ColumnSpacing="0" Padding="0,6,0,0">
+                        <!--<DatePicker x:Name="startDatePicker" Date="{Binding date}" Format="dd MMM yyyy" FontSize="16"  HorizontalOptions="Center" />-->
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.1*"/>
+                            <ColumnDefinition Width="0.9*"/>
+                        </Grid.ColumnDefinitions>
+                        <Image WidthRequest="23" HeightRequest="23" Grid.Column="0"  HorizontalOptions="Start" Source="pending.png" />
+                        <Label Text="PENDING" HorizontalOptions="Start" FontSize="17" Margin="-6,0,0,0" Grid.Column="1"  VerticalOptions="Center"  ></Label>
+                    </Grid>
+                    <Grid Margin="0,0,0,20">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.3*"/>
+                            <ColumnDefinition Width="0.3*"/>
+                            <ColumnDefinition Width="0.3*"/>
+                            <ColumnDefinition Width="0.3*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <StackLayout Grid.Column="0">
+                            <Image HeightRequest="40" WidthRequest="40" HorizontalOptions="Center" Source="payment.png"/>
+
+                            <Label  x:Name="lblPaymentCount" LineBreakMode="WordWrap" HorizontalOptions="Center" Text="0" VerticalOptions="Center" 
+                               TextColor="Gray" Style="{DynamicResource ListItemDetailTextStyle}" FontAttributes="Bold"  FontSize="20" />
+                            <StackLayout>
+                                <Label x:Name="txtClinicLocation7" LineBreakMode="WordWrap" HorizontalOptions="Center" HorizontalTextAlignment="Center" Text="Payment Confirm"  
+                               TextColor="Black" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="15" />
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="Payment_Tapped" NumberOfTapsRequired="1">
+                                    </TapGestureRecognizer>
+                                </StackLayout.GestureRecognizers>
+                            </StackLayout>
+                        </StackLayout>
+                        <!--<StackLayout Grid.Column="2">
+                       <Image HeightRequest="60" WidthRequest="60" HorizontalOptions="Center" Source="despatch2.png">
+                           <Image.GestureRecognizers>
+                               <TapGestureRecognizer Tapped="PreviousDate_Clicked" NumberOfTapsRequired="1" />
+                           </Image.GestureRecognizers>
+                       </Image>
+                           <Label LineBreakMode="WordWrap" HorizontalOptions="Center" Text="0" VerticalOptions="Center" 
+                               TextColor="Gray" Style="{DynamicResource ListItemDetailTextStyle}" FontAttributes="Bold"  FontSize="20" />
+                       <StackLayout>
+                           <Label x:Name="txtClinicLocation8" LineBreakMode="WordWrap" HorizontalOptions="Center" HorizontalTextAlignment="Center" Text="Dispatch Confirm" VerticalOptions="Center" 
+                               TextColor="Black" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="15" />
+                           <StackLayout.GestureRecognizers>
+                               <TapGestureRecognizer
+                           Tapped="Menu_Tapped"
+                           NumberOfTapsRequired="1">
+                               </TapGestureRecognizer>
+                           </StackLayout.GestureRecognizers>
+                       </StackLayout>
+                   </StackLayout>-->
+                        <!--<StackLayout Grid.Column="1">
+                           <Image HeightRequest="40" WidthRequest="40" HorizontalOptions="Center" Source="despatchconfirm.png"/>
+
+                           <Label x:Name="lblDispatchConfirmCount" LineBreakMode="WordWrap" HorizontalOptions="Center" Text="0" VerticalOptions="Center" 
+                               TextColor="Gray" Style="{DynamicResource ListItemDetailTextStyle}" FontAttributes="Bold"  FontSize="20" />
+                           <StackLayout>
+                               <Label x:Name="txtClinicLocation19" LineBreakMode="WordWrap" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" Text="Dispatch Confirm" VerticalOptions="CenterAndExpand" 
+                               TextColor="Black" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="15" />                               
+                           </StackLayout>
+                           <StackLayout.GestureRecognizers>
+                               <TapGestureRecognizer
+                           Tapped="DispatchConfirm_Tapped"
+                           NumberOfTapsRequired="1">
+                               </TapGestureRecognizer>
+                           </StackLayout.GestureRecognizers>
+                       </StackLayout>-->
+                        <StackLayout Grid.Column="2"  >
+                            <Image HeightRequest="40" WidthRequest="40" HorizontalOptions="Center" Source="despatch2.png" />
+
+                            <Label x:Name="lblDispatchCount" LineBreakMode="WordWrap" HorizontalOptions="Center" Text="0" VerticalOptions="Center" 
+                               TextColor="Gray" Style="{DynamicResource ListItemDetailTextStyle}" FontAttributes="Bold"  FontSize="20" />
+
+                            <Label x:Name="txtClinicLocation9" LineBreakMode="WordWrap" HorizontalOptions="Center" Text="Dispatch" VerticalOptions="Center" 
+                           TextColor="Black" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="15" />
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="Dispatch_Tapped" NumberOfTapsRequired="1"/>
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+                        <StackLayout Grid.Column="3">
+                            <Image HeightRequest="40" WidthRequest="40" HorizontalOptions="Center" Source="delivery.png"/>
+
+                            <Label x:Name="lblDeliveryCount" LineBreakMode="WordWrap" HorizontalOptions="Center" Text="0" VerticalOptions="Center" 
+                               TextColor="Gray" Style="{DynamicResource ListItemDetailTextStyle}" FontAttributes="Bold"  FontSize="20" />
+
+                            <Label x:Name="txtClinicLocation10" LineBreakMode="WordWrap" HorizontalOptions="Center" Text="Delivery" VerticalOptions="Center" 
+                           TextColor="Black" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="15" />
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="Delivery_Tapped" NumberOfTapsRequired="1"/>
+                            </StackLayout.GestureRecognizers>
+
+                        </StackLayout>
+                   
+                    </Grid>
+                    <Grid ColumnSpacing="0" Margin="0,0,0,0" >
+                        <Grid.ColumnDefinitions >
+                            <ColumnDefinition Width="0.5*"/>
+                            <ColumnDefinition Width="0.5*"/>
+                        </Grid.ColumnDefinitions>
+
+
+
+                    </Grid>
+                </StackLayout>
+            </Frame>
+
+
+
+            <Frame Margin="5,5,5,0" Padding="0" BorderColor="Transparent" IsVisible="False" CornerRadius="5">
+                <StackLayout Margin="0,0,0,20">
+                    <Frame BackgroundColor="WhiteSmoke" Margin="0,0,0,0" Padding="0" CornerRadius="0"  >
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="0.1*" />
+                                <ColumnDefinition Width="0.4*" />
+                                <ColumnDefinition Width="0.1*" />
+                                <ColumnDefinition Width="0.5*" />
+                            </Grid.ColumnDefinitions>
+                            <Image x:Name="butPreviousTop" Grid.Column="0" HeightRequest="24" WidthRequest="24" Margin="0,0,10,0" HorizontalOptions="End" Source="ic_b_launcher.png">
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="TopPreviousDate_Tapped" NumberOfTapsRequired="1" />
+                                </Image.GestureRecognizers>
+                            </Image>
+                            <DatePicker Grid.Column="1" IsVisible="True" x:Name="topDatePicker" Date="{Binding date}" Format="dd MMM yyyy" FontSize="17"  HorizontalOptions="CenterAndExpand" DateSelected="topDatePicker_DateSelected"/>
+                            <Label Grid.Column="1" IsVisible="False" x:Name="grdTopEnDate" Text="TILL DATE" FontSize="17" Margin="0,10,0,11" TextColor="Black"  HorizontalOptions="CenterAndExpand"/>
+                            <Image x:Name="butNextTop" Grid.Column="2" HeightRequest="24" WidthRequest="24" Margin="10,0,0,0" HorizontalOptions="Start" Source="ic_launcher.png">
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="TopNextDate_Tapped" NumberOfTapsRequired="1" />
+                                </Image.GestureRecognizers>
+                            </Image>
+                            <Label Grid.Column="3" Text="TOP 5 ENQUIRIES" FontSize="17" Margin="0,10,0,11" TextColor="Black"  HorizontalOptions="CenterAndExpand"/>
+                        </Grid>
+                        <!--<Label Text="Today" HorizontalOptions="Center" FontSize="18" VerticalOptions="Center" ></Label>-->
+                    </Frame>
+                 
+
+                    <ListView x:Name="EnquiryListView"
+                       ItemsSource="{Binding _TopDashboard}"
+                       VerticalOptions="FillAndExpand"                        
+                       HasUnevenRows="true"                                                                            
+                       IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+                       CachingStrategy="RecycleElement"                             
+                       TabIndex="0"
+                       SeparatorColor="LightGray">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <StackLayout Padding="5">
+                                        <Grid ColumnSpacing="0" >
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="0.1*"/>
+                                                <ColumnDefinition Width="0.3*"/>
+                                                <ColumnDefinition Width="0.1*"/>
+                                                <ColumnDefinition Width="0.3*"/>
+                                                <ColumnDefinition Width="0.1*"/>
+                                                <ColumnDefinition Width="0.3*"/>
+                                                <!--<ColumnDefinition Width="0.1*"/>-->
+                                            </Grid.ColumnDefinitions>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                            </Grid.RowDefinitions>
+                                            <!--<Label Grid.ColumnSpan="2" Grid.Row="0" Text="{Binding transaction_date_time,  StringFormat='\{0:dd-MM-yyyy hh:mm:ss}'}" 
+                                           LineBreakMode="WordWrap" 
+                                           Style="{DynamicResource ListItemTextStyle}" 
+                                           FontSize="16" />-->
+                                            <!--<Image HeightRequest="36" WidthRequest="36" VerticalOptions="Center" HorizontalOptions="Center" Grid.Column="0" Grid.RowSpan="3" Source="{Binding image}">
+
+                                           </Image>-->
+                                            <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="6" VerticalOptions="Start" Text="{Binding count_name}" 
+                                           LineBreakMode="NoWrap"
+                                           Style="{DynamicResource ListItemTextStyle}"
+                                           FontSize="20"  />
+
+                                            <Image HeightRequest="20" WidthRequest="20"  Grid.Column="0" Grid.Row="1" Source="buyer.png" HorizontalOptions="Center"/>
+                                            <Label Grid.Row="1" Grid.Column="1" VerticalOptions="Center" Text="{Binding Qty, StringFormat='\{0} BAGS'}" 
+                                           LineBreakMode="WordWrap"
+                                           Style="{DynamicResource ListItemTextStyle}"
+                                           FontSize="16"/>
+
+                                            <Image HeightRequest="20" WidthRequest="20"  Grid.Column="2" Grid.Row="1" Source="customer.png" HorizontalOptions="Center"/>
+                                            <Label Grid.Row="1" Grid.Column="3" VerticalOptions="Center"  Text="{Binding OfferQty, StringFormat='\{0} BAGS'}" 
+                                           LineBreakMode="WordWrap"
+                                           Style="{DynamicResource ListItemTextStyle}"
+                                           FontSize="16"/>
+
+                                            <Image HeightRequest="20" WidthRequest="20"  Grid.Column="4" Grid.Row="1" Source="confirm.png" HorizontalOptions="Center"/>
+                                            <Label Grid.Row="1" Grid.Column="5" VerticalOptions="Center"  Text="{Binding ConfirmQty, StringFormat='\{0} BAGS'}" 
+                                           LineBreakMode="WordWrap"
+                                           Style="{DynamicResource ListItemTextStyle}"
+                                           FontSize="16"/>
+                                        </Grid>
+                                    </StackLayout>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                    <Grid ColumnSpacing="0" Margin="30,0,30,0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.3*" />
+                            <ColumnDefinition Width="0.3*" />
+                            <ColumnDefinition Width="0.3*" />
+                        </Grid.ColumnDefinitions>
+                        <Label x:Name="lblTopEnDaily" Grid.Row="0" Grid.Column="0" Text="DATEWISE" HorizontalOptions="StartAndExpand" TextColor="Black" FontSize="16" FontAttributes="Bold" >
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="TopEnDaily_Tapped" />
+                            </Label.GestureRecognizers>
+                        </Label>
+                        <Label x:Name="lblTopEnMonthly" Grid.Row="0" Grid.Column="1"  Text="MONTHWISE" HorizontalOptions="CenterAndExpand" TextColor="Black" FontSize="16" >
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="TopEnMonthly_Tapped" />
+                            </Label.GestureRecognizers>
+                        </Label>
+                        <Label x:Name="lblTopEnTillDate" Grid.Row="0" Grid.Column="2" Text="TILL DATE" HorizontalOptions="EndAndExpand" TextColor="Black" FontSize="16" >
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="TopEnTillDate_Tapped" />
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </Grid>
+                </StackLayout>
+            </Frame>
+        </StackLayout>
+    </ScrollView>
+
+</ContentPage>

@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="yarn_brokerage.Views.PopupGroup"
+                  xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"  
+             xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup" 
+             BackgroundColor="#aa000000"
+             CloseWhenBackgroundIsClicked="False">
+    <pages:PopupPage.Animation>
+        <animations:ScaleAnimation   
+                PositionIn="Center"  
+                PositionOut="Center"  
+                ScaleIn="1.2"  
+                ScaleOut="0.8"  
+                DurationIn="400"  
+                DurationOut="300"  
+                EasingIn="SinOut"  
+                EasingOut="SinIn"  
+                HasBackgroundAnimation="False"/>
+    </pages:PopupPage.Animation>
+
+
+    <StackLayout Padding="10" Margin="50" Spacing="0" VerticalOptions="Center" WidthRequest="50" HeightRequest="400" BackgroundColor="White" >
+        <Frame BackgroundColor="#364860" Padding="10" CornerRadius="0" Margin="0,0,0,10">
+            <Label FontAttributes="Bold" FontSize="20" Text="Group Name" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center"/>
+        </Frame>
+        <ListView x:Name="messageGrouplist"
+                ItemsSource="{Binding MessageGroup}"
+                ItemSelected="messageGrouplist_ItemSelected"
+                VerticalOptions="FillAndExpand"
+                HasUnevenRows="True"
+                IsPullToRefreshEnabled="False"                    
+                CachingStrategy="RecycleElement"
+                TabIndex="0"
+                RowHeight="20"
+                SeparatorVisibility="None">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell  >
+                        <Grid Padding="0" BackgroundColor="{Binding BackgroundColor}">
+                            <Frame  HasShadow="True" BackgroundColor="Transparent">
+                                <StackLayout  Orientation="Horizontal">
+                                    <Label x:Name="dd" FontSize="15" Text="{Binding Name}" VerticalOptions="Center"  Style="{DynamicResource ListItemDetailTextStyle}" TextColor="Black" FontAttributes="Bold"/>
+                                </StackLayout>
+                            </Frame>
+                        </Grid>
+
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <StackLayout>
+            <Button Text="Ok" TextColor="Black" FontSize="16" FontAttributes="Bold" Clicked="Button_Clicked"/>
+        </StackLayout>
+
+    </StackLayout>
+</pages:PopupPage>

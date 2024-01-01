@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="yarn_brokerage.Views.ReportsPage"
+             Title="Reports">
+    <ContentPage.Content>
+        <StackLayout>
+            <Frame Margin="5,5,5,0" Padding="5" VerticalOptions="FillAndExpand" BorderColor="Transparent" CornerRadius="5">
+                <StackLayout>
+                    <Grid BackgroundColor="Transparent" Margin="0,0,0,15" ColumnSpacing="0" Padding="0,6,0,0">
+                        <!--<DatePicker x:Name="startDatePicker" Date="{Binding date}" Format="dd MMM yyyy" FontSize="16"  HorizontalOptions="Center" />-->
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.1*"/>
+                            <ColumnDefinition Width="0.9*"/>
+                        </Grid.ColumnDefinitions>
+                        <!--<Image WidthRequest="23" HeightRequest="23" Grid.Column="0"  HorizontalOptions="Start" Source="pending.png" />
+                        <Label Text="Reports" HorizontalOptions="Start" FontSize="17" Margin="-6,0,0,0" Grid.Column="1"  VerticalOptions="Center"  ></Label>-->
+                    </Grid>
+                    <Grid RowSpacing="25" Margin="0,10,0,20">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.3*"/>
+                            <ColumnDefinition Width="0.3*"/>
+                            <ColumnDefinition Width="0.3*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <StackLayout Grid.Column="0">
+
+                            <Image HeightRequest="60" WidthRequest="60" HorizontalOptions="Center" Source="despatchconfirm.png"/>
+
+                            <!--<Label x:Name="lblPendingInvoiceCount" LineBreakMode="WordWrap" HorizontalOptions="Center" Text="0" VerticalOptions="Center" 
+                                TextColor="Gray" Style="{DynamicResource ListItemDetailTextStyle}" FontAttributes="Bold"  FontSize="20" />-->
+                            <StackLayout>
+                                <Label LineBreakMode="WordWrap" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" Text="Confirmations" VerticalOptions="CenterAndExpand" 
+                                TextColor="Black" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="15" />
+                            </StackLayout>
+                            <!--<Label x:Name="lblPendingInvoiceBags" LineBreakMode="WordWrap" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" Text="1150 BAGS / 150 FCL" VerticalOptions="Center" 
+                                TextColor="Gray" Style="{DynamicResource ListItemDetailTextStyle}" FontAttributes="Bold"  FontSize="14" />-->
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer
+                            Tapped="ConfirmationReport_Tapped"
+                            NumberOfTapsRequired="1">
+                                </TapGestureRecognizer>
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+                        <StackLayout Grid.Column="1">
+
+                            <Image HeightRequest="60" WidthRequest="60" HorizontalOptions="Center" Source="despatchconfirm.png"/>
+
+                            <!--<Label x:Name="lblPendingInvoiceCount" LineBreakMode="WordWrap" HorizontalOptions="Center" Text="0" VerticalOptions="Center" 
+                                TextColor="Gray" Style="{DynamicResource ListItemDetailTextStyle}" FontAttributes="Bold"  FontSize="20" />-->
+                            <StackLayout>
+                                <Label LineBreakMode="WordWrap" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" Text="Outstanding Balance" VerticalOptions="CenterAndExpand" 
+                                TextColor="Black" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="15" />
+                            </StackLayout>
+                            <!--<Label x:Name="lblPendingInvoiceBags" LineBreakMode="WordWrap" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" Text="1150 BAGS / 150 FCL" VerticalOptions="Center" 
+                                TextColor="Gray" Style="{DynamicResource ListItemDetailTextStyle}" FontAttributes="Bold"  FontSize="14" />-->
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer
+                            Tapped="CommissionInvoiceReport_Tapped"
+                            NumberOfTapsRequired="1">
+                                </TapGestureRecognizer>
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+                    </Grid>
+                </StackLayout>
+            </Frame>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

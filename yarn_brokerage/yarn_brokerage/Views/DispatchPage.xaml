@@ -1,0 +1,162 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="yarn_brokerage.Views.DispatchPage"
+             Title="{Binding Title}">
+
+    <!--<ContentPage.ToolbarItems>
+        <ToolbarItem Text="Add" Clicked="AddItem_Clicked">
+            <ToolbarItem.Icon>
+                <OnPlatform x:TypeArguments="FileImageSource">
+                    <On Platform="UWP" Value="add.png"/>
+                </OnPlatform>
+            </ToolbarItem.Icon>
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>-->
+    
+    <StackLayout>
+        <!--<Entry x:Name="txtSearch" TabIndex="1" Placeholder="Search" HorizontalTextAlignment="Center" Margin="8,0,8,0" TextChanged="TxtSearch_TextChanged" />-->
+        <!--<Grid BackgroundColor="WhiteSmoke"  ColumnSpacing="0" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.1*"/>
+                <ColumnDefinition Width="0.3*"/>
+                <ColumnDefinition Width="0.1*"/>
+                <ColumnDefinition Width="0.1*"/>
+                <ColumnDefinition Width="0.2*"/>
+                <ColumnDefinition Width="0.2*"/>
+            </Grid.ColumnDefinitions>
+            <Image Grid.Column="0" HeightRequest="24" WidthRequest="24" Margin="0,0,10,0" HorizontalOptions="End" Source="ic_b_launcher.png">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="PreviousDate_Clicked" NumberOfTapsRequired="1" />
+                </Image.GestureRecognizers>
+            </Image>
+            <DatePicker x:Name="startDatePicker" Grid.Column="1"  Date="{Binding date}" Format="dd-MM-yyyy" FontSize="17" HorizontalOptions="CenterAndExpand" DateSelected="StartDatePicker_DateSelected" />
+            <Image Grid.Column="2" HeightRequest="24" WidthRequest="24" Margin="10,0,0,0" HorizontalOptions="Start" Source="ic_launcher.png">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="NextDate_Clicked" NumberOfTapsRequired="1" />
+                </Image.GestureRecognizers>
+            </Image>
+
+            <Image x:Name="butFilter" Grid.Column="4" HeightRequest="20" WidthRequest="20" HorizontalOptions="Start" Source="filter.png">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="lblFilter_Tapped" NumberOfTapsRequired="1" />
+                </Image.GestureRecognizers>
+            </Image>
+            <Label x:Name="lblFilter" Grid.Column="4" Text="Filter" FontSize="17"  HorizontalOptions="Start"  Margin="25,0,0,0" VerticalOptions="CenterAndExpand" VerticalTextAlignment="Center">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer
+                                    Tapped="lblFilter_Tapped"
+                                    NumberOfTapsRequired="1">
+                    </TapGestureRecognizer>
+                </Label.GestureRecognizers>
+            </Label>
+            <Image x:Name="butClear" Grid.Column="5"  HeightRequest="14" WidthRequest="14" Margin="0,0,0,0" IsVisible="False" HorizontalOptions="Start" Source="close.png">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="ButClear_Clicked" NumberOfTapsRequired="1" />
+                </Image.GestureRecognizers>
+            </Image>
+            <Label x:Name="lblClear" Grid.Column="5" Text="Clear" FontSize="17"  HorizontalOptions="Start"  IsVisible="False" Margin="20,0,0,0" VerticalOptions="CenterAndExpand" VerticalTextAlignment="Center">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer
+                                    Tapped="ButClear_Clicked"
+                                    NumberOfTapsRequired="1">
+                    </TapGestureRecognizer>
+                </Label.GestureRecognizers>
+            </Label>
+        </Grid>-->
+
+        <ListView x:Name="DispatchListView"
+                ItemsSource="{Binding Dispatchs}"
+                VerticalOptions="FillAndExpand"
+                HasUnevenRows="true"
+                RefreshCommand="{Binding LoadItemsCommand}"               
+                IsPullToRefreshEnabled="true"
+                IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+                CachingStrategy="RecycleElement"
+                ItemSelected="OnItemSelected"
+                TabIndex="0"
+                SeparatorColor="LightGray">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Padding="5">
+                            <Grid  ColumnSpacing="0" >
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="0.1*"/>
+                                    <ColumnDefinition Width="0.1*"/>
+                                    <ColumnDefinition Width="0.4*"/>
+                                    <ColumnDefinition Width="0.1*"/>
+                                    <ColumnDefinition Width="0.3*"/>
+                                    <!--<ColumnDefinition Width="0.1*"/>-->
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <!--<Label Grid.ColumnSpan="2" Grid.Row="0" Text="{Binding transaction_date_time,  StringFormat='\{0:dd-MM-yyyy hh:mm:ss}'}" 
+                                        LineBreakMode="WordWrap" 
+                                        Style="{DynamicResource ListItemTextStyle}" 
+                                        FontSize="16" />-->
+                                <Image HeightRequest="26" WidthRequest="26" VerticalOptions="Center" HorizontalOptions="Center" Grid.Column="0" Grid.Row="0" Source="buyer.png" />
+                                <Label Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="4" Text="{Binding customer_name}" 
+                                        LineBreakMode="NoWrap"
+                                        Style="{DynamicResource ListItemTextStyle}"
+                                        FontSize="18" FontAttributes="Bold" />
+                                
+                                <Image HeightRequest="26" WidthRequest="26" VerticalOptions="Center" HorizontalOptions="Center" Grid.Column="0" Grid.Row="1" Source="customer.png" />
+                                <Label Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="4" Text="{Binding supplier_name}" 
+                                        LineBreakMode="NoWrap"
+                                        Style="{DynamicResource ListItemDetailTextStyle}"
+                                        FontSize="18" FontAttributes="Bold" />
+
+
+                                <Image HeightRequest="18" WidthRequest="18"  Grid.Column="1" Grid.Row="2" Source="count.png"  HorizontalOptions="Center"/>
+                                <Label Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="3" VerticalOptions="Center"  Text="{Binding count_name}" 
+                                            LineBreakMode="WordWrap"
+                                            Style="{DynamicResource ListItemTextStyle}"
+                                            FontSize="16"/>
+
+                                <Image HeightRequest="20" WidthRequest="20"  Grid.Column="1" Grid.Row="3"  Source="bags.png" HorizontalOptions="Center"/>
+                                <Label Grid.Row="3" Grid.Column="2" VerticalOptions="Center" Text="{Binding qty_unit, StringFormat='\{0}'}" 
+                                            LineBreakMode="WordWrap"
+                                            Style="{DynamicResource ListItemTextStyle}"
+                                            FontSize="16"/>
+
+                                <Image HeightRequest="20" WidthRequest="20"  Grid.Column="3" Grid.Row="3" Margin="10,0,0,0" Source="price.png" HorizontalOptions="Center"/>
+                                <Label Grid.Row="3" Grid.Column="4" VerticalOptions="Center" Text="{Binding price_per, StringFormat='\Rs.{0}'}" 
+                                            LineBreakMode="WordWrap"
+                                            Style="{DynamicResource ListItemTextStyle}"
+                                            FontSize="16"/>
+
+                                <!--<Label Grid.Row="2" Grid.ColumnSpan="2"  Text="{Binding description}" 
+                                        LineBreakMode="NoWrap"
+                                        Style="{DynamicResource ListItemTextStyle}"
+                                        FontSize="16" TextColor="Blue"/>-->
+                                <Image x:Name="imgUser" IsVisible="{Binding admin_user}"  HeightRequest="18" WidthRequest="18"  Grid.Column="1" Grid.Row="4" Source="contact.png"/>
+                                <Label Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="3" Text="{Binding user_name}" 
+                                        LineBreakMode="NoWrap"
+                                        Style="{DynamicResource ListItemDetailTextStyle}"  IsVisible="{Binding admin_user}"
+                                        FontSize="16"/>
+                                <!--, StringFormat='{0:0.000}'-->
+                                <!--<Image Grid.Column="2" Grid.RowSpan="2" HorizontalOptions="Center" Source="check.png">Detail
+                                    <Image.GestureRecognizers> TextColor="IndianRed" FontAttributes="Bold"
+                                        <TapGestureRecognizer Tapped="DeleteClicked" CommandParameter="{Binding Id}" NumberOfTapsRequired="1" />
+                                    </Image.GestureRecognizers>
+                                </Image>-->
+                            </Grid>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>            
+        </ListView>
+    </StackLayout>    
+</ContentPage>

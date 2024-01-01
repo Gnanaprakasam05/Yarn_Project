@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="yarn_brokerage.Views.AddLedgerPage"
+             Title="">
+    <!--<ContentPage.ToolbarItems>
+        <ToolbarItem Text="Cancel" Clicked="Cancel_Clicked">
+            <ToolbarItem.Icon>
+                <OnPlatform x:TypeArguments="FileImageSource">
+                    <On Platform="UWP" Value="cancel.png"/>
+                </OnPlatform>
+            </ToolbarItem.Icon>
+        </ToolbarItem>
+        <ToolbarItem Text="Save" Clicked="Save_Clicked">
+            <ToolbarItem.Icon>
+                <OnPlatform x:TypeArguments="FileImageSource">
+                    <On Platform="UWP" Value="save.png"/>
+                </OnPlatform>
+            </ToolbarItem.Icon>
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>-->
+
+    <ContentPage.Content>
+        <StackLayout Spacing="15" Padding="15">
+            <Label Text="Name" FontSize="Medium" />
+            <Entry TabIndex="0" Text="{Binding Ledger.Name}" Placeholder="Please enter the name" Keyboard="Text" x:Name="TxtLedgerName" FontSize="Medium" />
+            <Label Text="Mobile No" FontSize="Medium" />
+            <Entry TabIndex="0" Text="{Binding Ledger.MobileNo}" Placeholder="Please enter the mobile no" Keyboard="Text" x:Name="TxtMobileNo" FontSize="Medium" />
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.5*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="1" x:Name="butSave" Grid.Row="1" Text="Save" Clicked="Save_Clicked" ></Button>
+                <Button Grid.Column="2" x:Name="butCancel" Grid.Row="1"  Text="Cancel" Clicked="Cancel_Clicked" ></Button>
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

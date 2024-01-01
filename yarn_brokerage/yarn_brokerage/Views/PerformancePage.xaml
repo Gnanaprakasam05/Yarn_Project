@@ -1,0 +1,380 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="yarn_brokerage.Views.PerformancePage">
+    <ContentPage.Content>
+    
+            <StackLayout>
+            <ScrollView>
+                <StackLayout>
+                    <Frame Margin="5,5,5,0" Padding="0" BorderColor="Transparent" CornerRadius="5" x:Name="frmCompanyPerformanceBags" >
+                        <StackLayout Margin="0,0,0,15">
+                            <Label Text="PERFORMANCE : BAGS" TextColor="Black" VerticalOptions="Center" HorizontalOptions="Center" FontSize="16" Margin="0,15,0,0"/>
+                            <StackLayout Margin="8,5">
+
+                                <Grid Padding="0">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="1"/>
+                                        <RowDefinition Height="20"/>
+                                        <RowDefinition Height="1"/>
+                                        <RowDefinition Height="20"/>
+                                        <RowDefinition Height="1"/>
+                                        <RowDefinition Height="20"/>
+                                        <RowDefinition Height="1"/>
+                                        <RowDefinition Height="20"/>
+                                        <RowDefinition Height="1"/>
+                                        <RowDefinition Height="20"/>
+                                        <RowDefinition Height="1"/>
+
+
+                                        <RowDefinition Height="20"/>
+                                        <RowDefinition Height="1"/>
+                                        <RowDefinition Height="20"/>
+                                        <RowDefinition Height="1"/>
+                                        <RowDefinition Height="20"/>
+                                        <RowDefinition Height="1"/>
+                                        <RowDefinition Height="20"/>
+                                        <!--<RowDefinition Height="1"/>-->
+                                    </Grid.RowDefinitions>
+
+
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="3.3*"/>
+                                        <ColumnDefinition Width="3.3*"/>
+                                        <ColumnDefinition Width="3.3*"/>
+
+                                    </Grid.ColumnDefinitions>
+
+                                    <StackLayout BackgroundColor="Transparent"  Padding="0" Margin="0" Grid.Row="0" Grid.RowSpan="3" Grid.Column="0" Grid.ColumnSpan="3"/>
+
+                                    <Label Text="" Grid.Row="1" Grid.Column="0"  LineBreakMode="NoWrap" TextColor="Black" VerticalOptions="Center" HorizontalOptions="Center" FontSize="13"/>
+                                    <Label Text="CONFIRMED" Grid.Row="1" Grid.Column="1"  LineBreakMode="NoWrap" TextColor="Black" VerticalOptions="Center" HorizontalOptions="Center" FontSize="13"/>
+                                    <Label Text="DISPATCHED" Grid.Row="1" Grid.Column="2"  LineBreakMode="NoWrap" TextColor="Black" VerticalOptions="Center" HorizontalOptions="Center" FontSize="13"/>
+
+                                    <Label Text="TODAY"  Padding="5,0,0,0" Grid.Row="3" Grid.Column="0" LineBreakMode="NoWrap" TextColor="Black" VerticalOptions="Center" HorizontalOptions="StartAndExpand" FontSize="13"/>
+                                    <Label Text="THIS MONTH"  Padding="5,0,0,0" Grid.Row="5" Grid.Column="0" LineBreakMode="NoWrap" TextColor="Black" VerticalOptions="Center" HorizontalOptions="StartAndExpand" FontSize="13"/>
+                                    <Label Text="AVG/DAY"  Padding="5,0,0,0" Grid.Row="7" Grid.Column="0" LineBreakMode="TailTruncation" TextColor="Black" VerticalOptions="Center" HorizontalOptions="StartAndExpand" FontSize="13"/>
+                                    <Label Text="EXPECTED"  Padding="5,0,0,0" Grid.Row="9" Grid.Column="0" LineBreakMode="NoWrap" TextColor="Black" VerticalOptions="Center" HorizontalOptions="StartAndExpand" FontSize="13"/>
+
+                                    <Label x:Name="lbltodayconfirmed"  VerticalOptions="Center"  Grid.Row="3" Grid.Column="1" HorizontalOptions="Center" TextColor="Gray"   LineBreakMode="NoWrap"/>
+                                    <Label  x:Name="lblmonthconfirmed"  VerticalOptions="Center"  Grid.Row="5" Grid.Column="1" HorizontalOptions="Center" TextColor="Gray"   LineBreakMode="NoWrap"/>
+                                    <Label x:Name="lblaverageconfirmed"   VerticalOptions="Center"  Grid.Row="7" Grid.Column="1" HorizontalOptions="Center" TextColor="Gray"   LineBreakMode="NoWrap"/>
+                                    <Label x:Name="lblexpectedconfirmed"  VerticalOptions="Center"  Grid.Row="9" Grid.Column="1"  HorizontalOptions="Center" TextColor="Gray"   LineBreakMode="NoWrap"/>
+
+
+                                    <Label x:Name="lbltodaydispatched"  VerticalOptions="Center"  Grid.Row="3" Grid.Column="2" HorizontalOptions="Center" TextColor="Gray"   LineBreakMode="NoWrap"/>
+                                    <Label x:Name="lblmonthdispatched"  VerticalOptions="Center"  Grid.Row="5" Grid.Column="2" HorizontalOptions="Center" TextColor="Gray"   LineBreakMode="NoWrap"/>
+                                    <Label x:Name="lblaveragedispatched"  VerticalOptions="Center"  Grid.Row="7" Grid.Column="2" HorizontalOptions="Center" TextColor="Gray"   LineBreakMode="NoWrap"/>
+                                    <Label  x:Name="lblexpecteddispatched"  VerticalOptions="Center"  Grid.Row="9" Grid.Column="2"  HorizontalOptions="Center" TextColor="Gray"   LineBreakMode="NoWrap"/>
+
+
+                                    <Label Text="THIS YEAR"  Padding="5,0,0,0" Grid.Row="13" Grid.Column="0" LineBreakMode="NoWrap" TextColor="Black" VerticalOptions="Center" HorizontalOptions="StartAndExpand" FontSize="14"/>
+                                    <Label Text="AVG/MONTH"  Padding="5,0,0,0" Grid.Row="15" Grid.Column="0" LineBreakMode="TailTruncation" TextColor="Black" VerticalOptions="Center" HorizontalOptions="StartAndExpand" FontSize="14"/>
+                                    <Label Text=""  Padding="5,0,0,0" Grid.Row="17" Grid.Column="0" LineBreakMode="NoWrap" TextColor="Black" VerticalOptions="Center" HorizontalOptions="StartAndExpand" FontSize="14"/>
+
+
+                                    <Label x:Name="lblThisYearBagsConfirmed"  VerticalOptions="Center"  Grid.Row="13" Grid.Column="1" HorizontalOptions="Center" TextColor="Gray"   LineBreakMode="NoWrap"/>
+                                    <Label x:Name="lblAverageMonthBagsConfirmed"  VerticalOptions="Center"  Grid.Row="15" Grid.Column="1" HorizontalOptions="Center" TextColor="Gray"   LineBreakMode="NoWrap"/>
+                                    <Label x:Name="lblPercentageBagsConfirmed"  VerticalOptions="Center"  Grid.Row="17" Grid.Column="1" HorizontalOptions="Center" TextColor="Gray"   LineBreakMode="NoWrap"/>
+
+
+                                    <Label x:Name="lblThisYearBagsDispatched"  VerticalOptions="Center"  Grid.Row="13" Grid.Column="2" HorizontalOptions="Center" TextColor="Gray"   LineBreakMode="NoWrap"/>
+                                    <Label x:Name="lblAverageMonthBagDispatched"  VerticalOptions="Center"  Grid.Row="15" Grid.Column="2" HorizontalOptions="Center" TextColor="Gray"   LineBreakMode="NoWrap"/>
+                                    <Label x:Name="lblPercentageBagsDispatched"  VerticalOptions="Center"  Grid.Row="17" Grid.Column="2" HorizontalOptions="Center" TextColor="Gray"   LineBreakMode="NoWrap"/>
+
+
+
+
+                                    <BoxView Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" BackgroundColor="LightGray" HeightRequest="1" VerticalOptions="End" HorizontalOptions="FillAndExpand"/>
+                                    <BoxView Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" BackgroundColor="LightGray" HeightRequest="1" VerticalOptions="End" HorizontalOptions="FillAndExpand"/>
+                                    <BoxView Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="3" BackgroundColor="LightGray" HeightRequest="1" VerticalOptions="End" HorizontalOptions="FillAndExpand"/>
+                                    <BoxView Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="3" BackgroundColor="LightGray" HeightRequest="1" VerticalOptions="End" HorizontalOptions="FillAndExpand"/>
+                                    <BoxView Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="3" BackgroundColor="LightGray" HeightRequest="1" VerticalOptions="End" HorizontalOptions="FillAndExpand"/>
+                                    <BoxView Grid.Row="10" Grid.Column="0" Grid.ColumnSpan="3" BackgroundColor="LightGray" HeightRequest="1" VerticalOptions="End" HorizontalOptions="FillAndExpand"/>
+
+                                    <BoxView Grid.Row="12" Grid.Column="0" Grid.ColumnSpan="3" BackgroundColor="LightGray" HeightRequest="1" VerticalOptions="End" HorizontalOptions="FillAndExpand"/>
+                                    <BoxView Grid.Row="14" Grid.Column="0" Grid.ColumnSpan="3" BackgroundColor="LightGray" HeightRequest="1" VerticalOptions="End" HorizontalOptions="FillAndExpand"/>
+                                    <BoxView Grid.Row="16" Grid.Column="0" Grid.ColumnSpan="3" BackgroundColor="LightGray" HeightRequest="1" VerticalOptions="End" HorizontalOptions="FillAndExpand"/>
+                                    <BoxView Grid.Row="18" Grid.Column="0" Grid.ColumnSpan="3" BackgroundColor="LightGray" HeightRequest="1" VerticalOptions="End" HorizontalOptions="FillAndExpand"/>
+
+
+
+
+                                    <BoxView BackgroundColor="LightGray" WidthRequest="1" Grid.Column="0" Grid.Row="0" Grid.RowSpan="19" HorizontalOptions="Start" VerticalOptions="FillAndExpand" CornerRadius="0"/>
+
+                                    <BoxView BackgroundColor="LightGray" WidthRequest="1" Grid.Column="0" Grid.Row="0" Grid.RowSpan="19" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand" CornerRadius="0"/>
+                                    <BoxView BackgroundColor="LightGray" WidthRequest="1" Grid.Column="1" Grid.Row="0" Grid.RowSpan="19" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand" CornerRadius="0"/>
+
+
+
+
+                                    <BoxView BackgroundColor="LightGray" WidthRequest="1" Grid.Column="2"   Grid.RowSpan="19" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand" CornerRadius="0"/>
+
+
+
+                                    <!--<BoxView BackgroundColor="LightGray" WidthRequest="1" Grid.Column="0" Grid.Row="0" Grid.RowSpan="17" HorizontalOptions="Start" VerticalOptions="FillAndExpand" CornerRadius="0"/>
+
+                                <BoxView BackgroundColor="LightGray" WidthRequest="1" Grid.Column="0" Grid.Row="0" Grid.RowSpan="17" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand" CornerRadius="0"/>
+                                <BoxView BackgroundColor="LightGray" WidthRequest="1" Grid.Column="1" Grid.Row="0" Grid.RowSpan="17" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand" CornerRadius="0"/>
+
+
+
+
+                                <BoxView BackgroundColor="LightGray" WidthRequest="1" Grid.Column="2"   Grid.RowSpan="17" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand" CornerRadius="0"/>-->
+
+
+                                </Grid>
+
+                            </StackLayout>
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="CompanyBagDetails_Tapped" NumberOfTapsRequired="1"/>
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+                    </Frame>
+
+                    <Frame Margin="5,5,5,0" Padding="0" BorderColor="Transparent" CornerRadius="5" x:Name="frmCompanyPerformanceCommission" >
+                        <StackLayout Margin="0,0,0,15">
+                            <Label Text="PERFORMANCE : COMMISSION" TextColor="Black" VerticalOptions="Center" HorizontalOptions="Center" FontSize="16" Margin="0,15,0,0"/>
+                            <StackLayout Margin="8,5">
+                                <Grid Padding="0">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="1"/>
+                                        <RowDefinition Height="20"/>
+                                        <RowDefinition Height="1"/>
+                                        <RowDefinition Height="20"/>
+                                        <RowDefinition Height="1"/>
+                                        <RowDefinition Height="20"/>
+                                        <RowDefinition Height="1"/>
+                                        <RowDefinition Height="20"/>
+                                        <RowDefinition Height="1"/>
+                                        <RowDefinition Height="20"/>
+                                        <RowDefinition Height="1"/>
+
+
+                                        <RowDefinition Height="20"/>
+                                        <RowDefinition Height="1"/>
+                                        <RowDefinition Height="20"/>
+                                        <RowDefinition Height="1"/>
+                                        <RowDefinition Height="20"/>
+                                        <RowDefinition Height="1"/>
+                                        <RowDefinition Height="20"/>
+
+
+
+
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="2.6*"/>
+                                        <ColumnDefinition Width="2.4*"/>
+                                        <ColumnDefinition Width="2.5*"/>
+                                        <ColumnDefinition Width="2.5*"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <StackLayout BackgroundColor="Transparent"  Padding="0" Margin="0" Grid.Row="0" Grid.RowSpan="3" Grid.Column="0" Grid.ColumnSpan="3"/>
+
+                                    <Label Text="" Grid.Row="1" Grid.Column="0"  LineBreakMode="NoWrap" TextColor="Black" VerticalOptions="Center" HorizontalOptions="Center" FontSize="13"/>
+                                    <Label Text="CONFIRMED" Padding="5,0,0,0" Grid.Row="1" Grid.Column="1"  LineBreakMode="NoWrap" TextColor="Black" VerticalOptions="Center" HorizontalOptions="StartAndExpand" FontSize="13"/>
+                                    <Label Text="DISPATCHED" Grid.Row="1" Padding="5,0,0,0" Grid.Column="2"  LineBreakMode="NoWrap" TextColor="Black" VerticalOptions="Center" HorizontalOptions="StartAndExpand" FontSize="13"/>
+                                    <Label Text="COLLECTED" Grid.Row="1" Padding="5,0,0,0" Grid.Column="3"  LineBreakMode="NoWrap" TextColor="Black" VerticalOptions="Center" HorizontalOptions="StartAndExpand" FontSize="13"/>
+
+                                    <Label Text="TODAY"  Padding="5,0,0,0" Grid.Row="3" Grid.Column="0" LineBreakMode="NoWrap" TextColor="Black" VerticalOptions="Center" HorizontalOptions="StartAndExpand" FontSize="13"/>
+                                    <Label Text="THIS MONTH"  Padding="5,0,0,0" Grid.Row="5" Grid.Column="0" LineBreakMode="NoWrap" TextColor="Black" VerticalOptions="Center" HorizontalOptions="StartAndExpand" FontSize="13"/>
+                                    <Label Text="AVG/DAY"  Padding="5,0,0,0" Grid.Row="7" Grid.Column="0" LineBreakMode="NoWrap" TextColor="Black" VerticalOptions="Center" HorizontalOptions="StartAndExpand" FontSize="13"/>
+                                    <Label Text="EXPECTED"  Padding="5,0,0,0" Grid.Row="9" Grid.Column="0" LineBreakMode="NoWrap" TextColor="Black" VerticalOptions="Center" HorizontalOptions="StartAndExpand" FontSize="13"/>
+
+                                    <Label x:Name="lbltodaycommissionconfirmed"  VerticalOptions="Center"  Grid.Row="3" Grid.Column="1" HorizontalOptions="Center" TextColor="Gray"   LineBreakMode="NoWrap"/>
+                                    <Label  x:Name="lblmonthcommissionconfirmed"  VerticalOptions="Center"  Grid.Row="5" Grid.Column="1" HorizontalOptions="Center" TextColor="Gray"   LineBreakMode="NoWrap"/>
+                                    <Label x:Name="lblaveragecommissionconfirmed"   VerticalOptions="Center"  Grid.Row="7" Grid.Column="1" HorizontalOptions="Center" TextColor="Gray"   LineBreakMode="NoWrap"/>
+                                    <Label x:Name="lblexpectedcommissionconfirmed"  VerticalOptions="Center"  Grid.Row="9" Grid.Column="1"  HorizontalOptions="Center" TextColor="Gray"   LineBreakMode="NoWrap"/>
+
+
+                                    <Label x:Name="lbltodaycommissiondispatched"  VerticalOptions="Center"  Grid.Row="3" Grid.Column="2" HorizontalOptions="Center" TextColor="Gray"   LineBreakMode="NoWrap"/>
+                                    <Label x:Name="lblmonthcommissiondispatched"  VerticalOptions="Center"  Grid.Row="5" Grid.Column="2" HorizontalOptions="Center" TextColor="Gray"   LineBreakMode="NoWrap"/>
+                                    <Label x:Name="lblaveragecommissiondispatched"  VerticalOptions="Center"  Grid.Row="7" Grid.Column="2" HorizontalOptions="Center" TextColor="Gray"   LineBreakMode="NoWrap"/>
+                                    <Label  x:Name="lblexpectedcommissiondispatched"  VerticalOptions="Center"  Grid.Row="9" Grid.Column="2"  HorizontalOptions="Center" TextColor="Gray"   LineBreakMode="NoWrap"/>
+
+
+                                    <Label x:Name="lbltodaycommissionreceived"  VerticalOptions="Center"  Grid.Row="3" Grid.Column="3" HorizontalOptions="Center" TextColor="Gray"   LineBreakMode="NoWrap"/>
+                                    <Label x:Name="lblmonthcommissionreceived"  VerticalOptions="Center"  Grid.Row="5" Grid.Column="3" HorizontalOptions="Center" TextColor="Gray"   LineBreakMode="NoWrap"/>
+                                    <Label x:Name="lblaveragecommissionreceived"  VerticalOptions="Center"  Grid.Row="7" Grid.Column="3" HorizontalOptions="Center" TextColor="Gray"   LineBreakMode="NoWrap"/>
+                                    <Label  x:Name="lblexpectedcommissionreceived"  VerticalOptions="Center"  Grid.Row="9" Grid.Column="3"  HorizontalOptions="Center" TextColor="Gray"   LineBreakMode="NoWrap"/>
+
+
+                                    <Label Text="THIS YEAR" Padding="5,0,0,0" VerticalOptions="Center"  Grid.Row="13" Grid.Column="0"  HorizontalOptions="Start" TextColor="Black"   LineBreakMode="NoWrap" FontSize="14"/>
+                                    <Label  Text="AVG/MONTH" Padding="5,0,0,0"  VerticalOptions="Center"  Grid.Row="15" Grid.Column="0"  HorizontalOptions="Start" TextColor="Black"   LineBreakMode="NoWrap" FontSize="14"/>
+                                    <Label Text="" Padding="5,0,0,0"  VerticalOptions="Center"  Grid.Row="17" Grid.Column="0"  HorizontalOptions="Start" TextColor="Black"   LineBreakMode="NoWrap" FontSize="14"/>
+
+
+
+                                    <Label  x:Name="lblThisYearCommissionConfirmed" VerticalOptions="Center"  Grid.Row="13" Grid.Column="1"  HorizontalOptions="Center" TextColor="Gray"   LineBreakMode="NoWrap"/>
+                                    <Label  x:Name="lblAverageCommissionConfirmed"   VerticalOptions="Center"  Grid.Row="15" Grid.Column="1"  HorizontalOptions="Center" TextColor="Gray"   LineBreakMode="NoWrap"/>
+                                    <Label  x:Name="lblPerformanceCommissionConfirmed"  VerticalOptions="Center"  Grid.Row="17" Grid.Column="1"  HorizontalOptions="Center" TextColor="Gray"   LineBreakMode="NoWrap"/>
+
+
+                                    <Label   x:Name="lblThisYearCommissionDispatched" VerticalOptions="Center"  Grid.Row="13" Grid.Column="2"  HorizontalOptions="Center" TextColor="Gray"   LineBreakMode="NoWrap"/>
+                                    <Label   x:Name="lblAverageCommissionDispatched"  VerticalOptions="Center"  Grid.Row="15" Grid.Column="2"  HorizontalOptions="Center" TextColor="Gray"   LineBreakMode="NoWrap"/>
+                                    <Label   x:Name="lblPerformanceCommissionDispatched" VerticalOptions="Center"  Grid.Row="17" Grid.Column="2"  HorizontalOptions="Center" TextColor="Gray"   LineBreakMode="NoWrap"/>
+
+                                    <Label   x:Name="lblThisYearCommissionCollected" VerticalOptions="Center"  Grid.Row="13" Grid.Column="3"  HorizontalOptions="Center" TextColor="Gray"   LineBreakMode="NoWrap"/>
+                                    <Label  x:Name="lblAverageCommissionCollected"  VerticalOptions="Center"  Grid.Row="15" Grid.Column="3"  HorizontalOptions="Center" TextColor="Gray"   LineBreakMode="NoWrap"/>
+                                    <Label  x:Name="lblPerformanceCommissionCollected"   VerticalOptions="Center"  Grid.Row="17" Grid.Column="3"  HorizontalOptions="Center" TextColor="Gray"   LineBreakMode="NoWrap"/>
+
+
+
+
+
+                                    <BoxView Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" BackgroundColor="LightGray" HeightRequest="1" VerticalOptions="End" HorizontalOptions="FillAndExpand"/>
+                                    <BoxView Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="4" BackgroundColor="LightGray" HeightRequest="1" VerticalOptions="End" HorizontalOptions="FillAndExpand"/>
+                                    <BoxView Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="4" BackgroundColor="LightGray" HeightRequest="1" VerticalOptions="End" HorizontalOptions="FillAndExpand"/>
+                                    <BoxView Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="4" BackgroundColor="LightGray" HeightRequest="1" VerticalOptions="End" HorizontalOptions="FillAndExpand"/>
+                                    <BoxView Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="4" BackgroundColor="LightGray" HeightRequest="1" VerticalOptions="End" HorizontalOptions="FillAndExpand"/>
+                                    <BoxView Grid.Row="10" Grid.Column="0" Grid.ColumnSpan="4" BackgroundColor="LightGray" HeightRequest="1" VerticalOptions="End" HorizontalOptions="FillAndExpand"/>
+                                    <BoxView Grid.Row="12" Grid.Column="0" Grid.ColumnSpan="4" BackgroundColor="LightGray" HeightRequest="1" VerticalOptions="End" HorizontalOptions="FillAndExpand"/>
+                                    <BoxView Grid.Row="14" Grid.Column="0" Grid.ColumnSpan="4" BackgroundColor="LightGray" HeightRequest="1" VerticalOptions="End" HorizontalOptions="FillAndExpand"/>
+                                    <BoxView Grid.Row="16" Grid.Column="0" Grid.ColumnSpan="4" BackgroundColor="LightGray" HeightRequest="1" VerticalOptions="End" HorizontalOptions="FillAndExpand"/>
+                                    <BoxView Grid.Row="18" Grid.Column="0" Grid.ColumnSpan="4" BackgroundColor="LightGray" HeightRequest="1" VerticalOptions="End" HorizontalOptions="FillAndExpand"/>
+
+
+
+
+                                    <BoxView BackgroundColor="LightGray" WidthRequest="1" Grid.Column="0" Grid.Row="0" Grid.RowSpan="19" HorizontalOptions="StartAndExpand" VerticalOptions="FillAndExpand" CornerRadius="0"/>
+                                    <BoxView BackgroundColor="LightGray" WidthRequest="1" Grid.Column="1" Grid.Row="0" Grid.RowSpan="19" HorizontalOptions="StartAndExpand" VerticalOptions="FillAndExpand" CornerRadius="0"/>
+                                    <BoxView BackgroundColor="LightGray" WidthRequest="1" Grid.Column="2"   Grid.RowSpan="19" HorizontalOptions="StartAndExpand" VerticalOptions="FillAndExpand" CornerRadius="0"/>
+                                    <BoxView BackgroundColor="LightGray" WidthRequest="1" Grid.Column="3"   Grid.RowSpan="19" HorizontalOptions="StartAndExpand" VerticalOptions="FillAndExpand" CornerRadius="0"/>
+                                    <BoxView BackgroundColor="LightGray" WidthRequest="1" Grid.Column="3"   Grid.RowSpan="19" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand" CornerRadius="0"/>
+
+                                    <!--<BoxView BackgroundColor="LightGray" WidthRequest="1" Grid.Column="0" Grid.Row="0" Grid.RowSpan="17" HorizontalOptions="StartAndExpand" VerticalOptions="FillAndExpand" CornerRadius="0"/>
+                                <BoxView BackgroundColor="LightGray" WidthRequest="1" Grid.Column="1" Grid.Row="0" Grid.RowSpan="17" HorizontalOptions="StartAndExpand" VerticalOptions="FillAndExpand" CornerRadius="0"/>
+                                <BoxView BackgroundColor="LightGray" WidthRequest="1" Grid.Column="2"   Grid.RowSpan="17" HorizontalOptions="StartAndExpand" VerticalOptions="FillAndExpand" CornerRadius="0"/>
+                                <BoxView BackgroundColor="LightGray" WidthRequest="1" Grid.Column="3"   Grid.RowSpan="17" HorizontalOptions="StartAndExpand" VerticalOptions="FillAndExpand" CornerRadius="0"/>
+                                <BoxView BackgroundColor="LightGray" WidthRequest="1" Grid.Column="3"   Grid.RowSpan="17" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand" CornerRadius="0"/>-->
+
+
+                                </Grid>
+                            </StackLayout>
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="CompanyCommissionDetails_Tapped" NumberOfTapsRequired="1"/>
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+                    </Frame>
+
+                    <Frame Margin="5,5,5,0" Padding="0" BorderColor="Transparent" CornerRadius="5" x:Name="TeamGroupProgramView_ListData" IsVisible="False">
+                        <StackLayout Margin="0,0,0,15">
+                            <StackLayout Padding="0" Margin="0" Spacing="0"  >
+                                <Frame BackgroundColor="#e7e7e9" BorderColor="Transparent"  Padding="0">
+                                    <Grid Padding="0">
+                                        <Grid.RowDefinitions>
+
+                                            <RowDefinition Height="1"/>
+                                            <RowDefinition Height="20"/>
+                                            <RowDefinition Height="1"/>
+
+                                        </Grid.RowDefinitions>
+
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="5*"/>
+                                            <ColumnDefinition Width="2.5*"/>
+                                            <ColumnDefinition Width="2.5*"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <StackLayout BackgroundColor="Transparent"  Padding="0" Margin="0" Grid.Row="0" Grid.RowSpan="3" Grid.Column="0" Grid.ColumnSpan="3"/>
+
+                                        <Label Text="GROUPS" Grid.Row="1" Grid.Column="0"  LineBreakMode="NoWrap" TextColor="Black" VerticalOptions="Center" HorizontalOptions="Center" FontSize="13"/>
+                                        <Label Text="BAG" Grid.Row="1" Grid.Column="1"  LineBreakMode="NoWrap" TextColor="Black" VerticalOptions="Center" HorizontalOptions="Center" FontSize="13"/>
+                                        <Label Text="COM" Grid.Row="1" Grid.Column="2"  LineBreakMode="NoWrap" TextColor="Black" VerticalOptions="Center" HorizontalOptions="Center" FontSize="13"/>
+
+
+                                        <BoxView Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" BackgroundColor="LightGray" HeightRequest="1" VerticalOptions="End" HorizontalOptions="FillAndExpand"/>
+                                        <BoxView Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" BackgroundColor="LightGray" HeightRequest="1" VerticalOptions="End" HorizontalOptions="FillAndExpand"/>
+
+
+                                        <BoxView BackgroundColor="LightGray" WidthRequest="1" Grid.Column="0" Grid.Row="0" Grid.RowSpan="3" HorizontalOptions="Start" VerticalOptions="FillAndExpand" CornerRadius="0"/>
+                                        <BoxView BackgroundColor="LightGray" WidthRequest="1" Grid.Column="0" Grid.Row="0" Grid.RowSpan="3" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand" CornerRadius="0"/>
+                                        <BoxView BackgroundColor="LightGray" WidthRequest="1" Grid.Column="1" Grid.Row="0" Grid.RowSpan="3" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand" CornerRadius="0"/>
+                                        <BoxView BackgroundColor="LightGray" WidthRequest="1" Grid.Column="2"   Grid.RowSpan="3" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand" CornerRadius="0"/>
+
+                                    </Grid>
+
+                                </Frame>
+
+                                <ListView x:Name="TeamGroupProgramView_List"
+                                            ItemsSource="{Binding TeamGroupPerformance}"
+                                            VerticalOptions="FillAndExpand"
+                                            HasUnevenRows="true"
+                                            SeparatorVisibility="None"
+                                            IsPullToRefreshEnabled="False"                    
+                                            CachingStrategy="RecycleElement"
+                                            ItemSelected="OnItemSelected"
+                                            TabIndex="0"
+                                            SeparatorColor="LightGray" 
+                                            Margin="0" HeightRequest="350">
+
+                                    <ListView.ItemTemplate>
+                                        <DataTemplate>
+                                            <ViewCell>
+                                                <Frame  Padding="0" BorderColor="#FAFAFA">
+
+                                                    <Grid Padding="0" Margin="0">
+                                                        <Grid.RowDefinitions>
+
+                                                            <RowDefinition Height="1"/>
+                                                            <RowDefinition Height="20"/>
+                                                            <RowDefinition Height="1"/>
+
+
+                                                        </Grid.RowDefinitions>
+
+
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="5*"/>
+                                                            <ColumnDefinition Width="2.5*"/>
+                                                            <ColumnDefinition Width="2.5*"/>
+                                                        </Grid.ColumnDefinitions>
+
+                                                        <StackLayout BackgroundColor="Transparent"  Padding="0" Margin="0" Grid.Row="0" Grid.RowSpan="3" Grid.Column="0" Grid.ColumnSpan="3"/>
+
+                                                        <Label Text="{Binding Name}"  Padding="5,0,0,0" Grid.Row="1" Grid.Column="0" LineBreakMode="NoWrap" TextColor="Black" VerticalOptions="Center" HorizontalOptions="StartAndExpand" FontSize="14"/>
+                                                        <Label Text="{Binding ConfirmedBagsPercentage}" Grid.Row="1" Grid.Column="1" LineBreakMode="TailTruncation" TextColor="Black" VerticalOptions="Center" HorizontalOptions="Center"  FontSize="14"/>
+                                                        <Label Text="{Binding ConfirmedCommissionPercentage}"  Grid.Row="1" Grid.Column="2" LineBreakMode="NoWrap" TextColor="Black" VerticalOptions="Center" HorizontalOptions="Center" FontSize="14"/>
+
+
+                                                        <BoxView Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" BackgroundColor="LightGray" HeightRequest="1" VerticalOptions="End" HorizontalOptions="FillAndExpand"/>
+
+
+                                                        <BoxView BackgroundColor="LightGray" WidthRequest="1" Grid.Column="0" Grid.Row="0" Grid.RowSpan="3" HorizontalOptions="Start" VerticalOptions="FillAndExpand" CornerRadius="0"/>
+                                                        <BoxView BackgroundColor="LightGray" WidthRequest="1" Grid.Column="0" Grid.Row="0" Grid.RowSpan="3" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand" CornerRadius="0"/>
+                                                        <BoxView BackgroundColor="LightGray" WidthRequest="1" Grid.Column="1" Grid.Row="0" Grid.RowSpan="3" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand" CornerRadius="0"/>
+                                                        <BoxView BackgroundColor="LightGray" WidthRequest="1" Grid.Column="2"   Grid.RowSpan="3" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand" CornerRadius="0"/>
+
+                                                    </Grid>
+
+                                                </Frame>
+                                            </ViewCell>
+                                        </DataTemplate>
+                                    </ListView.ItemTemplate>
+                                    <ListView.Footer>
+                                        <Grid Padding="6" IsVisible="{Binding IsBusy}">
+                                            <!-- set the footer to have a zero height when invisible -->
+                                            <Grid.Triggers>
+                                                <Trigger TargetType="Grid" Property="IsVisible" Value="False">
+                                                    <Setter Property="HeightRequest" Value="0" />
+                                                </Trigger>
+                                            </Grid.Triggers>
+                                            <!-- the loading content -->
+                                            <Label Text="Loading..." TextColor="Gray" FontSize="20" VerticalOptions="Center" HorizontalOptions="Center" />
+                                        </Grid>
+                                    </ListView.Footer>
+                                </ListView>
+                            </StackLayout>
+                        </StackLayout>
+
+                    </Frame>
+                </StackLayout>
+            </ScrollView>
+
+        </StackLayout>
+
+       
+
+    </ContentPage.Content>
+</ContentPage>

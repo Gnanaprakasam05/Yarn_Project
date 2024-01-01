@@ -1,0 +1,205 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="yarn_brokerage.Views.FormsListPage"
+             xmlns:input="clr-namespace:Plugin.InputKit.Shared.Controls;assembly=Plugin.InputKit"
+             Title="Forms List">
+
+    <!--<ContentPage.ToolbarItems>
+        <ToolbarItem Text="Delete" Clicked="Delete_Clicked">
+            <ToolbarItem.Icon>
+                <OnPlatform x:TypeArguments="FileImageSource">
+                    <On Platform="UWP" Value="add.png"/>
+                </OnPlatform>
+            </ToolbarItem.Icon>
+        </ToolbarItem>
+        <ToolbarItem Text="Dispatch &amp; Delivery Details" Clicked="lblDispatchDeliveryDetails_Clicked" Order="Secondary" />        
+    </ContentPage.ToolbarItems>-->
+
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Spacing="20" Padding="15">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.4*"/>
+                        <ColumnDefinition Width="0.6*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="300"/>
+                    </Grid.RowDefinitions>
+                    
+                    <Grid Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" ColumnSpacing="0" >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.1*"/>
+                            <ColumnDefinition Width="0.1*"/>
+                            <ColumnDefinition Width="0.4*"/>
+                            <ColumnDefinition Width="0.1*"/>
+                            <ColumnDefinition Width="0.3*"/>                            
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <Image HeightRequest="26" WidthRequest="26" VerticalOptions="Center" HorizontalOptions="Center" Grid.Column="0" Grid.Row="0" Source="calendar.png" />
+                        <Label x:Name="lblTransactionDetail" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="4" Text="{Binding transaction_detail}" 
+                                        LineBreakMode="NoWrap"
+                                        Style="{DynamicResource ListItemTextStyle}"
+                                        FontSize="18" FontAttributes="Bold" />
+
+                        <Image HeightRequest="26" WidthRequest="26" VerticalOptions="Center" HorizontalOptions="Center" Grid.Column="0" Grid.Row="1" Source="buyer.png" />
+                        <Label x:Name="lblCustomerName" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="4" Text="{Binding DraftConfirmation.customer_name}" 
+                                        LineBreakMode="NoWrap"
+                                        Style="{DynamicResource ListItemTextStyle}"
+                                        FontSize="18" FontAttributes="Bold" />
+
+                        <Image HeightRequest="26" WidthRequest="26" VerticalOptions="Center" HorizontalOptions="Center" Grid.Column="0" Grid.Row="2" Source="customer.png" />
+                        <Label x:Name="lblSupplierName" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="4" Text="{Binding DraftConfirmation.supplier_name}" 
+                                        LineBreakMode="NoWrap"
+                                        Style="{DynamicResource ListItemDetailTextStyle}"
+                                        FontSize="18" FontAttributes="Bold" />
+
+
+                        <Image HeightRequest="18" WidthRequest="18"  Grid.Column="1" Grid.Row="3" Source="count.png"  HorizontalOptions="Center"/>
+                        <Label x:Name="lblCountName" Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="3" VerticalOptions="Center"  Text="{Binding DraftConfirmation.count_name}" 
+                                            LineBreakMode="WordWrap"
+                                            Style="{DynamicResource ListItemTextStyle}"
+                                            FontSize="16"/>
+
+                        <Image HeightRequest="20" WidthRequest="20"  Grid.Column="1" Grid.Row="4"  Source="bags.png" HorizontalOptions="Center"/>
+                        <Label x:Name="lblQtyUnit" Grid.Row="4" Grid.Column="2" VerticalOptions="Center" Text="{Binding DraftConfirmation.qty_unit, StringFormat='\{0}'}" 
+                                            LineBreakMode="WordWrap"
+                                            Style="{DynamicResource ListItemTextStyle}"
+                                            FontSize="16"/>
+
+                        <Image HeightRequest="20" WidthRequest="20"  Grid.Column="3" Grid.Row="4" Margin="10,0,0,0" Source="price.png" HorizontalOptions="Center"/>
+                        <Label x:Name="lblPricePer" Grid.Row="4" Grid.Column="4" VerticalOptions="Center" Text="{Binding DraftConfirmation.price_per, StringFormat='\Rs.{0}'}" 
+                                            LineBreakMode="WordWrap"
+                                            Style="{DynamicResource ListItemTextStyle}"
+                                            FontSize="16"/>
+
+                        <Image x:Name="imgUser" IsVisible="{Binding Payment.admin_user}"  HeightRequest="18" WidthRequest="18"  Grid.Column="1" Grid.Row="5" Source="contact.png"/>
+                        <Label x:Name="lblUserName" Grid.Row="5" Grid.Column="2" Grid.ColumnSpan="3" Text="{Binding DraftConfirmation.user_name}" 
+                                        LineBreakMode="NoWrap"
+                                        Style="{DynamicResource ListItemDetailTextStyle}"  IsVisible="{Binding DraftConfirmation.admin_user}"
+                                        FontSize="16"/>
+                        <Label x:Name="lblAllowCreditBilling" IsVisible="False" TextColor="Red" Grid.Row="6" Grid.Column="2" Grid.ColumnSpan="3" Text="Allow Credit Billing" 
+                                        LineBreakMode="NoWrap"
+                                        Style="{DynamicResource ListItemDetailTextStyle}"  
+                                        FontSize="16"/>
+                    </Grid>
+
+                    <Label BackgroundColor="#bababa" HeightRequest="1" WidthRequest="320" HorizontalOptions="CenterAndExpand" VerticalOptions="Center" Grid.Row="1" Grid.Column="0" Margin="0,5,0,0"  Grid.ColumnSpan="2" ></Label>
+
+                    <Frame x:Name="grdInvoice" BackgroundColor="WhiteSmoke" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Margin="-5,0,0,0" Padding="5,10,0,10">
+                        <Grid>
+                            <Label x:Name = "lblInvoiceDetails" Text="Invoice Details" LineBreakMode="NoWrap" FontAttributes="Bold" TextDecorations="Underline"  HorizontalOptions="Start" FontSize="17" />                            
+                        </Grid>
+                    </Frame>
+
+
+                    <Grid Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" VerticalOptions="CenterAndExpand" >
+                        <Grid.ColumnDefinitions>                            
+                            <ColumnDefinition Width="0.5*"/>
+                            <ColumnDefinition Width="0.5*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>                        
+                        <Label Text="Invoice No" Grid.Row="0" Grid.Column="0" VerticalOptions="CenterAndExpand" FontSize="17" />
+                        <Entry x:Name ="txtInvoiceNo" IsEnabled="False" Grid.Row="0" Grid.Column="1"  ReturnType="Next" FontSize="16" />
+                        <Label Text="Invoice Date" Grid.Row="2" Grid.Column="0" VerticalOptions="CenterAndExpand" FontSize="17" />
+                        <DatePicker x:Name ="InvoiceDatePicker" IsEnabled="False"  Format="dd-MM-yyyy" Grid.Row="2" Grid.Column="1" FontSize="16"/>
+                        <Label Text="Amount" Grid.Row="3" Grid.Column="0" VerticalOptions="CenterAndExpand" FontSize="17" />
+                        <Entry x:Name ="txtAmount" Grid.Row="3" IsEnabled="False" Grid.Column="1" Keyboard="Numeric" ReturnType="Next" FontSize="16" />
+                    </Grid>
+                    
+                    <Label BackgroundColor="#bababa" HeightRequest="1" WidthRequest="320" HorizontalOptions="CenterAndExpand" VerticalOptions="Center" Grid.Row="4" Grid.Column="0" Margin="0,5,0,0"  Grid.ColumnSpan="2" ></Label>
+                    
+                    <Frame x:Name="grdForm" BackgroundColor="WhiteSmoke" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" Margin="-5,0,0,0" Padding="5,10,0,10">
+                        <Grid>
+                            <Label x:Name = "lblPaymentDetails" Text="Form Details" LineBreakMode="NoWrap" FontAttributes="Bold" TextDecorations="Underline"  HorizontalOptions="Start" FontSize="17" />                            
+                        </Grid>
+                    </Frame>
+
+                    <Grid Grid.Row="6" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Grid.Column="0" Grid.ColumnSpan="2" >
+                        
+                        <ListView   x:Name="DraftConfirmationFormListView"                     
+                        ItemsSource="{Binding draftConfirmationForms}"
+                              VerticalOptions="Center"                             
+                        HasUnevenRows="True"                       
+                        CachingStrategy="RecycleElement"
+                        ItemSelected="OnItemSelected"
+                        TabIndex="0"
+                        SeparatorColor="LightGray">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <StackLayout Padding="5">
+                                            <Grid  ColumnSpacing="0">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="0.1*"/>
+                                                    <ColumnDefinition Width="0.6*"/>
+                                                    <ColumnDefinition Width="0.1*"/>
+                                                    <ColumnDefinition Width="0.4*"/>
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto"/>
+                                                    <RowDefinition Height="Auto"/>
+                                                    <RowDefinition Height="Auto"/>
+                                                    <RowDefinition Height="Auto"/>
+                                                </Grid.RowDefinitions>
+
+                                                <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" VerticalOptions="Center" Text="{Binding form_name}" LineBreakMode="NoWrap"
+                                                Style="{DynamicResource ListItemTextStyle}" FontSize="16"/>
+
+                                                <!--<Image Grid.Column="0" Grid.Row="1" IsVisible="{Binding received}" HeightRequest="20" WidthRequest="20" HorizontalOptions="Start" Source="price.png"/>-->
+                                                <Label Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" IsVisible="{Binding received}" Text="Received From Customer" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}"
+                                                FontSize="16"  />
+                                                
+                                                <Image Grid.Column="2" IsVisible="{Binding received}" Grid.Row="1" HeightRequest="20" WidthRequest="20" HorizontalOptions="Start" Source="price.png"/>
+                                                <Label Grid.Row="1" IsVisible="{Binding received}" Grid.Column="3" Text="{Binding received_date, StringFormat='\{0:dd-MM-yyyy}'}" LineBreakMode="NoWrap" Style="{DynamicResource ListItemTextStyle}"
+                                                FontSize="16"  />
+
+                                                <Label Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" IsVisible="{Binding issued}" Text="Issued To Supplier" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}"
+                                                FontSize="16"  />
+
+                                                <Image Grid.Column="2" IsVisible="{Binding issued}" Grid.Row="2" HeightRequest="20" WidthRequest="20" HorizontalOptions="Start" Source="price.png"/>
+                                                <Label Grid.Row="2" IsVisible="{Binding issued}" Grid.Column="3" Text="{Binding issued_date, StringFormat='\{0:dd-MM-yyyy}'}" LineBreakMode="NoWrap" Style="{DynamicResource ListItemTextStyle}"
+                                                FontSize="16"  />
+
+                                            </Grid>
+                                        </StackLayout>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </Grid>
+
+                </Grid>
+                
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+    
+</ContentPage>

@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="yarn_brokerage.Views.AttendanceListPage"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:extended="clr-namespace:Xamarin.Forms.Extended;assembly=Xamarin.Forms.Extended.InfiniteScrolling"
+             Title="Attendance List">
+
+    <StackLayout Padding="10" Spacing="0">
+        <Frame BackgroundColor="#e7e7e9" BorderColor="Transparent" HeightRequest="60" Padding="0">
+            <Grid Padding="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2.5*"/>
+                    <ColumnDefinition Width="2.5*"/>
+                    <ColumnDefinition Width="2.5*"/>
+                    <ColumnDefinition Width="2.5*"/>
+                </Grid.ColumnDefinitions>
+
+                <Label   Text="Date" VerticalOptions="Center"  Grid.Column="0" HorizontalOptions="Center" TextColor="Black" FontAttributes="Bold"  LineBreakMode="NoWrap"/>
+                <Label Text="Attendance" VerticalOptions="Center"  Grid.Column="1" HorizontalOptions="Center" TextColor="Black" FontAttributes="Bold"  LineBreakMode="NoWrap"/>
+                <Label  Text="Late" VerticalOptions="Center"  Grid.Column="2"  HorizontalOptions="Center" TextColor="Black" FontAttributes="Bold"  LineBreakMode="NoWrap"/>
+                <Label  Text="Permission" VerticalOptions="Center"  Grid.Column="3" HorizontalOptions="Center" TextColor="Black" FontAttributes="Bold"  LineBreakMode="NoWrap"/>
+
+                <BoxView BackgroundColor="Transparent" WidthRequest="1" Grid.Column="0" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand" CornerRadius="0"/>
+                <BoxView BackgroundColor="Transparent" WidthRequest="1" Grid.Column="1" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand" CornerRadius="0"/>
+                <BoxView BackgroundColor="Transparent" WidthRequest="1" Grid.Column="2" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand" CornerRadius="0"/>
+                <BoxView BackgroundColor="Transparent" WidthRequest="1" Grid.Column="3" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand" CornerRadius="0"/>
+            </Grid>
+            
+            
+        </Frame>
+
+        <ListView x:Name="attendancelist"
+                    ItemsSource="{Binding Attendance}"
+                    VerticalOptions="FillAndExpand"
+                    HasUnevenRows="true"
+                    RefreshCommand="{Binding LoadItemsCommand}"   
+                    IsPullToRefreshEnabled="False"                    
+                    CachingStrategy="RecycleElement"
+                    ItemSelected="OnItemSelected"
+                    TabIndex="0"
+                    SeparatorColor="LightGray">
+            <ListView.Behaviors>
+                <extended:InfiniteScrollBehavior IsLoadingMore="{Binding IsBusy}" />
+            </ListView.Behaviors>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Frame  Padding="0" BorderColor="#FAFAFA">
+                            <Grid Padding="0" RowSpacing="0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="2.5*"/>
+                                    <ColumnDefinition Width="2.5*"/>
+                                    <ColumnDefinition Width="2.5*"/>
+                                    <ColumnDefinition Width="2.5*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Label  Text="{Binding TransactionDate}" VerticalOptions="Center" HorizontalOptions="Center" Grid.Column="0"  LineBreakMode="NoWrap" />
+                                <Label  Text="{Binding Attendance_List}" VerticalOptions="Center" HorizontalOptions="Center"  Grid.Column="1" TextColor="{Binding Text_Color}" LineBreakMode="NoWrap"/>
+                                <Label  Text="{Binding LateDays}" VerticalOptions="Center"  HorizontalOptions="Center" Grid.Column="2"  LineBreakMode="NoWrap"/>
+                                <Label  Text="{Binding PermissionDay}" VerticalOptions="Center" HorizontalOptions="Center"  Grid.Column="3"  LineBreakMode="NoWrap"/>
+
+                                <BoxView BackgroundColor="Transparent" WidthRequest="1" Grid.Column="0" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand" CornerRadius="0" />
+                                <BoxView BackgroundColor="Transparent" WidthRequest="1" Grid.Column="1" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand" CornerRadius="0"/>
+                                <BoxView BackgroundColor="Transparent" WidthRequest="1" Grid.Column="2" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand" CornerRadius="0"/>
+                                <BoxView BackgroundColor="Transparent" WidthRequest="1" Grid.Column="3" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand" CornerRadius="0"/>
+                            </Grid>
+
+                        </Frame>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+            <ListView.Footer>
+                <Grid Padding="6" IsVisible="{Binding IsBusy}">
+                    <!-- set the footer to have a zero height when invisible -->
+                    <Grid.Triggers>
+                        <Trigger TargetType="Grid" Property="IsVisible" Value="False">
+                            <Setter Property="HeightRequest" Value="0" />
+                        </Trigger>
+                    </Grid.Triggers>
+                    <!-- the loading content -->
+                    <Label Text="Loading..." TextColor="Gray" FontSize="20" VerticalOptions="Center" HorizontalOptions="Center" />
+                </Grid>
+            </ListView.Footer>
+        </ListView>
+    </StackLayout>
+     
+            
+
+
+
+
+</ContentPage>

@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="yarn_brokerage.Views.NegotiationPage"
+             Title="{Binding Title}"
+             x:Name="NegotiationsPage">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Add" Clicked="AddItem_Clicked">
+            <ToolbarItem.Icon>
+                <OnPlatform x:TypeArguments="FileImageSource">
+                    <On Platform="UWP" Value="add.png"/>
+                </OnPlatform>
+            </ToolbarItem.Icon>
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>
+    
+    <StackLayout>
+        <!--<Entry x:Name="txtSearch" TabIndex="1" Placeholder="Search" HorizontalTextAlignment="Center" Margin="8,0,8,0" TextChanged="TxtSearch_TextChanged" />-->
+        <Grid BackgroundColor="WhiteSmoke"  ColumnSpacing="0" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="0.6*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Image Grid.Column="0" HeightRequest="24" WidthRequest="24" Margin="0,0,10,0" HorizontalOptions="End" Source="ic_b_launcher.png">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="PreviousDate_Clicked" NumberOfTapsRequired="1" />
+                </Image.GestureRecognizers>
+            </Image>
+            <DatePicker x:Name="startDatePicker" Grid.Column="1"  Date="{Binding date}" Format="dd-MM-yyyy" FontSize="17" HorizontalOptions="CenterAndExpand" DateSelected="StartDatePicker_DateSelected" />
+            <Image Grid.Column="2" HeightRequest="24" WidthRequest="24" Margin="10,0,0,0" HorizontalOptions="Start" Source="ic_launcher.png">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="NextDate_Clicked" NumberOfTapsRequired="1" />
+                </Image.GestureRecognizers>
+            </Image>
+        </Grid>
+
+        <ListView x:Name="NegotiationListView"
+                ItemsSource="{Binding Negotiations}"
+                VerticalOptions="FillAndExpand"
+                HasUnevenRows="true"
+                RefreshCommand="{Binding LoadItemsCommand}"               
+                IsPullToRefreshEnabled="true"
+                IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+                CachingStrategy="RecycleElement"
+                ItemSelected="OnItemSelected"
+                TabIndex="0">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Padding="10">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="0.5*"/>
+                                    <ColumnDefinition Width="0.5*"/>
+                                    <!--<ColumnDefinition Width="0.1*"/>-->
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <!--<Label Grid.ColumnSpan="2" Grid.Row="0" Text="{Binding transaction_date_time,  StringFormat='\{0:dd-MM-yyyy hh:mm:ss}'}" 
+                                        LineBreakMode="WordWrap" 
+                                        Style="{DynamicResource ListItemTextStyle}" 
+                                        FontSize="16" />-->
+
+                                <Label Grid.Row="0" Grid.ColumnSpan="2" Text="{Binding customer_name}" 
+                                        LineBreakMode="NoWrap"
+                                        Style="{DynamicResource ListItemTextStyle}"
+                                        FontSize="17" TextColor="Green" />
+
+                                <Label Grid.Row="1" Grid.ColumnSpan="2" HorizontalOptions="FillAndExpand" Text="{Binding supplier_name}" 
+                                        LineBreakMode="NoWrap"
+                                        Style="{DynamicResource ListItemDetailTextStyle}"
+                                        FontSize="17" TextColor="Red" />
+
+                                <Label Grid.Row="2" Grid.ColumnSpan="2"  Text="{Binding description}" 
+                                        LineBreakMode="NoWrap"
+                                        Style="{DynamicResource ListItemTextStyle}"
+                                        FontSize="16" TextColor="Blue"  />
+
+                                <Label Grid.Row="3" Grid.ColumnSpan="2" HorizontalOptions="FillAndExpand" Text="{Binding user_name}" 
+                                        LineBreakMode="NoWrap"
+                                        Style="{DynamicResource ListItemDetailTextStyle}"  IsVisible="{Binding admin_user}"
+                                        FontSize="16" />
+                                <!--, StringFormat='{0:0.000}'-->
+                                <!--<Image Grid.Column="2" Grid.RowSpan="2" HorizontalOptions="Center" Source="check.png">Detail
+                                    <Image.GestureRecognizers> TextColor="IndianRed" FontAttributes="Bold"
+                                        <TapGestureRecognizer Tapped="DeleteClicked" CommandParameter="{Binding Id}" NumberOfTapsRequired="1" />
+                                    </Image.GestureRecognizers>
+                                </Image>-->
+                            </Grid>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>            
+        </ListView>
+    </StackLayout>    
+</ContentPage>

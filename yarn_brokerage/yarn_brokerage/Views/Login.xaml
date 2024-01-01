@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:yarn_brokerage"
+             xmlns:input="clr-namespace:Plugin.InputKit.Shared.Controls;assembly=Plugin.InputKit"
+             x:Class="yarn_brokerage.Views.Login" Title="Yarn Brokerage">
+
+    <!--<StackLayout>
+        Place new controls here 
+        <Label Text="Welcome to Xamarin.Forms!" 
+           HorizontalOptions="Center"
+           VerticalOptions="CenterAndExpand" /> #3897f0
+    </StackLayout> -->
+
+    <ContentPage.Content>
+        
+        <Grid BackgroundColor="White">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="45"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="45"/>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="1" x:Name="pnlLogin"  Margin="20,0,20,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.5*"/>
+                    <ColumnDefinition Width="0.5*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="100"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="60"/>
+                    <!--<RowDefinition Height="*"/>-->
+                </Grid.RowDefinitions>
+                <ActivityIndicator VerticalOptions="Center" HorizontalOptions="Center" x:Name="activity_indicator" Color="#4D7EE1" />
+                <Image Grid.Row="0" Grid.ColumnSpan="2" VerticalOptions="Center" HeightRequest="100" WidthRequest="325"  Source="logo.png"></Image>
+                <!--<StackLayout  Grid.Row="1" Grid.ColumnSpan="2" >
+                    <Entry x:Name="Username" Grid.Row="0" Grid.ColumnSpan="2" TabIndex="0" ReturnType="Next" Placeholder="User Name"  PlaceholderColor="#bababa" Text="{Binding UserName}"  InputTransparent="True" FontSize="16"/>
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer
+                        Tapped="TxtUsername_Focused"
+                        NumberOfTapsRequired="1">
+                        </TapGestureRecognizer>
+                    </StackLayout.GestureRecognizers>
+                </StackLayout>-->
+                <Entry x:Name="Username" Grid.Row="1" Grid.ColumnSpan="2" TabIndex="1" ReturnType="Next" Placeholder="Username" Keyboard="Text" PlaceholderColor="#bababa" Text="{Binding UserName}" FontSize="16"/>
+                <Entry x:Name="Password" Grid.Row="2" Grid.ColumnSpan="2" Completed="validation" TabIndex="2" IsPassword="True" ReturnType="Done" Placeholder="Password" PlaceholderColor="#bababa" Text="{Binding Password}" FontSize="16"/>
+                <input:CheckBox x:Name="RdoRememberMe" Grid.Row="3" Grid.Column="0" TextFontSize="16" Text="Remember Me" BoxSizeRequest="16" VerticalOptions="StartAndExpand" Margin="0,-15,0,0" Type="Check" TextColor="Black" ></input:CheckBox>
+                <Button x:Name="LogIn" Text="LogIn" Clicked="validation" BackgroundColor="#f00e48" TextColor="White" HeightRequest="50" VerticalOptions="Start" Grid.Column="1" Grid.Row="3"/>
+                <Label Text="Version 0.11.25.0" x:Name="lblVersion" VerticalOptions="CenterAndExpand" Grid.Row="3" Grid.Column="0" Margin="0,10,0,0" FontSize="12"/>
+                <!--<Button x:Name="Register" Text="New User" BackgroundColor="#f00e48"  Clicked="Registration_Clicked"  TextColor="White" HeightRequest="50" VerticalOptions="Start" Grid.Column="1" Grid.Row="3"/>-->
+
+                <!--<Label Text="New User? Register" HorizontalOptions="Center" Grid.Row="4" Margin="0,10,0,0" FontSize="12">   
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="Registration_Clicked"/>
+                    </Label.GestureRecognizers>
+                </Label>-->
+
+                <!--<Grid Grid.Row="4" Grid.ColumnSpan="2">
+
+                    <Grid.ColumnDefinitions>
+
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+
+                    </Grid.ColumnDefinitions>
+                    <Label BackgroundColor="#bababa" HeightRequest="1" HorizontalOptions="FillAndExpand" VerticalOptions="Center"/>
+
+                    <Label BackgroundColor="#bababa" Grid.Column="2" HeightRequest="1" HorizontalOptions="FillAndExpand" VerticalOptions="Center"/>
+
+                </Grid>-->
+
+            </Grid>
+        </Grid>
+
+    </ContentPage.Content>
+
+</ContentPage>

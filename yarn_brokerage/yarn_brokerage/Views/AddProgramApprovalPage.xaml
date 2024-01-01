@@ -1,0 +1,133 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="yarn_brokerage.Views.AddProgramApprovalPage"
+             xmlns:input="clr-namespace:Plugin.InputKit.Shared.Controls;assembly=Plugin.InputKit"
+             Title="Send For Program Approval">
+
+    <!--<ContentPage.ToolbarItems>
+        <ToolbarItem Text="Delete" Clicked="Delete_Clicked">
+            <ToolbarItem.Icon>
+                <OnPlatform x:TypeArguments="FileImageSource">
+                    <On Platform="UWP" Value="add.png"/>
+                </OnPlatform>
+            </ToolbarItem.Icon>
+        </ToolbarItem>
+        <ToolbarItem Text="Dispatch &amp; Delivery Details" Clicked="lblDispatchDeliveryDetails_Clicked" Order="Secondary" />        
+    </ContentPage.ToolbarItems>-->
+
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Spacing="20" Padding="15">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.4*"/>
+                        <ColumnDefinition Width="0.6*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="300"/>
+                    </Grid.RowDefinitions>
+                    
+                    <Grid Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" ColumnSpacing="0" >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.1*"/>
+                            <ColumnDefinition Width="0.1*"/>
+                            <ColumnDefinition Width="0.4*"/>
+                            <ColumnDefinition Width="0.1*"/>
+                            <ColumnDefinition Width="0.3*"/>                            
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <Image HeightRequest="26" WidthRequest="26" VerticalOptions="Center" HorizontalOptions="Center" Grid.Column="0" Grid.Row="0" Source="calendar.png" />
+                        <Label x:Name="lblTransactionDetail" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="4" Text="{Binding transaction_detail}" 
+                                        LineBreakMode="NoWrap"
+                                        Style="{DynamicResource ListItemTextStyle}"
+                                        FontSize="18" FontAttributes="Bold" />
+
+                        <Image HeightRequest="26" WidthRequest="26" VerticalOptions="Center" HorizontalOptions="Center" Grid.Column="0" Grid.Row="1" Source="buyer.png" />
+                        <Label x:Name="lblCustomerName" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="4" Text="{Binding DraftConfirmation.customer_name}" 
+                                        LineBreakMode="NoWrap"
+                                        Style="{DynamicResource ListItemTextStyle}"
+                                        FontSize="18" FontAttributes="Bold" />
+
+                        <Image HeightRequest="26" WidthRequest="26" VerticalOptions="Center" HorizontalOptions="Center" Grid.Column="0" Grid.Row="2" Source="customer.png" />
+                        <Label x:Name="lblSupplierName" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="4" Text="{Binding DraftConfirmation.supplier_name}" 
+                                        LineBreakMode="NoWrap"
+                                        Style="{DynamicResource ListItemDetailTextStyle}"
+                                        FontSize="18" FontAttributes="Bold" />
+
+
+                        <Image HeightRequest="18" WidthRequest="18"  Grid.Column="1" Grid.Row="3" Source="count.png"  HorizontalOptions="Center"/>
+                        <Label x:Name="lblCountName" Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="3" VerticalOptions="Center"  Text="{Binding DraftConfirmation.count_name}" 
+                                            LineBreakMode="WordWrap"
+                                            Style="{DynamicResource ListItemTextStyle}"
+                                            FontSize="16"/>
+
+                        <Image HeightRequest="20" WidthRequest="20"  Grid.Column="1" Grid.Row="4"  Source="bags.png" HorizontalOptions="Center"/>
+                        <Label x:Name="lblQtyUnit" Grid.Row="4" Grid.Column="2" VerticalOptions="Center" Text="{Binding DraftConfirmation.qty_unit, StringFormat='\{0}'}" 
+                                            LineBreakMode="WordWrap"
+                                            Style="{DynamicResource ListItemTextStyle}"
+                                            FontSize="16"/>
+
+                        <Image HeightRequest="20" WidthRequest="20"  Grid.Column="3" Grid.Row="4" Margin="10,0,0,0" Source="price.png" HorizontalOptions="Center"/>
+                        <Label x:Name="lblPricePer" Grid.Row="4" Grid.Column="4" VerticalOptions="Center" Text="{Binding DraftConfirmation.price_per, StringFormat='\Rs.{0}'}" 
+                                            LineBreakMode="WordWrap"
+                                            Style="{DynamicResource ListItemTextStyle}"
+                                            FontSize="16"/>
+
+                        <Image x:Name="imgUser" IsVisible="{Binding Payment.admin_user}"  HeightRequest="18" WidthRequest="18"  Grid.Column="1" Grid.Row="5" Source="contact.png"/>
+                        <Label x:Name="lblUserName" Grid.Row="5" Grid.Column="2" Grid.ColumnSpan="3" Text="{Binding DraftConfirmation.user_name}" 
+                                        LineBreakMode="NoWrap"
+                                        Style="{DynamicResource ListItemDetailTextStyle}"  IsVisible="{Binding DraftConfirmation.admin_user}"
+                                        FontSize="16"/>
+                        <Label x:Name="lblAllowCreditBilling" IsVisible="False" TextColor="Red" Grid.Row="6" Grid.Column="2" Grid.ColumnSpan="3" Text="Allow Credit Billing" 
+                                        LineBreakMode="NoWrap"
+                                        Style="{DynamicResource ListItemDetailTextStyle}"  
+                                        FontSize="16"/>
+                    </Grid>
+                    
+                    
+
+                    <Grid Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Grid.Column="0" Grid.ColumnSpan="2" >
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.3*"/>
+                            <ColumnDefinition Width="0.3*"/>
+                            <ColumnDefinition Width="0.3*"/>                            
+                        </Grid.ColumnDefinitions>
+                        <Button Grid.Column="0" x:Name="butRevoke" Grid.Row="1"  Text="Approve" Clicked="Revoke_Clicked" ></Button>
+                        <Button Grid.Column="1" x:Name="butSave" Grid.Row="1" Text="Reject" Clicked="Save_Clicked" ></Button>
+                        <Button Grid.Column="2" x:Name="butCancel" Grid.Row="1"  Text="Cancel" Clicked="Cancel_Clicked" ></Button>
+                    </Grid>
+
+                </Grid>
+                
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+    
+</ContentPage>

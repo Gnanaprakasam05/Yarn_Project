@@ -1,0 +1,135 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="yarn_brokerage.Views.AddNegotiationPage"
+             xmlns:input="clr-namespace:Plugin.InputKit.Shared.Controls;assembly=Plugin.InputKit"
+             Title="New Item">
+    
+    <!--<ContentPage.ToolbarItems>
+        <ToolbarItem Text="Cancel" Clicked="Cancel_Clicked" />
+        <ToolbarItem Text="Save" Clicked="Save_Clicked" />
+    </ContentPage.ToolbarItems>-->
+    
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Spacing="20" Padding="15">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.4*"/>
+                        <ColumnDefinition Width="0.6*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="300"/>
+                    </Grid.RowDefinitions>
+
+                    <Label x:Name="lblDateTime" Grid.Row="0" Grid.Column="0" VerticalOptions="CenterAndExpand" Text="Text" FontSize="17" />
+                    <Entry x:Name="txtDateTime" Grid.Row="0" Grid.Column="1" Text="{Binding Negotiation.transaction_date_time, StringFormat='\{0:dd-MM-yyyy HH:mm}'}"  InputTransparent="True" FontSize="Medium" />
+                    <!--<Label x:Name="lblSegment" Grid.Row="1" Grid.Column="0" VerticalOptions="CenterAndExpand" Text="Segment" FontSize="Medium" />
+
+                    <Grid Grid.Row="1" VerticalOptions="CenterAndExpand" Grid.Column="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.5*"/>
+                            <ColumnDefinition Width="0.5*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        -->
+                    <!--<input:RadioButtonGroupView Grid.Column="0" Grid.Row="0" FlowDirection="LeftToRight" >-->
+                    <!--
+                        <input:RadioButton x:Name="RdoDomestic" Grid.Row="0" Grid.Column="0" TextFontSize="16" Text="Domestic"  TextColor="Black" IsChecked="True" Clicked="RdoDomestic_Clicked" ></input:RadioButton>
+                        <input:RadioButton x:Name="RdoExport" Grid.Row="0" Grid.Column="1" TextFontSize="16" Text="Export" TextColor="Black" Clicked="RdoExport_Clicked" ></input:RadioButton>
+                        -->
+                    <!--</input:RadioButtonGroupView>-->
+                    <!--
+                    </Grid>-->
+                    <Label Text="Customer" Grid.Row="1" Grid.Column="0" VerticalOptions="CenterAndExpand" FontSize="17" />
+                    <StackLayout Grid.Row="1" Grid.Column="1">
+                        <Editor x:Name="txtCustomerName" Text="{Binding Negotiation.customer_name}" Margin="0" InputTransparent="True" FontSize="Medium"  />
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="TxtCustomer_Focused"
+                                NumberOfTapsRequired="1">
+                            </TapGestureRecognizer>
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
+
+                    <Label x:Name="lblSupplier" Grid.Row="2" Grid.Column="0" VerticalOptions="CenterAndExpand" Text="Supplier" FontSize="17" />
+                    <StackLayout Grid.Row="2" Grid.Column="1">
+                        <Editor x:Name="txtSupplierName" Text="{Binding Negotiation.supplier_name}"  Margin="0" InputTransparent="True" FontSize="Medium"  />
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="TxtSupplier_Focused"
+                                NumberOfTapsRequired="1">
+                            </TapGestureRecognizer>
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
+
+                    <Label Text="Count" Grid.Row="3" Grid.Column="0" VerticalOptions="CenterAndExpand" FontSize="17" />
+                    <StackLayout Grid.Row="3" Grid.Column="1">
+                        <Editor x:Name="txtCountName" IsEnabled="False" Text="{Binding Enquiry.count_name}" Margin="0" InputTransparent="True" FontSize="Medium"  />
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer
+                                    Tapped="TxtCount_Focused"
+                                    NumberOfTapsRequired="1">
+                            </TapGestureRecognizer>
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
+                    <Label Text="Required Bags" Grid.Row="4" Grid.Column="0" VerticalOptions="CenterAndExpand" FontSize="17" />
+                    <Entry x:Name="txtBags" Text="{Binding Negotiation.bags, Mode=TwoWay, StringFormat='\{0:0}'}" Grid.Row="4" Grid.Column="1" Keyboard="Numeric" Placeholder="Please enter the bag weight" Unfocused="TxtBags_Unfocused" ReturnType="Next"  FontSize="Medium" />
+
+                    <Label Text="Available Bags" Grid.Row="5" Grid.Column="0" VerticalOptions="CenterAndExpand" FontSize="Medium" />
+                    <Entry x:Name="txtAvailableBags" Text="{Binding Negotiation.available_bags, Mode=TwoWay, StringFormat='\{0:0}'}" Grid.Row="5" Grid.Column="1" Keyboard="Numeric" Placeholder="Please enter the bag weight" Unfocused="txtBagweight_Focused" ReturnType="Next" FontSize="Medium" />
+
+                    <Label Text="Current Offer" Grid.Row="6" Grid.Column="0" VerticalOptions="CenterAndExpand" FontSize="17" />
+                    <Entry x:Name="txtCurrentOffer" Text="{Binding Negotiation.current_offer_price, Mode=TwoWay, StringFormat='\{0:0.00}'}" Grid.Row="6" Grid.Column="1" Keyboard="Numeric" Placeholder="Please enter the quantity" Unfocused="TxtQty_Focused"  ReturnType="Next"  FontSize="Medium" />
+                    
+                    <Label Text="Current Bid" Grid.Row="7" Grid.Column="0" VerticalOptions="CenterAndExpand" FontSize="17" />
+                    <Entry x:Name="txtCurrentBid" Text="{Binding Negotiation.current_bid_price, Mode=TwoWay, StringFormat='\{0:0.00}'}" Grid.Row="7" Grid.Column="1" Keyboard="Numeric" Placeholder="Please enter the price" Unfocused="TxtPrice_Focused"  ReturnType="Done" Completed="Save_Clicked" FontSize="Medium" />
+                    
+                    <!--<Label Text="Initial Offer" Grid.Row="5" Grid.Column="0" VerticalOptions="CenterAndExpand" FontSize="Medium" />
+                    <Entry x:Name="txtinitialOffer" Text="{Binding Negotiation.initial_offer_price, Mode=TwoWay, StringFormat='\{0:0.00}'}" Grid.Row="5" Grid.Column="1" Keyboard="Numeric" Placeholder="Please enter the bag weight" Unfocused="txtBagweight_Focused" ReturnType="Next" IsEnabled="False"  FontSize="Medium" />
+
+                    <Label Text="Initial Bid" Grid.Row="6" Grid.Column="0" VerticalOptions="CenterAndExpand" FontSize="Medium" />
+                    <Entry x:Name="txtInitialBid" Text="{Binding Negotiation.initial_bid_price, Mode=TwoWay, StringFormat='\{0:0.00}'}" Grid.Row="6" Grid.Column="1" Keyboard="Numeric" Placeholder="Please enter the bag weight" Unfocused="txtBagweight_Focused" ReturnType="Next" IsEnabled="False"  FontSize="Medium" />-->
+
+                    <Label Text="Last Offer" Grid.Row="8" Grid.Column="0" VerticalOptions="CenterAndExpand" FontSize="17" />
+                    <Entry x:Name="txtLastOffer" Text="{Binding Negotiation.last_offer_price, Mode=TwoWay, StringFormat='\{0:0.00}'}" Grid.Row="8" Grid.Column="1" Keyboard="Numeric" Placeholder="Please enter the bag weight" Unfocused="txtBagweight_Focused" ReturnType="Next" IsEnabled="False" FontSize="Medium" />
+
+                    <Label Text="Last Bid" Grid.Row="9" Grid.Column="0" VerticalOptions="CenterAndExpand" FontSize="17" />
+                    <Entry x:Name="txtLastBid" Text="{Binding Negotiation.last_bid_price, Mode=TwoWay, StringFormat='\{0:0.00}'}" Grid.Row="9" Grid.Column="1" Keyboard="Numeric" Placeholder="Please enter the bag weight" Unfocused="txtBagweight_Focused" ReturnType="Next" IsEnabled="False"  FontSize="Medium" />
+
+                    <Grid Grid.Row="10" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Grid.Column="1" >
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.5*"/>
+                            <ColumnDefinition Width="0.5*"/>
+                        </Grid.ColumnDefinitions>
+                        <Button Grid.Column="0" x:Name="butSave" Grid.Row="1" Text="Save" Clicked="Save_Clicked" ></Button>
+                        <Button Grid.Column="1" x:Name="butCancel" Grid.Row="1"  Text="Cancel" Clicked="Cancel_Clicked" ></Button>
+                    </Grid>
+                </Grid>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+    
+</ContentPage>

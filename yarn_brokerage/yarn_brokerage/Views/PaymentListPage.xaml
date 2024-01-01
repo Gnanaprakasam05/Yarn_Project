@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="yarn_brokerage.Views.PaymentListPage"
+             xmlns:extended="clr-namespace:Xamarin.Forms.Extended;assembly=Xamarin.Forms.Extended.InfiniteScrolling"
+             Title="{Binding Title}">
+    
+
+    <ContentPage.Content>
+        <StackLayout>
+            <!--<Entry x:Name="txtSearch" TabIndex="1" Placeholder="Search" Margin="8,0,8,0" TextChanged="TxtSearch_TextChanged" />-->
+            <ListView x:Name="PaymentListView"
+                ItemsSource="{Binding DraftConfirmationPayments}"
+                VerticalOptions="FillAndExpand"
+                HasUnevenRows="true"                
+                IsPullToRefreshEnabled="false"               
+                CachingStrategy="RecycleElement"
+                ItemSelected="OnItemSelected">
+                <!--IsRefreshing="{Binding IsBusy, Mode=OneWay}"-->
+                <ListView.Behaviors>
+                    <extended:InfiniteScrollBehavior IsLoadingMore="{Binding IsBusy}" />
+                </ListView.Behaviors>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Padding="15">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="0.1*"/>
+                                        <ColumnDefinition Width="0.5*"/>
+                                        <ColumnDefinition Width="0.1*"/>
+                                        <ColumnDefinition Width="0.5*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+
+                                    <Image Grid.Column="0" Grid.Row="0" HeightRequest="20" WidthRequest="20" HorizontalOptions="Start" Source="price.png"/>
+                                    <Label Grid.Row="0" Grid.Column="1" Text="{Binding payment_date, StringFormat='\{0:dd-MM-yyyy}'}" LineBreakMode="NoWrap" Style="{DynamicResource ListItemTextStyle}"
+                                                FontSize="16"  />
+
+                                    <Image Grid.Column="2" Grid.Row="0" HeightRequest="20" WidthRequest="20" HorizontalOptions="Start" Source="price.png"/>
+                                    <Label Grid.Row="0" Grid.Column="3" Text="{Binding advance_amount, StringFormat='\Rs. {0:0.00}'}" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}"
+                                                FontSize="16"  />
+
+                                    <!--<Image Grid.Column="0" Grid.Row="1" HeightRequest="20" WidthRequest="20" HorizontalOptions="Start" Source="price.png"/>
+                                                <Label Grid.Row="1" Grid.Column="1" VerticalOptions="Center"  Text="{Binding payment_date, StringFormat='\{0:dd-MM-yyyy}'}" LineBreakMode="WordWrap"
+                                                Style="{DynamicResource ListItemTextStyle}" FontSize="16"/>
+
+                                                <Image Grid.Column="2" Grid.Row="1" HeightRequest="20" WidthRequest="20" HorizontalOptions="Start" Source="price.png"/>-->
+                                    <Label Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4" VerticalOptions="Center" Text="{Binding utr_number, StringFormat='\UTR : {0:0}'}" LineBreakMode="WordWrap"
+                                                Style="{DynamicResource ListItemTextStyle}" FontSize="16"/>
+                                </Grid>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+
+                <ListView.Footer>
+                    <Grid Padding="6" IsVisible="{Binding IsBusy}">
+                        <!-- set the footer to have a zero height when invisible -->
+                        <Grid.Triggers>
+                            <Trigger TargetType="Grid" Property="IsVisible" Value="False">
+                                <Setter Property="HeightRequest" Value="0" />
+                            </Trigger>
+                        </Grid.Triggers>
+                        <!-- the loading content -->
+                        <Label Text="Loading..." TextColor="Gray" FontSize="20" VerticalOptions="Center" HorizontalOptions="Center" />
+                    </Grid>
+                </ListView.Footer>
+                
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

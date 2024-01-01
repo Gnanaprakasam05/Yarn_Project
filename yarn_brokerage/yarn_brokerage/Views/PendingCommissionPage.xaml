@@ -1,0 +1,233 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="yarn_brokerage.Views.PendingCommissionPage"             
+             xmlns:input="clr-namespace:Plugin.InputKit.Shared.Controls;assembly=Plugin.InputKit"
+             Title="New Item">
+
+    <!--<ContentPage.ToolbarItems>
+        <ToolbarItem Text="Approval" Clicked="LblApproved_Clicked" Order="Secondary" />
+        <ToolbarItem Text="Payment Confirmation" Order="Secondary" />
+        <ToolbarItem Text="Dispatch Confirmation" Order="Secondary" />
+        <ToolbarItem Text="Dispatch" Order="Secondary" />
+        <ToolbarItem Text="Delivery" Order="Secondary" />
+    </ContentPage.ToolbarItems>-->
+
+    <ContentPage.Content>
+        <!--<ScrollView>-->
+            <StackLayout Padding="15,15,15,0">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.4*"/>
+                        <ColumnDefinition Width="0.6*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>                       
+                        <!--<RowDefinition Height="Auto"/>-->                        
+                        <!--<RowDefinition Height="300"/>-->                        
+                    </Grid.RowDefinitions>
+
+
+                    <!--<Label Grid.Row="0" Grid.Column="0" VerticalOptions="CenterAndExpand" Text="Invoice No" FontSize="17" />
+                    <Label x:Name="lblInvoiceNo" Grid.Row="0" Grid.Column="1" VerticalOptions="CenterAndExpand" Text="New" FontSize="17" FontAttributes="Bold" />-->
+                    
+                    <Label x:Name="lblDateTime" Grid.Row="0" Grid.Column="0" VerticalOptions="CenterAndExpand" Text="Invoice Date" FontSize="17" />
+                    <DatePicker x:Name="txtDateTime" Grid.Row="0" Grid.Column="1" Format="dd-MM-yyyy" DateSelected="txtDateTime_DateSelected" FontSize="16" />
+                    <!--<Entry x:Name="txtDateTime" Grid.Row="0" Grid.Column="1" Text="{Binding date, StringFormat='\{0:dd-MM-yyyy}'}"  InputTransparent="True" FontSize="16" />-->
+                    <Label x:Name="lblLedgerType" Grid.Row="2" Grid.Column="0" VerticalOptions="CenterAndExpand" Text="Contact Type" FontSize="17" />
+
+                    <Grid Grid.Row="2" VerticalOptions="CenterAndExpand" Grid.Column="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.5*"/>
+                            <ColumnDefinition Width="0.5*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+
+                        <!--<input:RadioButtonGroupView Grid.Column="0" Grid.Row="0" FlowDirection="LeftToRight" >-->
+
+                        <input:RadioButton x:Name="RdoSupplier" Grid.Row="0" Grid.Column="0" TextFontSize="15" Text="Supplier"  TextColor="Black" IsChecked="True" Clicked="RdoSupplier_Clicked" ></input:RadioButton>
+                        <input:RadioButton x:Name="RdoCustomer" Grid.Row="0" Grid.Column="1" TextFontSize="15" Text="Customer" TextColor="Black" Clicked="RdoCustomer_Clicked" ></input:RadioButton>
+
+                        <!--</input:RadioButtonGroupView>-->
+                    </Grid>
+                    
+                    <Label Text="Contact" Grid.Row="3" Grid.Column="0" VerticalOptions="CenterAndExpand" FontSize="17" />
+                    <StackLayout Grid.Row="3" Grid.Column="1">
+                        <Entry x:Name="txtLedgerName" Text="{Binding CommissionInvoice.ledger_name}" Margin="0" InputTransparent="True" FontSize="16"  />
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="TxtLedgerName_Focused"
+                                NumberOfTapsRequired="1">
+                            </TapGestureRecognizer>
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
+                    <StackLayout x:Name="butLedgerClear" BackgroundColor="Transparent" WidthRequest="45" Grid.Column="1" Grid.Row="3" HorizontalOptions="End">
+                        <Image HeightRequest="10" WidthRequest="10" VerticalOptions="End" Margin="25,15,0,0" Source="close.png" >
+                        </Image>
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="ButLedgerClear_Clicked" NumberOfTapsRequired="1" />
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
+                    <Label Text="Company Name" Grid.Row="4" Grid.Column="0" VerticalOptions="CenterAndExpand" FontSize="17" />
+                    <Entry Text="{Binding CommissionInvoice.company_name}" x:Name="txtCompanyName" Grid.Row="4" Grid.Column="1" IsEnabled="False"  Placeholder="Company Name" FontSize="16" />
+                    <Label Text="Commission" Grid.Row="5" Grid.Column="0" VerticalOptions="CenterAndExpand" FontSize="17" />
+
+                    <Grid Grid.Row="5" Grid.Column="1" VerticalOptions="CenterAndExpand" >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.5*"/>
+                            <ColumnDefinition Width="0.5*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+
+                        <Entry Text="{Binding CommissionInvoice.commission_value,  Mode=TwoWay, StringFormat='\{0:0}'}" IsEnabled="False" Grid.Row="0" Grid.Column="0" Keyboard="Numeric" Placeholder="Quantity" Unfocused="txtCValue_Focused"  ReturnType="Next" x:Name="txtCValue" FontSize="16" />
+                        <Button Grid.Column="1" x:Name="butCType" Grid.Row="0" Text="{Binding CommissionInvoice.commission_type}" ></Button>
+                    </Grid>
+
+                    <Frame x:Name="grdDispatch" BackgroundColor="WhiteSmoke" Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2"  Padding="0,5,0,10">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="0.9*"/>
+                                <ColumnDefinition Width="0.1*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <Label Grid.Column="0" Grid.ColumnSpan="2" x:Name="lblInvoiceDetails" FontAttributes="Bold" TextDecorations="Underline" FontSize="17" />
+                            <!--<Image Grid.Column="1" x:Name="lblAddInvoice" Source="pl.png" HeightRequest="18" WidthRequest="18"  Margin="0,0,5,0">
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="lblAddInvoice_Clicked" NumberOfTapsRequired="1"/>
+                                </Image.GestureRecognizers>
+                            </Image>-->
+                        </Grid>
+                    </Frame>
+                </Grid>
+            <!--BindingContext="{Binding Source = yarn_brokerage.ViewModels.CommissionInvoiceDetailViewModel}" HeightRequest="0"-->
+                    <ListView x:Name="CommissionInvoiceListView"                        
+                        ItemsSource="{Binding CommissionInvoiceDetails}"
+                              VerticalOptions="Center"                             
+                        HasUnevenRows="True"                        
+                        CachingStrategy="RecycleElement"
+                        ItemSelected="OnItemSelected"
+                        TabIndex="0"  
+                        SeparatorColor="LightGray" >
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <StackLayout Padding="5" Grid.ColumnSpan="2">
+                                        <Grid  ColumnSpacing="0"  >
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="0.2*"/>
+                                                <ColumnDefinition Width="0.2*"/>
+                                                <ColumnDefinition Width="0.8*"/>
+                                                <ColumnDefinition Width="0.1*"/>
+                                                <ColumnDefinition Width="0.6*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                                <!--<RowDefinition Height="Auto"/>
+                                                    <RowDefinition Height="Auto"/>-->
+                                            </Grid.RowDefinitions>
+                                            <Image HeightRequest="26" WidthRequest="26" VerticalOptions="Center" HorizontalOptions="Center" Grid.Column="0" Grid.Row="0" Source="calendar.png" />
+                                            <Label Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="5" Text="{Binding invoice_details}" 
+                                                LineBreakMode="NoWrap"
+                                                Style="{DynamicResource ListItemTextStyle}"
+                                                FontSize="18" FontAttributes="Bold" />
+
+                                    <Image HeightRequest="26" WidthRequest="20" Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="5" HorizontalOptions="End" Source="delete.png">
+                                                    <Image.GestureRecognizers>
+                                                        <TapGestureRecognizer Tapped="DeleteClicked" CommandParameter="{Binding draft_confirmation_detail_id}" NumberOfTapsRequired="1" />
+                                                    </Image.GestureRecognizers>
+                                                </Image>
+
+                                    <Image HeightRequest="26" WidthRequest="26" VerticalOptions="Center" HorizontalOptions="Center" Grid.Column="0" Grid.Row="1" Source="{ Binding image}" />
+                                            <Label Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="5" Text="{Binding ledger_name}" 
+                                                LineBreakMode="NoWrap"
+                                                Style="{DynamicResource ListItemTextStyle}"
+                                                FontSize="18" FontAttributes="Bold" />
+
+                                            <Image HeightRequest="20" WidthRequest="20"  Grid.Column="1" Grid.Row="2"  Source="bags.png" HorizontalOptions="Center"/>
+                                            <Label Grid.Row="2" Grid.Column="2" VerticalOptions="Center" Text="{Binding qty_unit, StringFormat='\{0}'}" 
+                                                LineBreakMode="WordWrap"
+                                                Style="{DynamicResource ListItemTextStyle}"
+                                                FontSize="16"/>
+
+                                            <Image HeightRequest="20" WidthRequest="20"  Grid.Column="4" Grid.Row="2" Margin="10,0,0,0" Source="price.png" HorizontalOptions="Center"/>
+                                            <Label Grid.Row="2" Grid.Column="5" VerticalOptions="Center" Text="{Binding exmill_amount, StringFormat='\Rs.{0:0.00}'}" 
+                                                LineBreakMode="WordWrap"
+                                                Style="{DynamicResource ListItemTextStyle}"
+                                                FontSize="16"/>
+
+                                            <Label Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="5" VerticalOptions="Center" Text="{Binding commission_amount, StringFormat='\Commission Amount : Rs.{0:0.00}'}" 
+                                                LineBreakMode="WordWrap"
+                                                Style="{DynamicResource ListItemTextStyle}"
+                                                FontSize="16"/>
+                                        </Grid>
+                                    </StackLayout>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+
+                    <!--<Grid x:Name="grdStatus" HorizontalOptions="CenterAndExpand" VerticalOptions="FillAndExpand" IsVisible="{Binding CommissionInvoice.status}" >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>                        
+                    </Grid.ColumnDefinitions>
+                        <Image Grid.Column="0" x:Name="lblApproved" Grid.Row="0" Source="{Binding CommissionInvoice.status_image}" VerticalOptions="CenterAndExpand" Margin="0,5,0,0" >
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="LblApproved_Clicked" NumberOfTapsRequired="1"/>
+                        </Image.GestureRecognizers>
+                    </Image>
+                        --><!--<Label Text="Log" Grid.Row="1" Grid.Column="0" TextColor="#0000FF" Margin="0,20,0,0" FontSize="20">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer  Tapped="Log_Tapped"  NumberOfTapsRequired="1"></TapGestureRecognizer>
+                            </Label.GestureRecognizers>
+                        </Label>--><!--
+                    </Grid>-->
+
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>                            
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.1*"/>
+                            <ColumnDefinition Width="0.3*"/>
+                            <ColumnDefinition Width="0.3*"/>
+                            <ColumnDefinition Width="0.3*"/>
+                        </Grid.ColumnDefinitions>
+                        <Button Grid.Column="1" Grid.ColumnSpan="2" HorizontalOptions="End" x:Name="butSave" Grid.Row="0" Text="Generate Invoice" Clicked="Save_Clicked" ></Button>
+                        <Button Grid.Column="3" x:Name="butCancel" Grid.Row="0"  Text="Cancel" Clicked="Cancel_Clicked" ></Button>
+                        
+                    </Grid>
+                
+
+                
+            </StackLayout>
+        <!--</ScrollView>-->
+    </ContentPage.Content>
+    
+</ContentPage>

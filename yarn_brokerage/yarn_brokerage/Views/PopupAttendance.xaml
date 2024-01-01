@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"  
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"  
+             x:Class="yarn_brokerage.Views.PopupAttendance"
+             xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"  
+             xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"  
+             BackgroundColor="#aa000000"
+                >
+    <pages:PopupPage.Animation>
+        <animations:ScaleAnimation   
+                      PositionIn="Center"  
+                      PositionOut="Center"  
+                      ScaleIn="1.2"  
+                      ScaleOut="0.8"  
+                      DurationIn="400"  
+                      DurationOut="300"  
+                      EasingIn="SinOut"  
+                      EasingOut="SinIn"  
+      HasBackgroundAnimation="False"/>
+    </pages:PopupPage.Animation>
+
+       
+
+    <StackLayout Padding="10" Margin="50" Spacing="0" VerticalOptions="Center" WidthRequest="50" BackgroundColor="White" >
+
+        <Frame BackgroundColor="#e7e7e9" BorderColor="Transparent" HeightRequest="30" Padding="0" WidthRequest="50">
+                <Grid Padding="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.5*"/>
+                       <ColumnDefinition Width="0.5*"/>
+                </Grid.ColumnDefinitions>
+
+                <Label Margin="10,0,10,0" Text="S.No" VerticalOptions="Center"  Grid.Column="0" TextColor="Black" FontAttributes="Bold"/>
+                <Label Margin="10,0,10,0" Text="Login/Logout" VerticalOptions="Center"  Grid.Column="1" TextColor="Black" FontAttributes="Bold" />
+
+
+                <BoxView BackgroundColor="Transparent" WidthRequest="1" Grid.Column="0" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand" CornerRadius="0"/>
+                <BoxView BackgroundColor="Transparent" WidthRequest="1" Grid.Column="1" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand" CornerRadius="0"/>
+
+                </Grid>
+
+
+            </Frame>
+            <StackLayout Padding="0" Spacing="0" VerticalOptions="Center" HeightRequest="100">
+
+
+                <ListView x:Name="attendancelist"
+                         ItemsSource="{Binding DataList}"
+                         VerticalOptions="FillAndExpand"
+                         HasUnevenRows="true"
+                         IsPullToRefreshEnabled="False"                    
+                         CachingStrategy="RecycleElement"
+                         TabIndex="0"
+                         SeparatorColor="LightGray">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                            <Frame  Padding="0" BorderColor="Transparent">
+                                    <Grid Padding="0" RowSpacing="0">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="0.5*"/>
+                                            <ColumnDefinition Width="0.5*"/>
+                                        </Grid.ColumnDefinitions>
+
+                                    <Label Margin="10,0,10,0" Text="{Binding Sno}" TextColor="Black" VerticalOptions="Center"  Grid.Column="0"  />
+                                    <Label Margin="10,0,10,0" Text="{Binding LogTime}" TextColor="Black" VerticalOptions="Center"  Grid.Column="1" />
+
+
+                                    <BoxView BackgroundColor="Transparent"  HeightRequest="30" WidthRequest="1" Grid.Column="0" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand" CornerRadius="0" />
+                                    <BoxView BackgroundColor="Transparent"  HeightRequest="30" WidthRequest="1" Grid.Column="1" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand" CornerRadius="0"/>
+
+                                    </Grid>
+
+                                </Frame>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+
+               
+            </StackLayout>
+      
+    </StackLayout>
+      
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</pages:PopupPage>

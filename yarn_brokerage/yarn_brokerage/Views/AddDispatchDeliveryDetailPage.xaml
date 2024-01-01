@@ -1,0 +1,343 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="yarn_brokerage.Views.AddDispatchDeliveryDetailPage"
+             xmlns:input="clr-namespace:Plugin.InputKit.Shared.Controls;assembly=Plugin.InputKit"
+             Title="Dispatch &amp; Delivery Detail">
+
+    <ContentPage.ToolbarItems>
+        <!--<ToolbarItem Text="Delete" Clicked="Delete_Clicked">
+            <ToolbarItem.Icon>
+                <OnPlatform x:TypeArguments="FileImageSource">
+                    <On Platform="UWP" Value="add.png"/>
+                </OnPlatform>
+            </ToolbarItem.Icon>
+        </ToolbarItem>-->
+        <ToolbarItem Text="Remove From Current Plan" Clicked="lblRemoveFromCurrentPlan_Clicked" Order="Secondary" />
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Spacing="20" Padding="15">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.4*"/>
+                        <ColumnDefinition Width="0.6*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="300"/>
+                    </Grid.RowDefinitions>
+                    
+                    <Grid Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" ColumnSpacing="0" >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.1*"/>
+                            <ColumnDefinition Width="0.1*"/>
+                            <ColumnDefinition Width="0.4*"/>
+                            <ColumnDefinition Width="0.1*"/>
+                            <ColumnDefinition Width="0.3*"/>                            
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <Image HeightRequest="26" WidthRequest="26" VerticalOptions="Center" HorizontalOptions="Center" Grid.Column="0" Grid.Row="0" Source="calendar.png" />
+                        <Label x:Name="lblTransactionDetail" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="4" Text="{Binding transaction_detail}" 
+                                        LineBreakMode="NoWrap"
+                                        Style="{DynamicResource ListItemTextStyle}"
+                                        FontSize="18" FontAttributes="Bold" />
+
+                        <Image HeightRequest="26" WidthRequest="26" VerticalOptions="Center" HorizontalOptions="Center" Grid.Column="0" Grid.Row="1" Source="buyer.png" />
+                        <Label x:Name="lblCustomerName" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="4" Text="{Binding DraftConfirmation.customer_name}" 
+                                        LineBreakMode="NoWrap"
+                                        Style="{DynamicResource ListItemTextStyle}"
+                                        FontSize="18" FontAttributes="Bold" />
+
+                        <Image HeightRequest="26" WidthRequest="26" VerticalOptions="Center" HorizontalOptions="Center" Grid.Column="0" Grid.Row="2" Source="customer.png" />
+                        <Label x:Name="lblSupplierName" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="4" Text="{Binding DraftConfirmation.supplier_name}" 
+                                        LineBreakMode="NoWrap"
+                                        Style="{DynamicResource ListItemDetailTextStyle}"
+                                        FontSize="18" FontAttributes="Bold" />
+
+
+                        <Image HeightRequest="18" WidthRequest="18"  Grid.Column="1" Grid.Row="3" Source="count.png"  HorizontalOptions="Center"/>
+                        <Label x:Name="lblCountName" Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="3" VerticalOptions="Center"  Text="{Binding DraftConfirmation.count_name}" 
+                                            LineBreakMode="WordWrap"
+                                            Style="{DynamicResource ListItemTextStyle}"
+                                            FontSize="16"/>
+
+                        <Image HeightRequest="20" WidthRequest="20"  Grid.Column="1" Grid.Row="4"  Source="bags.png" HorizontalOptions="Center"/>
+                        <Label x:Name="lblQtyUnit" Grid.Row="4" Grid.Column="2" VerticalOptions="Center" Text="{Binding DraftConfirmation.qty_unit, StringFormat='\{0}'}" 
+                                            LineBreakMode="WordWrap"
+                                            Style="{DynamicResource ListItemTextStyle}"
+                                            FontSize="16"/>
+
+                        <Image HeightRequest="20" WidthRequest="20"  Grid.Column="3" Grid.Row="4" Margin="10,0,0,0" Source="price.png" HorizontalOptions="Center"/>
+                        <Label x:Name="lblPricePer" Grid.Row="4" Grid.Column="4" VerticalOptions="Center" Text="{Binding DraftConfirmation.price_per, StringFormat='\Rs.{0}'}" 
+                                            LineBreakMode="WordWrap"
+                                            Style="{DynamicResource ListItemTextStyle}"
+                                            FontSize="16"/>
+
+                        <Image x:Name="imgUser" IsVisible="{Binding Payment.admin_user}"  HeightRequest="18" WidthRequest="18"  Grid.Column="1" Grid.Row="5" Source="contact.png"/>
+                        <Label x:Name="lblUserName" Grid.Row="5" Grid.Column="2" Grid.ColumnSpan="3" Text="{Binding DraftConfirmation.user_name}" 
+                                        LineBreakMode="NoWrap"
+                                        Style="{DynamicResource ListItemDetailTextStyle}"  IsVisible="{Binding DraftConfirmation.admin_user}"
+                                        FontSize="16"/>                        
+                    </Grid>
+                    
+                    <Label BackgroundColor="#bababa" HeightRequest="1" WidthRequest="320" HorizontalOptions="CenterAndExpand" VerticalOptions="Center" Grid.Row="1" Grid.Column="0" Margin="0,5,0,0"  Grid.ColumnSpan="2" ></Label>
+
+
+                    <Grid Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" VerticalOptions="CenterAndExpand" >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <input:CheckBox x:Name="chkBagsReady" Grid.Row="0" Grid.Column="0" TextFontSize="17" BoxSizeRequest="20" Text="Bags Ready" Type="Check" CheckChanged="ChkBagsReady_Clicked" ></input:CheckBox>
+                    </Grid>
+
+                    <Grid Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" VerticalOptions="CenterAndExpand" >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.1*"/>
+                            <ColumnDefinition Width="0.4*"/>
+                            <ColumnDefinition Width="0.5*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <input:CheckBox x:Name="chkPaymentReady"  Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" TextFontSize="17" BoxSizeRequest="20" Text="Payment Ready" Type="Check" CheckChanged="ChkPaymentReady_Clicked" ></input:CheckBox>
+                        <input:CheckBox x:Name="chkPaymentReceived" IsEnabled="False" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" TextFontSize="17" BoxSizeRequest="20" Text="Payment Received" Type="Check" CheckChanged="ChkPaymentReceived_Clicked" ></input:CheckBox>
+                        <Label Text="Invoice Value" Grid.Row="2" Grid.Column="1" VerticalOptions="CenterAndExpand" FontSize="17" />
+                        <Entry x:Name ="txtNetAmount"  Grid.Row="2" Grid.Column="2" Keyboard="Numeric" IsEnabled="False" Unfocused="TxtQty_Focused"  ReturnType="Next" FontSize="16" />
+                        <Frame x:Name="grdPayment" BackgroundColor="WhiteSmoke" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" Margin="-5,0,0,0" Padding="5,10,0,10">
+                            <Grid>
+                                <Label x:Name = "lblPaymentDetails" Text="Payment Details" LineBreakMode="NoWrap" FontAttributes="Bold" TextDecorations="Underline"  HorizontalOptions="Start" FontSize="17" />
+                                <Image x:Name="imgPaymentAdd" Source="pl.png" HeightRequest="18" WidthRequest="18"  HorizontalOptions="End" Margin="0,0,5,0">
+                                    <Image.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="lblPaymentDetails_Clicked" NumberOfTapsRequired="1"/>
+                                    </Image.GestureRecognizers>
+                                </Image>
+                            </Grid>
+                        </Frame>
+                        
+                        <ListView x:Name="DraftConfirmationListView"                        
+                        ItemsSource="{Binding draftConfirmationPayments}"
+                              VerticalOptions="Center"                             
+                        HasUnevenRows="True" HeightRequest="0"                       
+                        CachingStrategy="RecycleElement"
+                        ItemSelected="OnItemSelected"
+                        TabIndex="0"
+                        SeparatorColor="LightGray" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" >
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <StackLayout Padding="5">
+                                            <Grid  ColumnSpacing="0" >
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="0.1*"/>
+                                                    <ColumnDefinition Width="0.5*"/>
+                                                    <ColumnDefinition Width="0.1*"/>
+                                                    <ColumnDefinition Width="0.5*"/>
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto"/>
+                                                    <RowDefinition Height="Auto"/>
+                                                </Grid.RowDefinitions>
+
+                                                <Image Grid.Column="0" Grid.Row="0" HeightRequest="20" WidthRequest="20" HorizontalOptions="Start" Source="price.png"/>
+                                                <Label Grid.Row="0" Grid.Column="1" Text="{Binding payment_date, StringFormat='\{0:dd-MM-yyyy}'}" LineBreakMode="NoWrap" Style="{DynamicResource ListItemTextStyle}"
+                                                FontSize="16"  />
+
+                                                <Image Grid.Column="2" Grid.Row="0" HeightRequest="20" WidthRequest="20" HorizontalOptions="Start" Source="price.png"/>
+                                                <Label Grid.Row="0" Grid.Column="3" Text="{Binding amount, StringFormat='\Rs. {0:0.00}'}" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}"
+                                                FontSize="16"  />
+
+                                                <!--<Image Grid.Column="0" Grid.Row="1" HeightRequest="20" WidthRequest="20" HorizontalOptions="Start" Source="price.png"/>
+                                                <Label Grid.Row="1" Grid.Column="1" VerticalOptions="Center"  Text="{Binding payment_date, StringFormat='\{0:dd-MM-yyyy}'}" LineBreakMode="WordWrap"
+                                                Style="{DynamicResource ListItemTextStyle}" FontSize="16"/>
+
+                                                <Image Grid.Column="2" Grid.Row="1" HeightRequest="20" WidthRequest="20" HorizontalOptions="Start" Source="price.png"/>-->
+                                                <Label Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4" VerticalOptions="Center" Text="{Binding utr_number_string, StringFormat='\{0:0}'}" LineBreakMode="WordWrap"
+                                                Style="{DynamicResource ListItemTextStyle}" FontSize="16"/>
+                                            </Grid>
+                                        </StackLayout>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+
+                        <Label x:Name ="lblExcessAmount"  Text="Advance Balance" Grid.Row="5" Grid.Column="1" IsVisible="False" VerticalOptions="CenterAndExpand" FontSize="17" />
+                        <Entry x:Name ="txtExcessAmount"  Grid.Row="5" Grid.Column="2" IsVisible="False" Keyboard="Numeric" IsEnabled="False" Unfocused="TxtQty_Focused"  ReturnType="Next" FontSize="16" />
+
+                    </Grid>
+
+                    <Grid Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" VerticalOptions="CenterAndExpand" >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.1*"/>
+                            <ColumnDefinition Width="0.4*"/>
+                            <ColumnDefinition Width="0.5*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <input:CheckBox x:Name="chkTransporterReady" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" TextFontSize="17" BoxSizeRequest="20" Text="Transporter Ready" Type="Check" CheckChanged="ChkTransporterReady_Clicked" ></input:CheckBox>
+                        <Label Text="Transporter Name" Grid.Row="1" Grid.Column="1" VerticalOptions="CenterAndExpand" FontSize="17" />
+                        <StackLayout Grid.Row="1" Grid.Column="2" >
+                            <Entry x:Name ="txtTransporterName" Text="{Binding DraftConfirmationDetails.transporter_name, Mode=TwoWay}" InputTransparent="True" FontSize="16" />
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="TxtTransporter_Focused" NumberOfTapsRequired="1">
+                                </TapGestureRecognizer>
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+                        <StackLayout x:Name="butTransporterClear" BackgroundColor="Transparent" WidthRequest="45" Grid.Column="2" Grid.Row="1" HorizontalOptions="End">
+                            <Image HeightRequest="10" WidthRequest="10" VerticalOptions="End" Margin="25,15,0,0" Source="close.png" >
+                            </Image>
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="ButTransporterClear_Clicked" NumberOfTapsRequired="1" />
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+                    </Grid>
+                    
+                    <Label BackgroundColor="#bababa" HeightRequest="1" WidthRequest="480" HorizontalOptions="CenterAndExpand" VerticalOptions="Center" Grid.Row="5" Grid.Column="0" Margin="0,5,0,0"  Grid.ColumnSpan="2" ></Label>
+
+                    <Grid Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" VerticalOptions="CenterAndExpand" >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.1*"/>
+                            <ColumnDefinition Width="0.4*"/>
+                            <ColumnDefinition Width="0.5*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <input:CheckBox x:Name="chkDispatched" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" TextFontSize="17" BoxSizeRequest="20" Text="Dispatched" Type="Check" CheckChanged="ChkDispatched_Clicked" ></input:CheckBox>
+                        <Label Text="LR No" Grid.Row="1" Grid.Column="1" VerticalOptions="CenterAndExpand" FontSize="17" />
+                        <Entry x:Name ="txtLRNo"  Grid.Row="1" Grid.Column="2"  ReturnType="Next" FontSize="16" />
+                        <Label Text="Dispatch Date" Grid.Row="2" Grid.Column="1" VerticalOptions="CenterAndExpand" FontSize="17" />
+                        <DatePicker x:Name ="DispatchDatePicker" Format="dd-MM-yyyy" Grid.Row="2" Grid.Column="2" FontSize="16" DateSelected="DispatchDatePicker_DateSelected" />
+                        <Label Text="Driver Name" Grid.Row="3" Grid.Column="1" VerticalOptions="CenterAndExpand" FontSize="17" />
+                        <Entry x:Name ="txtDriverName"  Grid.Row="3" Grid.Column="2"  ReturnType="Next" FontSize="16" />
+                        <Label Text="Lorry No" Grid.Row="4" Grid.Column="1" VerticalOptions="CenterAndExpand" FontSize="17" />
+                        <Entry x:Name ="txtLorryNo"  Grid.Row="4" Grid.Column="2"  ReturnType="Next" FontSize="16" />
+
+                        <Label Text="Godown" Grid.Row="5" Grid.Column="1" VerticalOptions="CenterAndExpand" FontSize="17" />
+                        <StackLayout Grid.Row="5" Grid.Column="2" >
+                            <Entry x:Name ="txtGodownUnloadingName" Text="{Binding DraftConfirmationDetails.godown_unloading_name, Mode=TwoWay}" InputTransparent="True" FontSize="16" />
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="TxtGodownUnloading_Focused" NumberOfTapsRequired="1">
+                                </TapGestureRecognizer>
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+                        <StackLayout x:Name="butGodownUnloadingClear" BackgroundColor="Transparent" WidthRequest="45" Grid.Column="2" Grid.Row="5" HorizontalOptions="End">
+                            <Image HeightRequest="10" WidthRequest="10" VerticalOptions="End" Margin="25,15,0,0" Source="close.png" >
+                            </Image>
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="ButGodownUnloadingClear_Clicked" NumberOfTapsRequired="1" />
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+
+                    </Grid>
+
+
+                    <Grid Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2" VerticalOptions="CenterAndExpand" >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.1*"/>
+                            <ColumnDefinition Width="0.4*"/>
+                            <ColumnDefinition Width="0.5*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <input:CheckBox x:Name="chkInvoiceDetails" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" TextFontSize="17" BoxSizeRequest="20" Text="Invoice Details" Type="Check" CheckChanged="ChkInvoiceDetails_Clicked" ></input:CheckBox>
+                        <Label Text="Invoice No" Grid.Row="1" Grid.Column="1" VerticalOptions="CenterAndExpand" FontSize="17" />
+                        <Entry x:Name ="txtInvoiceNo"  Grid.Row="1" Grid.Column="2"  ReturnType="Next" FontSize="16" />
+                        <Label Text="Date" Grid.Row="2" Grid.Column="1" VerticalOptions="CenterAndExpand" FontSize="17" />
+                        <DatePicker x:Name ="InvoiceDatePicker" Format="dd-MM-yyyy" Grid.Row="2" Grid.Column="2" FontSize="16" DateSelected="InvoiceDatePicker_DateSelected" />
+                        <Label Text="Amount" Grid.Row="3" Grid.Column="1" VerticalOptions="CenterAndExpand" FontSize="17" />
+                        <Entry x:Name ="txtAmount" Grid.Row="3" Grid.Column="2" Keyboard="Numeric" ReturnType="Next" FontSize="16" />
+                    </Grid>
+
+                    <Grid Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="2" VerticalOptions="CenterAndExpand" >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.1*"/>
+                            <ColumnDefinition Width="0.4*"/>
+                            <ColumnDefinition Width="0.5*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <input:CheckBox x:Name="chkDelivered" Grid.Row="0" Grid.Column="0"  Grid.ColumnSpan="3" TextFontSize="17" BoxSizeRequest="20" Text="Delivered" Type="Check" CheckChanged="ChkDelivered_Clicked" ></input:CheckBox>
+                        <Label Text="Delivery Date" Grid.Row="1" Grid.Column="1" VerticalOptions="CenterAndExpand" FontSize="17" />
+                        <DatePicker x:Name ="DeliveryDatePicker" Format="dd-MM-yyyy" Grid.Row="1" Grid.Column="2" FontSize="16" DateSelected="DeliveryDatePicker_DateSelected" />
+                        <Label Text="Remarks" Grid.Row="2" Grid.Column="1" VerticalOptions="CenterAndExpand" FontSize="17" />
+                        <Editor x:Name ="txtRemarks"  Grid.Row="2" Grid.Column="2"  HeightRequest="90" FontSize="16" />
+
+
+                    </Grid>
+
+                    <Grid Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="2" VerticalOptions="CenterAndExpand" >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.1*"/>
+                            <ColumnDefinition Width="0.4*"/>
+                            <ColumnDefinition Width="0.5*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <input:CheckBox x:Name="chkCustomerAcknowledgement" Grid.Row="0" Grid.Column="0"  Grid.ColumnSpan="3" TextFontSize="17" BoxSizeRequest="20" Text="Customer Confirmation" Type="Check" CheckChanged="ChkCustomerAcknowledgement_Clicked" ></input:CheckBox>
+                        <Label Text="Date" Grid.Row="1" Grid.Column="1" VerticalOptions="CenterAndExpand" FontSize="17" />
+                        <DatePicker x:Name ="CustomerAcknowledgementDatePicker" Format="dd-MM-yyyy" Grid.Row="1" Grid.Column="2" FontSize="16" DateSelected="CustomerAcknowledgementDatePicker_DateSelected" />
+                        <Label Text="Remarks" Grid.Row="2" Grid.Column="1" VerticalOptions="CenterAndExpand" FontSize="17" />
+                        <Editor x:Name ="txtCustomerAcknowledgementRemarks"  Grid.Row="2" Grid.Column="2"  HeightRequest="90" FontSize="16" />
+
+
+                    </Grid>
+
+                    <Grid Grid.Row="10" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Grid.Column="1" >
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.5*"/>
+                            <ColumnDefinition Width="0.5*"/>
+                        </Grid.ColumnDefinitions>
+                        <Button Grid.Column="0" x:Name="butSave" Grid.Row="0" Text="Save" Clicked="Save_Clicked" ></Button>
+                        <Button Grid.Column="1" x:Name="butCancel" Grid.Row="0"  Text="Cancel" Clicked="Cancel_Clicked" ></Button>
+                    </Grid>
+
+                </Grid>
+                
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+    
+</ContentPage>
