@@ -7,6 +7,10 @@
             <StackLayout>
             <ScrollView>
                 <StackLayout>
+
+                    <Label x:Name="lblTeamName" FontSize="20" HorizontalOptions="Center" VerticalOptions="Center" FontAttributes="Bold" IsVisible="False" Margin="0,10,0,0">
+
+                    </Label>
                     <Frame Margin="5,5,5,0" Padding="0" BorderColor="Transparent" CornerRadius="5" x:Name="frmCompanyPerformanceBags" >
                         <StackLayout Margin="0,0,0,15">
                             <Label Text="PERFORMANCE : BAGS" TextColor="Black" VerticalOptions="Center" HorizontalOptions="Center" FontSize="16" Margin="0,15,0,0"/>
@@ -45,7 +49,7 @@
 
                                     </Grid.ColumnDefinitions>
 
-                                    <StackLayout BackgroundColor="Transparent"  Padding="0" Margin="0" Grid.Row="0" Grid.RowSpan="3" Grid.Column="0" Grid.ColumnSpan="3"/>
+                                    <StackLayout BackgroundColor="#e7e7e9"  Padding="0" Margin="0" Grid.Row="0" Grid.RowSpan="3" Grid.Column="0" Grid.ColumnSpan="3"/>
 
                                     <Label Text="" Grid.Row="1" Grid.Column="0"  LineBreakMode="NoWrap" TextColor="Black" VerticalOptions="Center" HorizontalOptions="Center" FontSize="13"/>
                                     <Label Text="CONFIRMED" Grid.Row="1" Grid.Column="1"  LineBreakMode="NoWrap" TextColor="Black" VerticalOptions="Center" HorizontalOptions="Center" FontSize="13"/>
@@ -170,7 +174,7 @@
                                         <ColumnDefinition Width="2.5*"/>
                                     </Grid.ColumnDefinitions>
 
-                                    <StackLayout BackgroundColor="Transparent"  Padding="0" Margin="0" Grid.Row="0" Grid.RowSpan="3" Grid.Column="0" Grid.ColumnSpan="3"/>
+                                    <StackLayout BackgroundColor="#e7e7e9"  Padding="0" Margin="0" Grid.Row="0" Grid.RowSpan="3" Grid.Column="0" Grid.ColumnSpan="4"/>
 
                                     <Label Text="" Grid.Row="1" Grid.Column="0"  LineBreakMode="NoWrap" TextColor="Black" VerticalOptions="Center" HorizontalOptions="Center" FontSize="13"/>
                                     <Label Text="CONFIRMED" Padding="5,0,0,0" Grid.Row="1" Grid.Column="1"  LineBreakMode="NoWrap" TextColor="Black" VerticalOptions="Center" HorizontalOptions="StartAndExpand" FontSize="13"/>
@@ -277,7 +281,7 @@
                                             <ColumnDefinition Width="2.5*"/>
                                         </Grid.ColumnDefinitions>
 
-                                        <StackLayout BackgroundColor="Transparent"  Padding="0" Margin="0" Grid.Row="0" Grid.RowSpan="3" Grid.Column="0" Grid.ColumnSpan="3"/>
+                                        <StackLayout BackgroundColor="#e7e7e9"  Padding="0" Margin="0" Grid.Row="0" Grid.RowSpan="3" Grid.Column="0" Grid.ColumnSpan="3"/>
 
                                         <Label Text="GROUPS" Grid.Row="1" Grid.Column="0"  LineBreakMode="NoWrap" TextColor="Black" VerticalOptions="Center" HorizontalOptions="Center" FontSize="13"/>
                                         <Label Text="BAG" Grid.Row="1" Grid.Column="1"  LineBreakMode="NoWrap" TextColor="Black" VerticalOptions="Center" HorizontalOptions="Center" FontSize="13"/>
@@ -312,7 +316,7 @@
                                     <ListView.ItemTemplate>
                                         <DataTemplate>
                                             <ViewCell>
-                                                <Frame  Padding="0" BorderColor="#FAFAFA">
+                                                <Frame  Padding="0" BorderColor="#e7e7e9">
 
                                                     <Grid Padding="0" Margin="0">
                                                         <Grid.RowDefinitions>
@@ -354,13 +358,11 @@
                                     </ListView.ItemTemplate>
                                     <ListView.Footer>
                                         <Grid Padding="6" IsVisible="{Binding IsBusy}">
-                                            <!-- set the footer to have a zero height when invisible -->
                                             <Grid.Triggers>
                                                 <Trigger TargetType="Grid" Property="IsVisible" Value="False">
                                                     <Setter Property="HeightRequest" Value="0" />
                                                 </Trigger>
                                             </Grid.Triggers>
-                                            <!-- the loading content -->
                                             <Label Text="Loading..." TextColor="Gray" FontSize="20" VerticalOptions="Center" HorizontalOptions="Center" />
                                         </Grid>
                                     </ListView.Footer>

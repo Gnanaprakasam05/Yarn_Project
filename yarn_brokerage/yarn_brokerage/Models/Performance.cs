@@ -26,6 +26,7 @@ namespace yarn_brokerage.Models
         public int PerformanceBackCheckBack { get; set; }
         public int TeamBackCheckBack { get; set; }
         public int TeamGroupBackCheckBack { get; set; }
+        public int TeamGroupNameCheck { get; set; }
     }
 
     public class ConfirmedBags

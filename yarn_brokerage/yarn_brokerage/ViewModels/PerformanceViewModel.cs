@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -53,13 +54,15 @@ namespace yarn_brokerage.ViewModels
                         foreach (var item in teams)
                         {
                             int bags = ((int.Parse(item.ConfirmedBagsPercentage) + int.Parse(item.DispatchedBagsPercentage)) / 2);
-                            int com = ((int.Parse(item.ConfirmedCommissionPercentage) + int.Parse(item.DispatchedCommissionPercentage)) / 2);
+                            int com = (((int.Parse(item.ConfirmedCommissionPercentage) + int.Parse(item.DispatchedCommissionPercentage) + int.Parse(item.ActualCommissionPercentage)) / 3));
 
                             item.ConfirmedBagsPercentage = (bags == 0) ? "" : bags.ToString() + "%";
                             item.ConfirmedCommissionPercentage = (com == 0) ? "" : com.ToString() + "%";
                            
                             TeamGroupPerformance.Add(item);
                         }
+
+                        //var index_value = TeamGroupPerformance.IndexOf(TeamGroupPerformance.Where(x =>( int.Parse(x.ActualCommissionPercentage) == 0).FirstOrDefault());
                     }
                 }
 
@@ -113,7 +116,7 @@ namespace yarn_brokerage.ViewModels
                         {
 
                             int bags = ((int.Parse(item.ConfirmedBagsPercentage) + int.Parse(item.DispatchedBagsPercentage)) / 2);
-                            int com = ((int.Parse(item.ConfirmedCommissionPercentage) + int.Parse(item.DispatchedCommissionPercentage)) / 2);
+                            int com = (( (int.Parse(item.ConfirmedCommissionPercentage) + int.Parse(item.DispatchedCommissionPercentage) + int.Parse(item.ActualCommissionPercentage)) / 3));
 
                             item.ConfirmedBagsPercentage = ( bags == 0 ) ? "" : bags.ToString() + "%";
                             item.ConfirmedCommissionPercentage = (com == 0) ? "" : com.ToString() + "%";

@@ -47,7 +47,7 @@
 
                                 </Grid.ColumnDefinitions>
 
-                                <StackLayout BackgroundColor="Transparent"  Padding="0" Margin="0" Grid.Row="0" Grid.RowSpan="3" Grid.Column="0" Grid.ColumnSpan="3"/>
+                                <StackLayout BackgroundColor="#e7e7e9"  Padding="0" Margin="0" Grid.Row="0" Grid.RowSpan="3" Grid.Column="0" Grid.ColumnSpan="3"/>
 
                                 <Label Text="" Grid.Row="1" Grid.Column="0"  LineBreakMode="NoWrap" TextColor="Black" VerticalOptions="Center" HorizontalOptions="Center" FontSize="13"/>
                                 <Label Text="CONFIRMED" Grid.Row="1" Grid.Column="1"  LineBreakMode="NoWrap" TextColor="Black" VerticalOptions="Center" HorizontalOptions="Center" FontSize="13"/>
@@ -165,7 +165,7 @@
                                     <ColumnDefinition Width="2.5*"/>
                                 </Grid.ColumnDefinitions>
 
-                                <StackLayout BackgroundColor="Transparent"  Padding="0" Margin="0" Grid.Row="0" Grid.RowSpan="3" Grid.Column="0" Grid.ColumnSpan="3"/>
+                                <StackLayout BackgroundColor="#e7e7e9"  Padding="0" Margin="0" Grid.Row="0" Grid.RowSpan="3" Grid.Column="0" Grid.ColumnSpan="3"/>
 
                                 <Label Text="" Grid.Row="1" Grid.Column="0"  LineBreakMode="NoWrap" TextColor="Black" VerticalOptions="Center" HorizontalOptions="Center" FontSize="13"/>
                                 <Label Text="CONFIRMED" Padding="5,0,0,0" Grid.Row="1" Grid.Column="1"  LineBreakMode="NoWrap" TextColor="Black" VerticalOptions="Center" HorizontalOptions="StartAndExpand" FontSize="13"/>
@@ -263,7 +263,7 @@
                                     <ColumnDefinition Width="2.5*"/>
                                 </Grid.ColumnDefinitions>
 
-                                <StackLayout BackgroundColor="Transparent"  Padding="0" Margin="0" Grid.Row="0" Grid.RowSpan="3" Grid.Column="0" Grid.ColumnSpan="3"/>
+                            <StackLayout BackgroundColor="#e7e7e9"  Padding="0" Margin="0" Grid.Row="0" Grid.RowSpan="3" Grid.Column="0" Grid.ColumnSpan="3"/>
 
                                 <Label Text="GROUPS" Grid.Row="1" Grid.Column="0"  LineBreakMode="NoWrap" TextColor="Black" VerticalOptions="Center" HorizontalOptions="Center" FontSize="13"/>
                                 <Label Text="BAG" Grid.Row="1" Grid.Column="1"  LineBreakMode="NoWrap" TextColor="Black" VerticalOptions="Center" HorizontalOptions="Center" FontSize="13"/>
@@ -293,13 +293,12 @@
                                    ItemSelected="OnItemSelected"
                                    TabIndex="0"
                                    SeparatorColor="LightGray" 
-                                   Margin="0"
-                                 >
+                                   Margin="0" HeightRequest="400">
 
                             <ListView.ItemTemplate>
                                 <DataTemplate>
                                     <ViewCell>
-                                        <Frame  Padding="0" BorderColor="#FAFAFA">
+                                        <Frame  Padding="0" BorderColor="#e7e7e9">
 
                                             <Grid Padding="0" Margin="0">
                                                 <Grid.RowDefinitions>

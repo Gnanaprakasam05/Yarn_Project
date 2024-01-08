@@ -117,7 +117,7 @@ namespace yarn_brokerage.Views
             if (item == null)
                 return;
 
-            await Navigation.PushAsync(new PerformancePage(2, Performance, item.Id));
+            await Navigation.PushAsync(new PerformancePage(2, Performance, item.Id ,item.Name));
         }
     }
 }

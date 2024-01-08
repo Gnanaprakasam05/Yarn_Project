@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <SelectedDevice>Xiaomi Redmi Note 5 Pro</SelectedDevice>
+    <SelectedDevice>OnePlus GM1901</SelectedDevice>
     <AndroidDesignerPreferredTheme>Theme.AppCompat.Light.NoActionBar</AndroidDesignerPreferredTheme>
-    <ActiveDebugProfile>Xiaomi Redmi Note 5 Pro %28Android 9.0 - API 28%29</ActiveDebugProfile>
+    <ActiveDebugProfile>OnePlus GM1901 %28Android 12.0 - API 31%29</ActiveDebugProfile>
     <DefaultDevice>pixel_2_r_11_0_-_api_30</DefaultDevice>
     <SelectedPlatformGroup>PhysicalDevice</SelectedPlatformGroup>
   </PropertyGroup>

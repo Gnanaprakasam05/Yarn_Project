@@ -81,7 +81,7 @@ namespace yarn_brokerage.ViewModels
                             {
                                     new KeyValuePair<string,string>("CurrentPageNumber","0"),
                                     new KeyValuePair<string,string>("PageSize","1"),
-                                    new KeyValuePair<string,string>("user_id",Application.Current.Properties["user_id"].ToString()),
+                                    new KeyValuePair<string,string>("user_id",User_Id.ToString()),
                                     new KeyValuePair<string, string>("filterParameters[date_from]", firstDayOfMonth.ToString("yyyy-MM-dd")),
                                     new KeyValuePair<string, string>("filterParameters[date_to]", lastDayOfMonth.ToString("yyyy-MM-dd")),
                             });

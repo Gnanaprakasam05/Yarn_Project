@@ -70,6 +70,9 @@ namespace yarn_brokerage.Views
 
             Approval.AttendanceTeamName = Application.Current.Properties["username"].ToString();
 
+           string Name =  Application.Current.Properties["username"].ToString();
+            lblUserName.Text = Name.ToUpper();
+
             if (Application.Current.Properties["mobile_dashboard_dispatched"].ToString() == "0")
                 frmDispatch.IsVisible = false;
             if (Application.Current.Properties["mobile_dashboard_enquiry"].ToString() == "0")
@@ -163,8 +166,8 @@ namespace yarn_brokerage.Views
                     attendenceDashboard.LateEvening = data[i].LateEvening;
                     attendenceDashboard.EmployeeId = data[i].EmployeeId;
                 }
-                toldays.Text = (int.Parse(attendenceDashboard.FullDay) + int.Parse(attendenceDashboard.HalfDay) + int.Parse(attendenceDashboard.Absent)).ToString();
-                fuldays.Text = attendenceDashboard.FullDay.ToString();
+                //toldays.Text = (int.Parse(attendenceDashboard.FullDay) + int.Parse(attendenceDashboard.HalfDay) + int.Parse(attendenceDashboard.Absent)).ToString();
+                //fuldays.Text = attendenceDashboard.FullDay.ToString();
                 halfdays.Text = attendenceDashboard.HalfDay.ToString();
                 absent.Text = attendenceDashboard.Absent.ToString();
                 permission.Text = (attendenceDashboard.PermissionMorning + attendenceDashboard.PermissionEvening).ToString();
@@ -172,8 +175,8 @@ namespace yarn_brokerage.Views
             }
             else
             {
-                toldays.Text = "0";
-                fuldays.Text = "0";
+                //toldays.Text = "0";
+                //fuldays.Text = "0";
                 halfdays.Text = "0";
                 absent.Text = "0";
                 permission.Text = "0";

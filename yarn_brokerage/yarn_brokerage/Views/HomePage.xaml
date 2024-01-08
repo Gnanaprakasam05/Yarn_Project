@@ -28,7 +28,16 @@
                 </ListView.ItemTemplate>
             </ListView>
 
-            <Frame Margin="5,5,5,0" Padding="0" BorderColor="Transparent" CornerRadius="0" x:Name="frmOffersAndEnquiry">
+
+            <Frame Margin="0" Padding="0" BorderColor="WhiteSmoke" CornerRadius="0" >
+                <StackLayout Margin="0,10,0,20" Orientation="Horizontal" Spacing="8" HorizontalOptions="Center" VerticalOptions="Center">
+                    
+                    <Label Text="HI," FontSize="18" TextColor="Gray" HorizontalOptions="Center" VerticalOptions="Center"/>
+                    <Label x:Name="lblUserName" FontSize="16" TextColor="Gray" HorizontalOptions="Center" VerticalOptions="Center" />
+                </StackLayout>
+             </Frame>
+                             
+                    <Frame Margin="5,5,5,0" Padding="0" BorderColor="Transparent" CornerRadius="0" x:Name="frmOffersAndEnquiry">
                 <StackLayout Margin="0,0,0,20">
                     <Frame BackgroundColor="WhiteSmoke" Margin="0,0,0,0" Padding="0" CornerRadius="0"  >
                         <Grid BackgroundColor="WhiteSmoke" Margin="0" >
@@ -192,15 +201,17 @@
                     <StackLayout>
                         <Grid>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="0.3*"/>
-                                <ColumnDefinition Width="0.3*"/>
-                                <ColumnDefinition Width="0.3*"/>
+                                <ColumnDefinition Width="2.5*"/>
+                                <ColumnDefinition Width="2.5*"/>
+                                <ColumnDefinition Width="2.5*"/>
+                                <ColumnDefinition Width="2.5*"/>
+                          
+                          
                             </Grid.ColumnDefinitions>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
                             </Grid.RowDefinitions>
-                            <StackLayout Grid.Row="0" Grid.Column="0">
+                            <!--<StackLayout Grid.Row="0" Grid.Column="0">
                                 <Image HeightRequest="40" WidthRequest="40" HorizontalOptions="Center" Source="totaldays.png" />
                                 <Label x:Name="toldays" LineBreakMode="WordWrap" HorizontalOptions="Center"  Text="0" VerticalOptions="Center" TextColor="Gray" Style="{DynamicResource ListItemDetailTextStyle}"  FontSize="18" />
                                 <StackLayout>
@@ -213,33 +224,33 @@
                                 <StackLayout>
                                     <Label LineBreakMode="WordWrap" HorizontalOptions="Center" HorizontalTextAlignment="Center" Text="FULL DAYS" VerticalOptions="Center" TextColor="Gray" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="14" />
                                 </StackLayout>
-                            </StackLayout>
-                            <StackLayout Grid.Column="2" Grid.Row="0" >
-                                <Image HeightRequest="40" WidthRequest="40" HorizontalOptions="Center" Source="halfday.png"/>
+                            </StackLayout>-->
+                            <StackLayout Grid.Column="0" Grid.Row="0" >
+                                <Image HeightRequest="35" WidthRequest="35" HorizontalOptions="Center" Source="halfday.png"/>
                                 <Label  x:Name="halfdays" LineBreakMode="WordWrap" HorizontalOptions="Center"  Text="0" VerticalOptions="Center" TextColor="Gray" Style="{DynamicResource ListItemDetailTextStyle}"  FontSize="18" />
                                 <StackLayout>
                                     <Label LineBreakMode="WordWrap" HorizontalOptions="Center" HorizontalTextAlignment="Center" Text="HALF DAYS" VerticalOptions="Center" TextColor="Gray" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="14" />
                                 </StackLayout>
                             </StackLayout>
 
-                            <StackLayout Grid.Row="1" Grid.Column="0">
-                                <Image HeightRequest="40" WidthRequest="40" HorizontalOptions="Center" Source="absent.png"/>
+                            <StackLayout Grid.Row="0" Grid.Column="1">
+                                <Image HeightRequest="35" WidthRequest="35" HorizontalOptions="Center" Source="absent.png"/>
                                 <Label  x:Name="absent" LineBreakMode="WordWrap" HorizontalOptions="Center"  Text="0" VerticalOptions="Center" TextColor="Gray" Style="{DynamicResource ListItemDetailTextStyle}"  FontSize="18" />
                                 <StackLayout>
                                     <Label LineBreakMode="WordWrap" HorizontalOptions="Center" HorizontalTextAlignment="Center" Text="ABSENT" VerticalOptions="Center" TextColor="Gray" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="14" />
                                 </StackLayout>
                             </StackLayout>
 
-                            <StackLayout Grid.Column="1" Grid.Row="1" >
-                                <Image  HeightRequest="40" WidthRequest="40" HorizontalOptions="Center" Source="permission.png"/>
+                            <StackLayout Grid.Column="2" Grid.Row="0" >
+                                <Image  HeightRequest="35" WidthRequest="35" HorizontalOptions="Center" Source="permission.png"/>
                                 <Label  x:Name="permission" LineBreakMode="WordWrap" HorizontalOptions="Center"  Text="0" VerticalOptions="Center" TextColor="Gray" Style="{DynamicResource ListItemDetailTextStyle}"  FontSize="18" />
                                 <StackLayout>
                                     <Label LineBreakMode="WordWrap" HorizontalOptions="Center" HorizontalTextAlignment="Center" Text="PERMISSION" VerticalOptions="Center"  TextColor="Gray" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="14" />
                                 </StackLayout>
                             </StackLayout>
 
-                            <StackLayout Grid.Column="2" Grid.Row="1" >
-                                <Image HeightRequest="40" WidthRequest="40" HorizontalOptions="Center" Source="late.png"/>
+                            <StackLayout Grid.Column="3" Grid.Row="0" >
+                                <Image HeightRequest="35" WidthRequest="35" HorizontalOptions="Center" Source="late.png"/>
                                 <Label x:Name="late"  LineBreakMode="WordWrap" HorizontalOptions="Center"  Text="0" VerticalOptions="Center" TextColor="Gray" Style="{DynamicResource ListItemDetailTextStyle}"  FontSize="18" />
                                 <StackLayout>
                                     <Label LineBreakMode="WordWrap" HorizontalOptions="Center" HorizontalTextAlignment="Center" Text="LATE" VerticalOptions="Center" TextColor="Gray" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="14" />
@@ -406,7 +417,7 @@
 
             <Frame Margin="5,5,5,0" Padding="0" BorderColor="Transparent" CornerRadius="5" x:Name="frmCurrentPlan">
                 <StackLayout Margin="0,0,0,20">
-                    <Grid BackgroundColor="Transparent" Margin="10,15,0,0" ColumnSpacing="0" Padding="0,0,0,0">
+                    <Grid BackgroundColor="Transparent" Margin="10,10,0,0" ColumnSpacing="0" Padding="0,0,0,0">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="0.9*"/>

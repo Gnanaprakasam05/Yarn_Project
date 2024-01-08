@@ -27,7 +27,7 @@ namespace yarn_brokerage.Views
 
         int currentYear { get; set; }
         int TeamGroupPerformanceId;
-        public PerformancePage(int title = 0, Performance performance = null, int teamGroup = 0)
+        public PerformancePage(int title = 0, Performance performance = null, int teamGroup = 0 , string teamGroupName = null)
         {
             InitializeComponent();
 
@@ -57,6 +57,13 @@ namespace yarn_brokerage.Views
             {
                 Title = "Team Performance";
 
+
+                if (TeamGroupPerformanceId > 0)
+                {
+                    lblTeamName.IsVisible = true;
+                    lblTeamName.Text = teamGroupName;
+
+                }
             }
 
             BindingContext = viewModel = new PerformanceViewModel();
